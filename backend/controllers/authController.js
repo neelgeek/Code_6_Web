@@ -17,11 +17,13 @@ module.exports.controllerFunction = function(app) {
             //use this coding guide lines
     });
 
+
     route.post('/signup/farmer', (req, res, next) => {
 
         var userDetails = {
             _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
+            password: req.body.pass,
             aadhar: req.body.aadhar,
             mobile: req.body.mobile,
             lang: req.body.lang,
@@ -47,6 +49,7 @@ module.exports.controllerFunction = function(app) {
         var userDetails = {
             _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
+            password: req.body.pass,
             aadhar: req.body.aadhar,
             mobile: req.body.mobile,
             lang: req.body.lang,
@@ -61,6 +64,25 @@ module.exports.controllerFunction = function(app) {
             res.status(200).json({
                 modle: response
             });
+        });
+
+    });
+
+
+    route.post('/signin/farmer', (req, res) => {
+        var number = { number: req.body.number };
+        var pass = req.body.pass;
+
+        var user = new userModel();
+        user.find_farmer(user).then(response => {
+            console.log(response.password);
+
+            if (response.password === String(pass)) {
+                res.status(200).json({ message: "Sucess" });
+            } else {
+                res.status(200).json({ message: "Fail" });
+            }
+
         });
 
     });

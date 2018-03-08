@@ -9,7 +9,7 @@ const fs = require('fs');
 // in main app
 
 const express = require('express');
-
+const session = require('express-session');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
@@ -37,6 +37,9 @@ app.use(bodyParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //initialized body parser
+
+
+app.use(session({ secret: 'Code_6', saveUninitialized: false, resave: false }));
 
 fs.readdirSync('./controllers').forEach(function(file) {
         if (file.indexOf('.js')) {

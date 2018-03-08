@@ -26,6 +26,17 @@ class UserModel {
             .catch(err => err);
     }
 
+    find_farmer(obj) {
+        var mobile = obj.mobile;
+        return this.farm_model.findOne({ number: mobile }).exec().then(user => {
+            if (user) {
+                // console.log(user);
+                return user;
+            }
+        }).catch(err => {
+            return err;
+        });
+    }
 
 }
 
