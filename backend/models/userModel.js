@@ -4,21 +4,12 @@ const objectId = mongoose.Types.ObjectId;
 
 class UserModel {
     constructor() {
-        this.farm_model = mongoose.model('farmer', userschema);
-        this.buy_model = mongoose.model('merchant', userschema);
+        this.usermodel = mongoose.model('user', userschema);
     }
 
 
-    save_farmer(obj) {
-        let user = new this.farm_model(obj);
-        //console.log() //replace with object
-        return user
-            .save()
-            .then(response => { return response; })
-            .catch(err => err);
-    }
-    save_merchant(obj) {
-        let user = new this.buy_model(obj);
+    save(obj) {
+        let user = new this.usermodel(obj);
         //console.log() //replace with object
         return user
             .save()
@@ -26,11 +17,12 @@ class UserModel {
             .catch(err => err);
     }
 
-    find_farmer(obj) {
+
+    find(obj) {
         var mobile = obj.mobile;
-        return this.farm_model.findOne({ number: mobile }).exec().then(user => {
+        var isfarm = obj.isfarmer;
+        return this.usermodel.findOne({ $and: [{ number: mobile }, { isFarmer: isfarm }] }).then(user => {
             if (user) {
-                // console.log(user);
                 return user;
             }
         }).catch(err => {

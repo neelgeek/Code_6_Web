@@ -18,7 +18,7 @@ module.exports.controllerFunction = function(app) {
     });
 
 
-    route.post('/signup/farmer', (req, res, next) => {
+    route.post('/signup/', (req, res, next) => {
 
         var userDetails = {
             _id: new mongoose.Types.ObjectId(),
@@ -31,10 +31,11 @@ module.exports.controllerFunction = function(app) {
             taluka: req.body.taluka,
             district: req.body.district,
             state: req.body.state,
-            pincode: req.body.pincode
+            pincode: req.body.pincode,
+            isFarmer: req.body.isfarmer
         }
         const newuser = new userModel();
-        newuser.save_farmer(userDetails).then(response => {
+        newuser.save(userDetails).then(response => {
             res.status(200).json({
                 message: "Farmer Registered"
             });
@@ -44,38 +45,17 @@ module.exports.controllerFunction = function(app) {
 
 
 
-    route.post('/signup/merchant', (req, res, next) => {
-
-        var userDetails = {
-            _id: new mongoose.Types.ObjectId(),
-            name: req.body.name,
-            password: req.body.pass,
-            aadhar: req.body.aadhar,
-            mobile: req.body.mobile,
-            lang: req.body.lang,
-            addr1: req.body.addr1,
-            taluka: req.body.taluka,
-            district: req.body.district,
-            state: req.body.state,
-            pincode: req.body.pincode
-        }
-        const newuser = new userModel();
-        newuser.save_merchant(userDetails).then(response => {
-            res.status(200).json({
-                modle: response
-            });
-        });
-
-    });
 
 
-    route.post('/signin/farmer', (req, res) => {
-        var number = { number: req.body.number };
+    route.post('/signin', (req, res) => {
+        var details = {
+            number: req.body.number,
+            isfarmer: req.body.isfarmer
+        };
         var pass = req.body.pass;
-
         var user = new userModel();
-        user.find_farmer(user).then(response => {
-            console.log(response.password);
+        user.find(user).then(response => {
+            console.log(response);
 
             if (response.password === String(pass)) {
                 res.status(200).json({ message: "Sucess" });
@@ -83,7 +63,9 @@ module.exports.controllerFunction = function(app) {
                 res.status(200).json({ message: "Fail" });
             }
 
-        });
+        }).catch(err => {
+            res.status(500).json(err.message);
+        })
 
     });
 

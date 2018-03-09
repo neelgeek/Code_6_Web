@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
     taluka: String,
     district: String,
     state: String,
-    pincode: Number
+    pincode: Number,
+    isFarmer: Boolean
 });
 
 module.exports = userSchema;
