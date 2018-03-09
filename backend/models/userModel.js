@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const userschema = require('../schema/UserSchema');
+const userschema = require('../schema/userSchema');
 const objectId = mongoose.Types.ObjectId;
 
 class UserModel {
@@ -18,15 +18,16 @@ class UserModel {
     }
 
 
-    find(obj) {
-        var mobile = obj.mobile;
-        var isfarm = obj.isfarmer;
-        return this.usermodel.findOne({ $and: [{ number: mobile }, { isFarmer: isfarm }] }).then(user => {
+    findOne(obj) {
+        const { isFarmer, mobile } = obj;
+        return this.usermodel.findOne({ $and: [{ mobile }, { isFarmer }] }).then(user => {
             if (user) {
                 return user;
+            } else {
+                throw new Error("no such user found with " + mobile)
             }
         }).catch(err => {
-            return err;
+            throw err;
         });
     }
 
