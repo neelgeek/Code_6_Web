@@ -1,18 +1,17 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    name: String,
-    password: String,
-    aadhar: Number,
-    mobile: Number,
-    lang: String,
-    addr1: String,
-    taluka: String,
-    district: String,
-    state: String,
-    pincode: Number,
-    isFarmer: Boolean
+    name: { type: String },
+    password: { type: String },
+    aadhar: { type: Number },
+    mobile: { type: Number },
+    lang: { type: String },
+    addr1: { type: String },
+    taluka: { type: String },
+    district: { type: String },
+    state: { type: String },
+    pincode: { type: Number },
+    isFarmer: { type: Boolean }
 });
 
 module.exports = userSchema;
