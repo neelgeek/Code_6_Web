@@ -13,7 +13,26 @@ const protect = require('../middlewares/authProtected')
 module.exports.controllerFunction = function(app) {
 
 
+    route.delete('/delete/farmer', (req, res) => {
+        let user = new userModel({});
+        user.findOneAndDelete(req.session.user).then(deletedUser => {
+                res.status(200).json({ deleted: true })
+            })
+            .catch(err => {
+                res.status(204).json(err.message);
+            })
+    })
 
+    route.put('/edit/farmer', (req, res) => {
+        let user = new userModel({});
+        let updatedFarmerDetails = req.body;
+        user.findOneAndEdit(req.session.user, updatedFarmerDetails).then(editedUser => {
+                res.status(200).json({ edited: true })
+            })
+            .catch(err => {
+                res.status(204).json(err.message);
+            })
+    })
 
 
 
