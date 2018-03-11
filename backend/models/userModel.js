@@ -31,6 +31,27 @@ class UserModel {
             throw err;
         });
     }
+    findOneAndDelete(user) {
+        return this.usermodel
+            .deleteOne({ _id: objectId(user._id) })
+            .then(deletedUser => {
+
+                return deletedUser
+            })
+            .catch(err => {
+                throw err;
+            })
+    }
+    findOneAndEdit(user,updatedData){
+        return this.userModel
+                .findOneAndUpdate({_id:objectId(user._id)},{updatedData})
+                .then(updatedData =>{
+                    return updatedData
+                })
+                .catch(err=>{
+                    throw err;
+                })
+    }
 
 }
 
