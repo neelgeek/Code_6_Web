@@ -5,8 +5,8 @@ const produceSchema = mongoose.Schema({
     farmerid: mongoose.Schema.Types.ObjectId,
     crop: String,
     type: String,
-    quantity: Number,
-    price: Number
+    quantity: Number
+
 
 });
 

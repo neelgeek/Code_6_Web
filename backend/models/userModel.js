@@ -19,6 +19,7 @@ class UserModel {
 
 
     findOne(obj) {
+        // console.log(obj);    
         const { isFarmer, mobile } = obj;
         return this.usermodel.findOne({ $and: [{ mobile }, { isFarmer }] }).then(user => {
             if (user) {

@@ -14,7 +14,7 @@ module.exports.controllerFunction = function(app) {
 
     route.get('/', (req, res) => {
         res.send("hello")
-        //use this coding guide lines
+            //use this coding guide lines
     });
 
 
@@ -48,7 +48,9 @@ module.exports.controllerFunction = function(app) {
 
 
 
-
+    route.get('/session', (req, res) => {
+        res.status(200).json(req.session.user._id);
+    });
 
     route.post('/signin', (req, res) => {
         //handle empty fields error over here
@@ -63,7 +65,7 @@ module.exports.controllerFunction = function(app) {
 
             let user = new userModel({});
             user.findOne(details).then((user) => {
-                    console.log("user is ", user)
+                    // console.log("user is ", user)
                     if (user.password == req.body.password) {
                         req.session.user = user; // session established
 

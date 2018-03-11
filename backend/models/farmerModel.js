@@ -17,7 +17,22 @@ class farmer {
             .catch(err => { return err });
     }
 
-    getproduce(obj) {
+    find(obj) {
+        var cname = obj.cropname;
+        var ctype = obj.type;
+        var cquantity = obj.quant;
 
+
+        return this.produceModel.find({ crop: cname, type: ctype }).then(response => {
+
+            if (response.length > 0) {
+                return response;
+            } else {
+                throw new Error("No Produce Found");
+            }
+        }).catch(err => {
+            return err;
+        });
     }
 }
+module.exports = farmer;
