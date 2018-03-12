@@ -6,8 +6,6 @@ const produceSchema = mongoose.Schema({
     crop: String,
     type: String,
     quantity: Number
-
-
 });
 
 module.exports = produceSchema;

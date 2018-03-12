@@ -3,6 +3,7 @@ const produceSchema = require('../schema/produce');
 const objectId = mongoose.Types.ObjectId;
 
 
+
 class farmer {
     constructor() {
         this.produceModel = mongoose.model('produce', produceSchema);
@@ -18,14 +19,15 @@ class farmer {
     }
 
     find(obj) {
+        console.log(obj);
         var cname = obj.cropname;
         var ctype = obj.type;
-        var cquantity = obj.quant;
+        var cquantity = Number(obj.quantity);
 
 
-        return this.produceModel.find({ crop: cname, type: ctype }).then(response => {
+        return this.produceModel.find({ crop: cname, type: ctype, quantity: { $gt: cquantity } }).then(response => {
 
-            if (response.length > 0) {
+            if (response.length != null) {
                 return response;
             } else {
                 throw new Error("No Produce Found");

@@ -3,7 +3,7 @@ var route = express.Router();
 const fs = require('fs');
 const farmerModel = require('../models/farmerModel');
 const mongoose = require('mongoose');
-
+const protect = require('../middlewares/authProtected');
 
 module.exports.controllerFunction = function(app) {
 
@@ -11,7 +11,7 @@ module.exports.controllerFunction = function(app) {
 
         var details = {
             _id: mongoose.Types.ObjectId(),
-            farmerid: mongoose.Types.ObjectId(),
+            farmerid: mongoose.Types.ObjectId(req.session.user._id),
             crop: req.body.crop,
             type: req.body.type,
             quantity: req.body.quant,
@@ -53,5 +53,6 @@ module.exports.controllerFunction = function(app) {
 
 
 
-    app.use('/', route);
+    app.use('/', protect.functionToCheckIfUserIsFarmer, route);
+
 }
