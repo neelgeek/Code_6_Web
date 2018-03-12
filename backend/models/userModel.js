@@ -24,8 +24,10 @@ class UserModel {
         return this.usermodel.findOne({ $and: [{ mobile }, { isFarmer }] }).then(user => {
             if (user) {
                 return user;
-            } else {
-                throw new Error("no such user found with " + mobile)
+            } 
+
+            if(user == null) {
+                throw new Error("no such user found with " + mobile +" register the user first")
             }
         }).catch(err => {
             throw err;

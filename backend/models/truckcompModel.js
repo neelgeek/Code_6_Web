@@ -12,7 +12,7 @@ class truckCompany {
         return newCompany.save().then(response => {
             return response;
         }).catch(err => {
-            return err;
+            throw err;
         });
 
     }

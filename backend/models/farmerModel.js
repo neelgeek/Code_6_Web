@@ -15,14 +15,14 @@ class farmer {
         return produce
             .save()
             .then(response => { return response; })
-            .catch(err => { return err });
+            .catch(err => { throw err });
     }
 
     find(obj) {
         console.log(obj);
-        var cname = obj.cropname;
-        var ctype = obj.type;
-        var cquantity = Number(obj.quantity);
+        const cname = obj.cropname;
+        const ctype = obj.type;
+        const cquantity = Number(obj.quantity);
 
 
         return this.produceModel.find({ crop: cname, type: ctype, quantity: { $gt: cquantity } }).then(response => {
@@ -33,7 +33,7 @@ class farmer {
                 throw new Error("No Produce Found");
             }
         }).catch(err => {
-            return err;
+            throw err;
         });
     }
 }
