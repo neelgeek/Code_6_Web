@@ -4,6 +4,8 @@ var route = express.Router();
 const fs = require('fs');
 const userModel = require('../models/userModel');
 const mongoose = require('mongoose');
+const truckCompanyModel = require('../models/truckcompModel');
+
 // A route defined now we may use as mini app
 //This is what express offers
 
@@ -59,7 +61,6 @@ module.exports.controllerFunction = function(app) {
             mobile: req.body.mobile,
             isFarmer: req.body.isFarmer
         };
-        console.log(req.body.password)
 
         if (req.body.password != undefined || null) { //error handling
 
@@ -80,6 +81,41 @@ module.exports.controllerFunction = function(app) {
             res.send('please fill all credentails')
 
         }
+
+    });
+    
+    route.post('/truckcompany/signup', (req, res) => {
+        const details = req.body;
+        //handle errors here check if req.body.[any property] is empty
+
+        const newCompany = new truckCompanyModel();
+
+        newCompany.save(details).then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
+            res.status(500).json(err);
+        });
+
+
+    });
+
+    route.post('/truckCompany/signin', (req, res) => {
+        const { email, password } = req.body;
+
+        const company = new truckCompanyModel();
+
+        //handle errors here check if emailId or password is empty
+
+        company.findOne(email).then(response => {
+
+            if (password === response.password) {
+                res.status(200).json({ message: true });
+            } else {
+                res.status(403).json({ message: false });
+            }
+        }).catch(err => {
+            res.json(err.message);
+        })
 
     });
 

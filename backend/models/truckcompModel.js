@@ -4,7 +4,7 @@ const truckCompanySchema = require('../schema/truckcompScehma');
 
 class truckCompany {
     constructor() {
-        this.CompanyModel = mongoose.model('companie', truckCompanySchema);
+        this.CompanyModel = mongoose.model('company', truckCompanySchema);
     }
 
     save(details) {

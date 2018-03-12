@@ -14,7 +14,9 @@ class UserModel {
         return user
             .save()
             .then(response => { return response; })
-            .catch(err => err);
+            .catch(err => {
+                throw err;
+            });
     }
 
 
@@ -24,10 +26,10 @@ class UserModel {
         return this.usermodel.findOne({ $and: [{ mobile }, { isFarmer }] }).then(user => {
             if (user) {
                 return user;
-            } 
+            }
 
-            if(user == null) {
-                throw new Error("no such user found with " + mobile +" register the user first")
+            if (user == null) {
+                throw new Error("no such user found with " + mobile + " register the user first")
             }
         }).catch(err => {
             throw err;
@@ -44,15 +46,34 @@ class UserModel {
                 throw err;
             })
     }
-    findOneAndEdit(user,updatedData){
-        return this.userModel
-                .findOneAndUpdate({_id:objectId(user._id)},{updatedData})
-                .then(updatedData =>{
-                    return updatedData
+    findOneAndEdit(user, updatedData) {
+        return this.usermodel
+            .findOneAndUpdate({ _id: objectId(user._id) }, { updatedData })
+            .then(updatedData => {
+                return updatedData
+            })
+            .catch(err => {
+                throw err;
+            })
+    }
+    findAll(whatToFind) {
+        if (whatToFind == 'farmers') {
+            return this.usermodel.find({ isFarmer: true })
+                .then(farmerList => {
+                    return farmerList;
                 })
-                .catch(err=>{
+                .catch(err => {
                     throw err;
                 })
+        } else {
+            return this.usermodel.find({ isFarmer: false })
+                .then(buyersList => {
+                    return buyersList;
+                })
+                .catch(err => {
+                    throw err;
+                })
+        }
     }
 
 }

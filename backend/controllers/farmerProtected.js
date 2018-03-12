@@ -12,11 +12,12 @@ const protect = require('../middlewares/authProtected');
 
 module.exports.controllerFunction = function(app) {
 
-	route.post('/produce', (req, res) => {
+    route.post('/produce', (req, res) => {
+
+        //handle errors here check if emailId or password is empty
 
         const details = {
-            _id: mongoose.Types.ObjectId(),
-            farmerid: mongoose.Types.ObjectId(req.session.user._id),
+            farmerId: mongoose.Types.ObjectId(req.session.user._id),
             crop: req.body.crop,
             type: req.body.type,
             quantity: req.body.quant,

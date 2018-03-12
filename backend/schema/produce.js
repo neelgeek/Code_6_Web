@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
 const produceSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    farmerid: mongoose.Schema.Types.ObjectId,
-    crop: String,
-    type: String,
-    quantity: Number
+    farmerId: { type: mongoose.Schema.Types.ObjectId },
+    crop: { type: String },
+    type: { type: String },
+    quantity: { type: Number }
 });
 
 module.exports = produceSchema;
