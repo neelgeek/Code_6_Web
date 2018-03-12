@@ -53,6 +53,6 @@ module.exports.controllerFunction = function(app) {
 
 
 
-    app.use('/', protect.functionToCheckIfUserIsFarmer, route);
+    app.use('/farmerProtected', protect.functionToCheckIfUserIsFarmer, route);
 
 }
