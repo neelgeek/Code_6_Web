@@ -49,7 +49,7 @@ module.exports.controllerFunction = function(app) {
 
 
     route.get('/session', (req, res) => {
-        res.status(200).json(req.session.user._id);
+        res.status(200).json(req.session);
     });
 
     route.post('/signin', (req, res) => {

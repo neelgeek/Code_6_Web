@@ -12,3 +12,11 @@ exports.functionToCheckifUserIsBuyer = (req, res, next) => {
     else
         res.status(403).send('not allowed');
 }
+
+exports.checkifTruckCompany = (req, res, next) => {
+    if (req.session.truckadmin != undefined) {
+        next();
+    } else {
+        res.status(403).send('not allowed');
+    }
+}

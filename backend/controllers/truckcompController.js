@@ -5,7 +5,7 @@ const truckCompanyModel = require('../models/truckcompModel');
 
 module.exports.controllerFunction = function(app) {
 
-    route.post('/truckcompany/signup', (req, res) => {
+    route.post('/signup', (req, res) => {
         var details = {
             _id: mongoose.Types.ObjectId(),
             cname: req.body.cname,
@@ -27,7 +27,7 @@ module.exports.controllerFunction = function(app) {
 
     });
 
-    route.post('/truckCompany/signin', (req, res) => {
+    route.post('/signin', (req, res) => {
         email = req.body.mail;
         password = req.body.pass;
 
@@ -36,6 +36,7 @@ module.exports.controllerFunction = function(app) {
         company.findOne(email).then(response => {
 
             if (password === response.password) {
+                req.session.truckadmin = response;
                 res.status(200).json({ message: true });
             } else {
                 res.status(200).json({ message: false });
@@ -46,7 +47,22 @@ module.exports.controllerFunction = function(app) {
 
     });
 
+    route.get('/getTrucks', (req, res) => {
+        const trucks = new truckCompanyModel();
 
-    app.use('/', route);
+        trucks.getTrucks().then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            });
+        });
+
+    });
+
+
+
+
+    app.use('/truckCompany', route);
 
 }
