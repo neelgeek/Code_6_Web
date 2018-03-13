@@ -3,13 +3,12 @@ const mongoose = require('mongoose');
 
 
 const truckSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    cname: String,
-    emailid: String,
-    password: String,
-    ownername: String,
-    phnumber: Number,
-    city: String
+    companyName: { type: String },
+    emailId: { type: String },
+    password: { type: String },
+    ownername: { type: String },
+    phonenumber: { type: Number },
+    city: { type: String }
 });
 
 module.exports = truckSchema;

@@ -1,7 +1,6 @@
 const express = require('express');
 const route = express.Router();
 const mongoose = require('mongoose');
-const truckCompanyModel = require('../models/truckcompModel');
 
 module.exports.controllerFunction = function(app) {
 
@@ -16,7 +15,6 @@ module.exports.controllerFunction = function(app) {
             city: req.body.city
         }
 
-        const newCompany = new truckCompanyModel();
 
         newCompany.save(details).then(response => {
             res.status(200).json(response);
