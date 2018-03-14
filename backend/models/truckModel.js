@@ -43,5 +43,13 @@ class trucks {
         });
     }
 
+    updateLoc(id, loc) {
+        return this.truckModel.findByIdAndUpdate(id, { currentLoc: loc }).then(response => {
+            return response;
+        }).catch(err => {
+            throw err;
+        });
+    }
+
 }
 module.exports = trucks;

@@ -1,21 +1,25 @@
 const express = require('express');
 const route = express.Router();
 const mongoose = require('mongoose');
+const truckCompanyModel = require('../models/truckcompModel');
 
 module.exports.controllerFunction = function(app) {
 
     route.post('/signup', (req, res) => {
+
+
         var details = {
-            _id: mongoose.Types.ObjectId(),
-            cname: req.body.cname,
-            emailid: req.body.email,
+            companyName: req.body.cname,
+            emailId: req.body.email,
             password: req.body.pass,
             ownername: req.body.oname,
             phnumer: req.body.num,
-            city: req.body.city
+            city: req.body.city,
+            district: req.body.dist,
+            state: req.body.state
         }
 
-
+        newCompany = new truckCompanyModel();
         newCompany.save(details).then(response => {
             res.status(200).json(response);
         }).catch(err => {

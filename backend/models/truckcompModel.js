@@ -9,9 +9,12 @@ class truckCompany {
         this.TruckModel = mongoose.model('truck', truckScehma);
     }
 
+
+
     save(details) {
         let newCompany = new this.CompanyModel(details);
         return newCompany.save().then(response => {
+
             return response;
         }).catch(err => {
             throw err;

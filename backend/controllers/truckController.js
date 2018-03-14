@@ -14,7 +14,8 @@ module.exports.controllerFunction = function(app) {
             trucknum: req.body.number,
             password: req.body.pass,
             type: req.body.type,
-            activated: req.body.activated
+            activated: req.body.activated,
+            currentLoc: req.session.truckadmin.district
         }
 
         var newTruck = new truckModel();
@@ -53,9 +54,22 @@ module.exports.controllerFunction = function(app) {
             res.status(500).json({
                 message: err.message
             })
-        })
+        });
     });
 
+    router.patch('/updateLoc', (req, res) => {
+        id = req.body.id;
+        loc = req.body.loc;
+
+        var truck = new truckModel();
+        truck.updateLoc(id, loc).then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            })
+        });
+    });
 
 
 
