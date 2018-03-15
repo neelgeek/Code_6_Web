@@ -16,7 +16,7 @@ module.exports.controllerFunction = function(app) {
 
     route.get('/', (req, res) => {
         res.send("hello")
-            //use this coding guide lines
+        //use this coding guide lines
     });
 
 
@@ -70,13 +70,13 @@ module.exports.controllerFunction = function(app) {
                     console.log("user is ", user)
                     if (user.password == req.body.password) {
                         req.session.user = user; // session established
-                        
-                        res.status(200).json({ message: "success" });
+
+                        res.status(200).json({ user });
                     } else
-                        res.status(404).json({ message: "fail" });
+                        res.status(403).json({ message: "fail" });
                 })
                 .catch(err => {
-                    res.json(err.message)
+                    res.status(403).json(err.message)
                 })
         } else {
             res.send('please fill all credentails')

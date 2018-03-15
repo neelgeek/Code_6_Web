@@ -11,6 +11,14 @@
          box-shadow: 4px 1px 5px #bfbfbf;
          margin: 24px 29% 44px;
      }
+     .LandingPage-login-box {
+         padding: 0 25 0;
+         border: solid #e4e2e2;
+         border-width: 1px;
+         border-radius: 6px;
+         box-shadow: 4px 1px 5px #bfbfbf;
+         margin: 158px 5% 137px;
+     }
  }
 
  .subnav-filters {
@@ -20,8 +28,17 @@
      padding-top: 6px;
  }
 
- 
+.class-btn{
+    padding:9% 0 9% 16%  !important;
 
+}
+
+.btn-buyer{
+    background-color: #836bf7;
+}
+.btn-farmer{
+    background-color: #ed6464;
+}
  .select-wrapper input.select-dropdown {
      border-bottom: 1px solid #0d0d0d;
  }
