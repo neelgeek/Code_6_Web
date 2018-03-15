@@ -31,6 +31,20 @@ export default class authService {
     }
 
 
+    static postServiceSignupApi(url,data){
+        return {
+            callApi:{
+                types:[authService.postServiceSignupReturn().success,authService.postServiceSignupReturn().fail],
+                apiCall:authService.postService(url,data)
+            }
+        }
+    }
+    static postServiceSignupReturn(){
+        return {
+            success:'SuccessSignup',
+            fail:'failSignup'
+        }
+    }
     static postServiceApi(url,data){
         return {
             callApi:{

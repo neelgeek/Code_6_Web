@@ -28,7 +28,7 @@ export default class produceService {
 
     static postService(url,data){
         return HttpService.post(url,null,data);
-    }
+    } 
 
 
     static postServiceApi(url,data){
