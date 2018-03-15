@@ -14,3 +14,4 @@ exports.functionToCheckIfUserIsBuyer = (req,res,next) =>{
 	else
 		res.status(403).send('not allowed');
 }
+
