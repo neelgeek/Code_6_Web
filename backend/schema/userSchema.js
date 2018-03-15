@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
     district: { type: String },
     state: { type: String },
     pincode: { type: Number },
-    isFarmer: { type: Boolean }
+    isFarmer: { type: Boolean ,default :true},
+    isBlocked: { type: Boolean, default: false }
 });
 
 module.exports = userSchema;
