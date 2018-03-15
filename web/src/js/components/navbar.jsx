@@ -4,24 +4,65 @@ import { connect } from "react-redux";
 
 
 class navbar extends React.Component {
-   
+	constructor(props){
+		super(props);
+		this.state={
+			login:false
+		}
+		
+	}
+	
 
     render() {
-        return(
-		<nav>
-		    <div className="nav-wrapper">
-		      <ul id="nav-mobile" className="right hide-on-med-and-down">
-		        <li><Link to="sass.html">Login as Farmer</Link></li>
-		        <li><Link to="badges.html">Signup</Link></li>
-		        <li><Link to="collapsible.html">Login as buyer</Link></li>
-		         <li><Link to="collapsible.html">Truck portal</Link></li>
-		         <li><Link to="/uploadCrop">upload crop</Link></li>
+    	console.log(this.props.user)
+    		let buyerNav =[];
+    		let farmerNav =[{
+		    			url:"/uploadCrop",
+		    			link:"upload Crop"
+		    		}]
 
-		      </ul>
-		    </div>
-		 </nav>
+    		let navs=[{
+		    			url:"/Login/farmer",
+		    			link:"login as Farmer"
 
-        )
+		    		},{
+		    			url:"/Login/buyer",
+		    			link:"login as Buyer"
+
+		    		},{
+		    			url:"/Signup/farmer",
+		    			link:"login as Farmer"
+
+		    		},{
+		    			url:"/Signup/buyer",
+		    			link:"login as buyer"
+
+		    		}]
+
+       	
+       	return(
+       		<nav>
+						    <div className="nav-wrapper">
+						    	{this.props.user.loggedIn?
+						    		(this.props.user.user.user.isFarmer?( 
+						    			<ul id="nav-mobile" className="right hide-on-med-and-down">
+						    				<li>
+						    					<Link to="/uploadCrop">upload Crop</Link>
+						    					<Link to="/logout">logout</Link>
+
+						    				</li>
+						    			 </ul>):
+						    		(<ul id="nav-mobile" className="right hide-on-med-and-down">
+						    					<Link to="/logout">logout</Link>
+						    			
+						    		 </ul>)
+									):(
+						      	 	<ul id="nav-mobile" className="right hide-on-med-and-down"> </ul>
+						      	)}			         
+						     
+						    </div>
+		 				</nav>
+       		)
     }
 }
 
@@ -29,9 +70,10 @@ class navbar extends React.Component {
 let select = (state) => {
     return {
        
+       user :state.authReducer
         
         
     };
   }
   
-  export default connect (select)(navbar);
+  export default withRouter(connect (select)(navbar));
