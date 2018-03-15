@@ -27,7 +27,7 @@ module.exports.controllerFunction = function(app) {
 
         var userDetails = {
             name: req.body.name,
-            password: req.body.pass,
+            password: req.body.password,
             aadhar: req.body.aadhar,
             mobile: req.body.mobile,
             lang: req.body.lang,
@@ -66,10 +66,11 @@ module.exports.controllerFunction = function(app) {
 
             let user = new userModel({});
             user.findOne(details).then((user) => {
-                    // console.log("user is ", user)
+
+                    console.log("user is ", user)
                     if (user.password == req.body.password) {
                         req.session.user = user; // session established
-
+                        
                         res.status(200).json({ message: "success" });
                     } else
                         res.status(404).json({ message: "fail" });

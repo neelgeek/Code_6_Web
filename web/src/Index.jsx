@@ -18,7 +18,7 @@ let store = compose(
 )(createStore)(combineStore);
 persistStore(store, {storage: asyncLocalStorage});
 
-restService.setHttpService('/SmartIndiaHackathon');
+restService.setHttpService('http:/\/localhost:8000/');
 
 render(
     <Root store={store}/>,
