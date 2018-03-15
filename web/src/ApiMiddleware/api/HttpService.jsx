@@ -39,7 +39,7 @@ class HttpService {
             baseURL: this.baseUrl,
             xsrfCookieName: this.xsrfCookieName,
             xsrfHeaderName: this.xsrfHeaderName,
-            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': this.randomNumber }
+            headers: { 'Content-Type': 'application/json' }
         });
     }
 
@@ -52,7 +52,7 @@ class HttpService {
             baseURL: this.baseUrl,
             xsrfCookieName: this.xsrfCookieName,
             xsrfHeaderName: this.xsrfHeaderName,
-            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': this.randomNumber }
+            headers: { 'Content-Type': 'application/json'}
         });
     }
 
@@ -66,7 +66,7 @@ class HttpService {
             baseURL: this.baseUrl,
             xsrfCookieName: this.xsrfCookieName,
             xsrfHeaderName: this.xsrfHeaderName,
-            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': this.randomNumber }
+            headers: { 'Content-Type': 'application/json' }
         });
     }
 
@@ -79,7 +79,7 @@ class HttpService {
             baseURL: this.baseUrl,
             xsrfCookieName: this.xsrfCookieName,
             xsrfHeaderName: this.xsrfHeaderName,
-            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': this.randomNumber }
+            headers: { 'Content-Type': 'application/json' }
         });
     }
 }

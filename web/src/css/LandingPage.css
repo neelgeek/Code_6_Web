@@ -1,0 +1,27 @@
+ nav {
+     background-color: #8265f7;
+ }
+
+ @media screen and (min-width: 527px) {
+     .login-box {
+         padding: 0 25 0;
+         border: solid #e4e2e2;
+         border-width: 1px;
+         border-radius: 6px;
+         box-shadow: 4px 1px 5px #bfbfbf;
+         margin: 24px 29% 44px;
+     }
+ }
+
+ .subnav-filters {
+     border-color: #E7E7E7;
+     color: #0d0d0d;
+     height: 74px;
+     padding-top: 6px;
+ }
+
+ 
+
+ .select-wrapper input.select-dropdown {
+     border-bottom: 1px solid #0d0d0d;
+ }

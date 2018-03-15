@@ -4,12 +4,12 @@ import {Component} from "react";
 import { connect } from "react-redux";
 
 
-class test extends Component {
+class allItems extends Component {
    
 
     render() {
         return(
-        	<h1>everything working .. frontend is setup</h1>
+        	
 
         )
     }
@@ -24,4 +24,4 @@ let select = (state) => {
     };
   }
   
-  export default connect (select)(test);
+  export default connect (select)(allItems);

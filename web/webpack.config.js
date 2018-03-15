@@ -21,7 +21,7 @@ module.exports = {
         contentBase: resolve(__dirname, 'build'),
         publicPath: '',
         proxy: {
-            '/SmartIndiaHackathon/': {
+            '/': {
                 target: '',
                 secure: false
             }
