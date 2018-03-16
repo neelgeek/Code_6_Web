@@ -46,6 +46,20 @@ class truckCompany {
         })
     }
 
+    findOneTruck(number) {
+        return this.TruckModel.findOne({ trucknum: number })
+            .then(response => {
+                if (response) {
+                    return response;
+                } else {
+                    throw new Error("No Truck Found");
+                }
+            })
+            .catch(err => {
+                throw err;
+            });
+    };
+
 }
 
 

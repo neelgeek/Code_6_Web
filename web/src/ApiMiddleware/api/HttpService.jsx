@@ -1,5 +1,5 @@
 import axios from 'axios';
-import randomstring  from 'random-string';
+import randomstring from 'random-string';
 /**
  * This service handles the GET or POST request
  *  
@@ -52,7 +52,7 @@ class HttpService {
             baseURL: this.baseUrl,
             xsrfCookieName: this.xsrfCookieName,
             xsrfHeaderName: this.xsrfHeaderName,
-            headers: { 'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         });
     }
 
@@ -85,4 +85,3 @@ class HttpService {
 }
 
 export default HttpService;
-

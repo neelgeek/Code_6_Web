@@ -45,7 +45,7 @@ module.exports.controllerFunction = function(app) {
             }
         }).catch(err => {
             res.json(err.message);
-        })
+        });
 
     });
 
@@ -62,7 +62,23 @@ module.exports.controllerFunction = function(app) {
 
     });
 
+    route.post('/truckLogin', (req, res) => {
 
+        var number = req.body.trucknum;
+        var pass = req.body.password;
+
+        const truck = new truckCompanyModel();
+        truck.findOneTruck(number).then(response => {
+            if (pass === response.password) {
+                res.status(200).json({ message: true });
+            } else {
+                res.status(200).json({ message: false });
+            }
+        }).catch(err => {
+            res.status(500).json(err.message);
+        });
+
+    });
 
 
     app.use('/truckCompany', route);

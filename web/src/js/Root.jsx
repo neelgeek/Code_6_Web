@@ -32,6 +32,8 @@ class Root extends React.Component {
         * component props and then these are become available in componentWillReceiveProps() methods.
         * */
         if(this.state.rehydrated){
+            
+           // console.log(this.props.store);
             return (
                 <Provider store={this.props.store}>
                     <Router>

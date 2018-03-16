@@ -27,7 +27,7 @@ class LandingPage extends Component {
 	}
 	
     render() {
-    	
+    	console.log(this.state);
     	if(this.state.redirectToFarmer){
     		return <Redirect to ="/Login/farmer"/>;
     	}
@@ -51,6 +51,9 @@ class LandingPage extends Component {
 					    		Login As buyer
 					    	</button>
 					    </div>
+						
+						
+
 					  </div>
 				 </div>
         	

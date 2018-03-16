@@ -14,7 +14,7 @@ import Signup  from './components/authComponents/Signup'
 
 
 export const getRoutes = store => {
-	console.log(store.getState())
+	//console.log(store.getState())
     
     return (
         <div>
