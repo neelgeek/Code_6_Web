@@ -7,10 +7,10 @@ const maps = require('google-distance');
 module.exports.controllerFunction = function(app) {
 
     router.post('/product/:id', (req, res) => {
-
+        let buyerdetails = req.session.user;
         var details = {
             quantity: req.body.quantity,
-            district: "1401,Amrut Paradise,Manisha Nagar,Kalwa,Thane",
+            address: buyerdetails.addr + "," + buyerdetails.district + "," + buyerdetails.state,
             produce_id: req.params.id
         }
 
@@ -43,5 +43,5 @@ module.exports.controllerFunction = function(app) {
 
     });
 
-    app.use('/userProtected', router);
+    app.use('/userProtected', authProtected.functionToCheckIfUserIsBuyer, router);
 }

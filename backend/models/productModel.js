@@ -20,7 +20,7 @@ class produceModel {
                     var farmerinfo = {
                         name: info.name,
                         mobile: info.mobile,
-                        address: info.addr1 + "," + info.taluka + "," + info.state + "," + info.pincode
+                        address: info.addr + "," + info.district + "," + info.state
                     }
 
                     var productinfo = {
@@ -35,8 +35,8 @@ class produceModel {
                     }
 
                     var transportInfo = {
-                        destination: details.district,
-                        origin: "A4/401,Rutupark,Majiwada,Thane"
+                        destination: details.address,
+                        origin: farmerinfo.address
                     }
 
                     return { farmerinfo, productinfo, costInfo, transportInfo };

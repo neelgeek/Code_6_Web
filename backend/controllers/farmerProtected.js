@@ -24,7 +24,7 @@ module.exports.controllerFunction = function(app) {
             crop: req.body.crop,
             type: req.body.type,
             quantity: req.body.quantity,
-            price: req.body.price
+
         }
         console.log(details);
         const farmermodel = new farmerModel();
