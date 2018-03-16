@@ -20,13 +20,13 @@ class UserModel {
     }
 
 
-    findOne(obj) {  
+    findOne(obj) {
         obj.isFarmer = Boolean(obj.isFarmer)
         obj.mobile = Number(obj.mobile)
 
         let { isFarmer, mobile } = obj;
-        console.log({isFarmer,mobile})
-        
+        console.log({ isFarmer, mobile })
+
 
         return this.usermodel.findOne({ $and: [{ mobile }, { isFarmer }] }).then(user => {
             console.log(user)
@@ -54,7 +54,7 @@ class UserModel {
     }
     findOneAndEdit(userId, updatedData) {
         return this.usermodel
-            .findOneAndUpdate({ _id: objectId(userId) },  updatedData )
+            .findOneAndUpdate({ _id: objectId(userId) }, updatedData)
             .then(updatedData => {
                 return updatedData
             })
@@ -80,6 +80,19 @@ class UserModel {
                     throw err;
                 })
         }
+    }
+
+    findbyId(id) {
+
+        return this.usermodel.findById(id).then(response => {
+            if (response) {
+                return response;
+            } else {
+                throw new Error("No User Found");
+            }
+        }).catch(err => {
+            throw err;
+        });
     }
 
 }

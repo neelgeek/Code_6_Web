@@ -8,7 +8,6 @@ const userSchema = mongoose.Schema({
     lang: { type: String },
     addr1: { type: String },
     taluka: { type: String },
-    district: { type: String },
     state: { type: String },
     pincode: { type: Number },
     isFarmer: { type: Boolean ,default :true},
