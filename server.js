@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const dbName = "SIH";
-mongoose.connect('mongodb://localhost/' + dbName);
+mongoose.connect('mongodb://neel:neel1997@ds115799.mlab.com:15799/sih');
 mongoose.connection.once('open', function(err) {
     if (err) throw err;
     console.log("successfully connected to database!");
