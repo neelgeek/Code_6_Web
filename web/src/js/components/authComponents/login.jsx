@@ -28,9 +28,14 @@ class Login extends Component {
 				password: event.target.password.value
 			}
 			this.props.dispatch(authService.postServiceApi('/signin',data)).then(response =>{
+				console.log(response)
+				if(response.type == "Success")
 				this.setState({
 					redirect:true
 				})
+				else{
+					alert("email or password is incorrect")
+				}
 			})
 			.catch(err =>{
 				alert(err.message)

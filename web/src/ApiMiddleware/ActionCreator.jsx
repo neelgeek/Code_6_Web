@@ -38,7 +38,7 @@ export default store => {
                 error => {
                     return next(actionWith({
                         type: failureType,
-                        error: error || 'Error occured.'
+                        error: error.response.data || 'Error occured.'
                     }));
                 }
             );

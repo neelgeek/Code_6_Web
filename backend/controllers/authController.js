@@ -36,13 +36,14 @@ module.exports.controllerFunction = function(app) {
             district: req.body.district,
             state: req.body.state,
             pincode: req.body.pincode,
-            isFarmer: req.body.isfarmer
+            isFarmer: req.body.isFarmer
         }
         const newuser = new userModel();
-        newuser.save(userDetails).then(response => {
-            console.log(response)
+        newuser.save(userDetails).then(user => {
+            console.log(user)
             res.status(200).json({
-                message: "Farmer Registered"
+                message: "Farmer Registered",
+                user
             });
         });
 
@@ -56,6 +57,7 @@ module.exports.controllerFunction = function(app) {
 
     route.post('/signin', (req, res) => {
         //handle empty fields error over here
+        console.log(req.body)
         var details = {
 
             mobile: req.body.mobile,
@@ -72,10 +74,13 @@ module.exports.controllerFunction = function(app) {
                         req.session.user = user; // session established
 
                         res.status(200).json({ user });
-                    } else
+                    } else{
+
                         res.status(403).json({ message: "fail" });
+                    }
                 })
                 .catch(err => {
+                    console.log("not found")
                     res.status(403).json(err.message)
                 })
         } else {

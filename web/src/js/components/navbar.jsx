@@ -41,7 +41,7 @@ class navbar extends React.Component {
 
        	
        	return(
-       		<nav>
+       					<nav>
 						    <div className="nav-wrapper">
 						    	{this.props.user.loggedIn?
 						    		(this.props.user.user.user.isFarmer?( 
@@ -54,7 +54,7 @@ class navbar extends React.Component {
 						    			 </ul>):
 						    		(<ul id="nav-mobile" className="right hide-on-med-and-down">
 						    					<Link to="/logout">logout</Link>
-						    			
+						    				
 						    		 </ul>)
 									):(
 						      	 	<ul id="nav-mobile" className="right hide-on-med-and-down"> </ul>

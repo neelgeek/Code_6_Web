@@ -34,6 +34,8 @@ class Signup extends Component {
 		let checkingParams = ["password","adhar","mobile","lang","addr1","taluka","district","state","pincode"];
 
 		checkingParams.forEach((param)=>{
+				console.log(event.target[param])
+
 			if(event.target[param].value==""){
 				error =true;
 			}
@@ -42,22 +44,20 @@ class Signup extends Component {
 			alert('fill all credentails')
 		else{
 
-			/*let data ={
-				mobile : event.target.phoneNumber.value,
-				isFarmer:(this.props.role == "farmer"?true:false),
-				password: event.target.password.value
-			}*/
+			
 			let data ={};
 			checkingParams.forEach((param)=>{
 				data[param] = event.target[param].value
 			})
-			data.isFarmer =this.props.role == "farmer"?true:false;
-			this.props.dispatch(authService.postServiceApi('/signup',data)).then(response =>{
+			data.isFarmer =(this.props.role === "farmer")?true:false;
+			console.log(data)
+			this.props.dispatch(authService.postServiceSignupApi('/signup',data)).then(response =>{
 				this.setState({
 					redirect:true
 				})
 			})
 			.catch(err =>{
+				console.log(err)
 				alert(err.message)
 			})
 		}
@@ -99,11 +99,11 @@ class Signup extends Component {
 					          <label for="mobile">mobile No.</label>
 					      </div>
 					       <div className="col s12">
-					        <input  id="language" type="text" name="language" className="validate"/>
+					        <input  id="language" type="text" name="lang" className="validate"/>
 					          <label for="language">Language</label>
 					      </div>
 					      <div className="col s12">
-					        <input  id="address" type="text" name="address" className="validate"/>
+					        <input  id="address" type="text" name="addr1" className="validate"/>
 					          <label for="address">address</label>
 					      </div>
 					       <div className="col s12">
@@ -119,13 +119,13 @@ class Signup extends Component {
 					          <label for="state">state</label>
 					      </div>
 					      <div className="col s12">
-					        <input  id="pincode" type="Number" name="state" className="validate"/>
+					        <input  id="pincode" type="Number" name="pincode" className="validate"/>
 					          <label for="pincode">pincode</label>
 					      </div>
 
 					      <div className="row">
 						      <div className="input-field col s6">
-						        <button type="submit" className="btn btn-waves" >Login</button>
+						        <button type="submit" className="btn btn-waves" >Sign up</button>
 						      </div>
 					      </div>
 					      

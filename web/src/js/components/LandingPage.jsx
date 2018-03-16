@@ -63,7 +63,6 @@ class LandingPage extends Component {
 
 
 let select = (state) => {
-	console.log(state)
     return {
        
         user:state.authReducer

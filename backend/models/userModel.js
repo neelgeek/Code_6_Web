@@ -20,7 +20,7 @@ class UserModel {
     }
 
 
-    findOne(obj) {
+    findOne(obj) {  
         obj.isFarmer = Boolean(obj.isFarmer)
         obj.mobile = Number(obj.mobile)
 
