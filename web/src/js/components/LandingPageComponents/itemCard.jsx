@@ -21,6 +21,7 @@ class ItemCard extends Component {
     quantity:this.props.quantity
    }
    this.props.dispatch(produceService.post('/merchantProtected/product/'+this.props.id)).then((response)=>{
+
     if(response.data.type ="SuccessText"){
       this.setState({
         redirect:true

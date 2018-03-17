@@ -45,6 +45,7 @@ class MainItemsPage extends Component {
 		let {crop ,type,quantity} = this.state
 		console.log(crop,type,quantity)
 		this.props.dispatch(produceService.getServiceApi(`/merchantProtected/search/?name=${crop}&type${type}&quant=${quantity}`)).then(response =>console.log(response))
+
 	}
 	
     render() {

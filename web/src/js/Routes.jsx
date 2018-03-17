@@ -21,8 +21,10 @@ export const getRoutes = store => {
     return (
         <div>
         	<Route path ="*" component={navbar} />
-            <Route exact path="/" component={singleProduce}/>
+            <Route exact path="/" component={LandingPage}/>
             <Route exact path="/buyer" component={MainItemsPage}/>
+            <Route exact path="/buyer/crop/:cropId" component={singleProduce}/>
+
 
 
             <Route  path="/uploadCrop" component={ProduceUpload}/>
