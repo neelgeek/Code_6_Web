@@ -18,6 +18,7 @@ class produceModel {
             if (product) {
                 return this.getFarmerinfo(product.farmerId).then(info => {
                     var farmerinfo = {
+                        id: info._id,
                         name: info.name,
                         mobile: info.mobile,
                         address: info.addr + "," + info.district + "," + info.state
@@ -31,7 +32,8 @@ class produceModel {
 
                     var costInfo = {
                         transport: null,
-                        crop: details.quantity * 10
+                        crop: details.quantity * 10,
+                        total: null
                     }
 
                     var transportInfo = {
