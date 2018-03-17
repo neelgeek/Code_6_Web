@@ -55,7 +55,6 @@ module.exports.controllerFunction = function(app) {
             cropname: req.query.name,
             type: req.query.type,
             quantity: req.query.quant
-
         }
         farmermodel.find(details).then(response => {
             res.status(200).json(response);
