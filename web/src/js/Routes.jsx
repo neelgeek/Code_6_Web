@@ -23,7 +23,7 @@ export const getRoutes = store => {
         	<Route path ="*" component={navbar} />
             <Route exact path="/" component={LandingPage}/>
             <Route exact path="/buyer" component={MainItemsPage}/>
-            <Route exact path="/buyer/crop/:cropId" component={singleProduce}/>
+            <Route exact path="/product/crop/:cropId/:quantity" component={singleProduce}/>
 
 
 

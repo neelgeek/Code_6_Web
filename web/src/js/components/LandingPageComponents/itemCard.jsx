@@ -1,6 +1,6 @@
 import React  from "react";
 import {Component} from "react";
-import {Link} from "react-router-dom"
+import {Link,Redirect} from "react-router-dom"
 import { connect } from "react-redux";
 import produceService from "../../../ApiMiddleware/api/produceService";
 
@@ -17,22 +17,16 @@ class ItemCard extends Component {
   
 
   onViewCropButton = (event) =>{
-   let data ={
-    quantity:this.props.quantity
-   }
-   this.props.dispatch(produceService.post('/merchantProtected/product/'+this.props.id)).then((response)=>{
-
-    if(response.data.type ="SuccessText"){
-      this.setState({
+  
+   this.setState({
         redirect:true
       })
-    }
-   })
+   
   }
 
     render() {
       if(this.state.redirect)
-        return <Redirect to={`/product/${this.props.id}`}/>
+        return <Redirect to={`/product/crop/${this.props.id}/${this.props.quantity}`}/>
       
         return(
         	
