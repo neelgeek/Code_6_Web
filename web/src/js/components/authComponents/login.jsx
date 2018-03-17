@@ -49,7 +49,10 @@ class Login extends Component {
 
     render() {
     	if(this.state.redirect || this.props.isAuthenticated){
-    		return <Redirect to ="/"/>;
+    		if(this.props.role == "farmer")
+    		return <Redirect to ="/buyer"/>;
+    		else
+    			return <Redirect to = "/farmer"/>
     	}
 
         return(

@@ -22,6 +22,9 @@ class MainItemsPage extends Component {
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onQuantityChange = this.onQuantityChange.bind(this);
+		 $(document).ready(function() {
+                    $('select').material_select();
+                });
 
 	}
 	
@@ -41,7 +44,7 @@ class MainItemsPage extends Component {
 		}) 	
 		let {crop ,type,quantity} = this.state
 		console.log(crop,type,quantity)
-		this.props.dispatch(produceService.getServiceApi(`/farmerProtected/produce/?name=${crop}&type${type}&quant=${quantity}`)).then(response =>console.log(response))
+		this.props.dispatch(produceService.getServiceApi(`/merchantProtected/search/?name=${crop}&type${type}&quant=${quantity}`)).then(response =>console.log(response))
 	}
 	
     render() {
@@ -85,7 +88,7 @@ class MainItemsPage extends Component {
 			        	 <div className="row">
 			        	 {this.props.state.items.map((item)=>{
 			        	 	console.log("item are",item)
-			        	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity}	/>
+			        	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id}/>
 			        	 })}
 			        	 	
 

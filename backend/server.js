@@ -53,12 +53,19 @@ app.use(require('cors')({
 }));
 //initialized body parser
 
+app.use(bodyParser({ limit: '50mb' }));
 
 app.use(session({
-    name: 'mysecretsession',
-    secret: 'Code_6',
-    saveUninitialized: false,
-    resave: false
+    name: 'mySessionVariable',
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+    secure: false,
+    cookie: {
+
+        httpOnly: false,
+        secure: false
+    }
 }));
 
 fs.readdirSync('./controllers').forEach(function(file) {

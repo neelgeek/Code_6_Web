@@ -42,3 +42,9 @@
  .select-wrapper input.select-dropdown {
      border-bottom: 1px solid #0d0d0d;
  }
+ .singleProduce .farmerInfo{
+    border:solid 1px black;
+ }
+ .singleProduce {
+    border:solid 1px black;
+ }
