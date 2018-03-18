@@ -41,8 +41,8 @@ export default class produceService {
     }
     static postServiceReturn(){
         return {
-            success:'Success',
-            fail:'fail'
+            success:'SuccessText',
+            fail:'failText'
         }
     }
 

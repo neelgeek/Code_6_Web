@@ -1,5 +1,8 @@
 import axios from 'axios';
-import randomstring from 'random-string';
+
+axios.defaults.withCredentials = true; //remove in production
+
+import randomstring  from 'random-string';
 /**
  * This service handles the GET or POST request
  *  

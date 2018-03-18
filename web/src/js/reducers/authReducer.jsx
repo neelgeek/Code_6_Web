@@ -29,6 +29,6 @@ const handlers = {
      }),
 };
 
-export default function commonReducer(state = initialState, action) {
+export default function authReducer(state = initialState, action) {
     return UtilService.actionHandlers(state, action, handlers);
 }

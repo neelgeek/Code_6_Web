@@ -1,18 +1,20 @@
 
 import UtilService from '../Utils/UtilService';
 import {REHYDRATE} from 'redux-persist/lib/constants';
-import produceService from "../../ApiMiddleware/api/produceService";
+import singleProduceService from "../../ApiMiddleware/api/singleProduceService";
 
 
 const initialState = {
- items:[]
+    crop:{}
+ 
 };
 
 const handlers = {
     //string property value
-    [produceService.getServiceReturn().success]: (initialState,action) => ({
+    [singleProduceService.postServiceReturn().success]: (initialState,action) => ({
     	...initialState,
-    	items:action.response.data
+    	crop:action.response.data
+        
        // set state
     }),
     [REHYDRATE]: (state, action) => ({
@@ -20,6 +22,6 @@ const handlers = {
      }),
 };
 
-export default function itemReducer(state = initialState, action) {
+export default function singleProduceReducer(state = initialState, action) {
     return UtilService.actionHandlers(state, action, handlers);
 }

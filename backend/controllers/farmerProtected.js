@@ -40,8 +40,7 @@ module.exports.controllerFunction = function(app) {
 
 
 
-
-    route.delete('/delete/farmer', (req, res) => {
+route.delete('/delete/farmer', (req, res) => {
         let user = new userModel({});
         user.findOneAndDelete(req.session.user).then(deletedUser => {
                 res.status(200).json({ deleted: true })

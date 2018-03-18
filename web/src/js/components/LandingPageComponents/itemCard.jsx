@@ -1,13 +1,33 @@
 import React  from "react";
 import {Component} from "react";
-import {Link} from "react-router-dom"
+import {Link,Redirect} from "react-router-dom"
 import { connect } from "react-redux";
+import produceService from "../../../ApiMiddleware/api/produceService";
+
 
 
 class ItemCard extends Component {
+  constructor(props){
+    super(props)
+
+    this.state={
+      redirect:false
+    }
+  }
+  
+
+  onViewCropButton = (event) =>{
+  
+   this.setState({
+        redirect:true
+      })
    
+  }
 
     render() {
+      if(this.state.redirect)
+        return <Redirect to={`/product/crop/${this.props.id}/${this.props.quantity}`}/>
+      
         return(
         	
                 <div className="col s6 m3">
@@ -21,14 +41,19 @@ class ItemCard extends Component {
 
                     </div>
                     <div className="card-action">
-                      <Link to="/">This is a link</Link>
+                      <button className="btn btn-waves" onClick={this.onViewCropButton}>view</button>
                   </div>
                 </div>
             </div>
 
         )
     }
+
+}
+
+let select = (state) =>{
+
 }
 
   
-  export default  ItemCard;
+export default connect (select) (ItemCard);

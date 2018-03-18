@@ -60,6 +60,7 @@ class produceModel {
     getFarmerinfo(id) {
 
         const user = new userModel();
+        console.log(id)
         return user.findbyId(id).then(response => {
             return response;
         }).catch(err => {

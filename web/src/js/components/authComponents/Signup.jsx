@@ -31,7 +31,7 @@ class Signup extends Component {
             state: req.body.state,
             pincode: req.body.pincode,
             isFarmer: req.body.isfarme*/
-		let checkingParams = ["password","adhar","mobile","lang","addr1","taluka","district","state","pincode"];
+		let checkingParams = ["password","adhar","mobile","lang","addr","taluka","district","state","pincode"];
 
 		checkingParams.forEach((param)=>{
 				console.log(event.target[param])
@@ -103,7 +103,7 @@ class Signup extends Component {
 					          <label for="language">Language</label>
 					      </div>
 					      <div className="col s12">
-					        <input  id="address" type="text" name="addr1" className="validate"/>
+					        <input  id="address" type="text" name="addr" className="validate"/>
 					          <label for="address">address</label>
 					      </div>
 					       <div className="col s12">

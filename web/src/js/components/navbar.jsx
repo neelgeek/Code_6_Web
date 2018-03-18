@@ -48,12 +48,15 @@ class navbar extends React.Component {
 						    			<ul id="nav-mobile" className="right hide-on-med-and-down">
 						    				<li>
 						    					<Link to="/uploadCrop">upload Crop</Link>
+
+						    				</li>
+						    				<li>
 						    					<Link to="/logout">logout</Link>
 
+						    				
 						    				</li>
 						    			 </ul>):
 						    		(<ul id="nav-mobile" className="right hide-on-med-and-down">
-						    					<Link to="/logout">logout</Link>
 						    				
 						    		 </ul>)
 									):(
