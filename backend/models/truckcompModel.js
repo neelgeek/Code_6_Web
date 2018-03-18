@@ -39,7 +39,7 @@ class truckCompany {
 
 
     getTrucks() {
-        return this.TruckModel.aggregate([{ $match: { activated: true } }, { $group: { _id: '$type', trucksid: { $push: '$_id' } } }]).then(response => {
+        return this.TruckModel.aggregate([{ $match: { activated: true } }, { $group: { _id: '$currentLoc', trucksid: { $push: { type: '$type', id: '$_id' } } } }]).then(response => {
             return response;
         }).catch(err => {
             throw err;
