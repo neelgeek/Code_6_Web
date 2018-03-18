@@ -1,6 +1,6 @@
 import React  from "react";
 import {Component} from "react";
-
+import {Link} from "react-router-dom"
 import { connect } from "react-redux";
 import singleProduceService from "../../ApiMiddleware/api/singleProduceService"
 
@@ -18,13 +18,22 @@ class singleProduce extends Component {
 
    			},
    			cropInfo:{},
-   			productinfo:{}
+   			productinfo:{},
+   			redirectToPayment:false
 
    		}
+   	}
+   	redirectToPayment =(ev)=>{
+   		this.setState({
+   			redirectToPayment:true
+   		})
    	}
   
 
     render() {
+    	if(this.state.redirectToPayment){
+    		return <Redirect to="/product/crop/buy" />
+    	}
 
 
     	console.log(this.props.state.crop)
@@ -96,7 +105,7 @@ class singleProduce extends Component {
 		        				<button className="btn btn-waves">share</button>
 		        			</div>
 		        			<div className="col s6">
-		        				<button className="btn btn-waves">buy</button>
+		        				<Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
 		        		</div>	
         				</div>
         					

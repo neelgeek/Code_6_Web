@@ -8,6 +8,8 @@ import LandingPage  from './components/LandingPage';
 import Login  from './components/authComponents/login';
 import Signup  from './components/authComponents/Signup';
 import singleProduce  from './components/singleProduce';
+import Checkout  from './components/checkout';
+
 
 
 
@@ -16,7 +18,6 @@ import singleProduce  from './components/singleProduce';
 
 
 export const getRoutes = store => {
-
     
     return (
         <div>
@@ -24,6 +25,8 @@ export const getRoutes = store => {
             <Route exact path="/" component={LandingPage}/>
             <Route exact path="/buyer" component={MainItemsPage}/>
             <Route exact path="/product/crop/:cropId/:quantity" component={singleProduce}/>
+            <Route exact path="/product/crop/buy" component={Checkout}/>
+
 
 
 
