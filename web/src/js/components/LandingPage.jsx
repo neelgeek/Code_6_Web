@@ -6,7 +6,6 @@ import{ Link ,Redirect} from "react-router-dom";
 
 
 
-
 class LandingPage extends Component {
 	constructor(props){
 		super(props);
@@ -16,6 +15,7 @@ class LandingPage extends Component {
 		}
 	}
 	onBuyerButton = (event) =>{
+
 		this.setState({
 			redirectToBuyer:true
 		})
@@ -27,7 +27,6 @@ class LandingPage extends Component {
 	}
 	
     render() {
-    	console.log(this.state);
     	if(this.state.redirectToFarmer){
     		return <Redirect to ="/Login/farmer"/>;
     	}
@@ -41,20 +40,23 @@ class LandingPage extends Component {
         			
 
 		        	<div className="row">
-					    <div className="col s6 class-btn">
+					    <div className="col offset-s2 s6 class-btn">
 					    	<button className="btn waves-light btn-large btn-farmer" onClick={this.onFarmerButton} >
 					    		Login As Farmer
 					    	</button>
 					    </div>
-					    <div className="col s6 class-btn">
+					 </div>
+					 <div className="row">
+					    <div className="col offset-s2 s6 class-btn">
 					    	<button className="btn waves-light btn-large btn-buyer" onClick={this.onBuyerButton} >
 					    		Login As buyer
 					    	</button>
 					    </div>
+					  </div>
 						
 						
 
-					  </div>
+					  
 				 </div>
         	
         )
