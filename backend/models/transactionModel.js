@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const orderScehma = require('../schema/orderSchema');
+const transacSchema = require('../schema/transactionSchema');
 const braintree = require('braintree');
 
 class transaction {
 
     constructor() {
         this.orderModel = mongoose.model('order', orderScehma);
+        this.transactionModel = mongoose.model('transaction', transacSchema);
         this.gateway = braintree.connect({
             environment: braintree.Environment.Sandbox,
             // Use your own credentials from the sandbox Control Panel here
@@ -22,6 +24,24 @@ class transaction {
         }).catch(err => {
             throw err;
         });
+    }
+
+    createTransaction(details) {
+        let transaction = new this.transactionModel(details);
+        return transaction.save().then(response => {
+            return response;
+        }).catch(err => {
+            throw err;
+        });
+    }
+
+
+    updateOrder(details) {
+
+    }
+
+    assignTruck(details) {
+
     }
 
 

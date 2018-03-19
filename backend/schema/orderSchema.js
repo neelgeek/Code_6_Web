@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const transactionSchema = mongoose.Schema({
+const orderSchema = mongoose.Schema({
     merchant_id: mongoose.Schema.Types.ObjectId,
     farmer_id: { type: mongoose.Schema.Types.ObjectId, default: null },
     transport_id: { type: mongoose.Schema.Types.ObjectId, default: null },
@@ -10,6 +10,4 @@ const transactionSchema = mongoose.Schema({
     status: { type: String, default: "Processing" }
 });
 
-module.exports = transactionSchema;
-
-//sadasd
+module.exports = orderSchema;
