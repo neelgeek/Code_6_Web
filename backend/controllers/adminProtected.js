@@ -5,8 +5,8 @@ const fs = require('fs');
 const userModel = require('../models/userModel');
 const mongoose = require('mongoose');
 const protect = require('../middlewares/authProtected')
-    // A route defined now we may use as mini app
-    //This is what express offers
+// A route defined now we may use as mini app
+//This is what express offers
 
 
 
@@ -41,7 +41,7 @@ module.exports.controllerFunction = function(app) {
     })
 
     route.put('/put/block/:userId', (req, res) => {
-        let userId = req.params;
+        let { userId } = req.params;
         let user = new userModel({});
         user.findOneAndEdit(userId, { isBlocked: true }).then((response) => {
                 res.json(response);

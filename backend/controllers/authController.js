@@ -16,7 +16,7 @@ module.exports.controllerFunction = function(app) {
 
     route.get('/', (req, res) => {
         res.send("hello")
-            //use this coding guide lines
+        //use this coding guide lines
     });
 
 
@@ -31,7 +31,8 @@ module.exports.controllerFunction = function(app) {
             aadhar: req.body.aadhar,
             mobile: req.body.mobile,
             lang: req.body.lang,
-            addr: req.body.addr,
+            addr1: req.body.addr1,
+            taluka: req.body.taluka,
             district: req.body.district,
             state: req.body.state,
             pincode: req.body.pincode,
@@ -73,7 +74,7 @@ module.exports.controllerFunction = function(app) {
                         req.session.user = user; // session established
 
                         res.status(200).json({ user });
-                    } else {
+                    } else{
 
                         res.status(403).json({ message: "fail" });
                     }

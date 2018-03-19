@@ -12,12 +12,3 @@ const truckSchema = mongoose.Schema({
 
 
 module.exports = truckSchema;
-
-
-
-
-
-
-
-//return this.TruckModel.aggregate([{ $match: { activated: true } }, { $group: { _id: '$currentLoc', trucksid: { $push: { Location: '$type', id: '$_id' } } } }])
-//this.TruckModel.aggregate([{ $match: { activated: true } }, { $group: { _id: { location: '$currentLoc', type: '$type', id: '$_id' } } }, { $group: { _id: '$_id.location', types: { $push: { type: '$_id.type', id: '$_id.id' } } } }])

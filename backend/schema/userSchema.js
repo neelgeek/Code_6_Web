@@ -6,11 +6,11 @@ const userSchema = mongoose.Schema({
     aadhar: { type: Number },
     mobile: { type: Number },
     lang: { type: String },
-    addr: { type: String },
-    district: { type: String },
+    addr1: { type: String },
+    taluka: { type: String },
     state: { type: String },
     pincode: { type: Number },
-    isFarmer: { type: Boolean, default: true },
+    isFarmer: { type: Boolean ,default :true},
     isBlocked: { type: Boolean, default: false }
 });
 

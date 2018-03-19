@@ -24,9 +24,7 @@ class UserModel {
         obj.isFarmer = Boolean(obj.isFarmer)
         obj.mobile = Number(obj.mobile)
 
-        let isFarmer = obj.isFarmer;
-        let mobile = obj.mobile;
-
+        let { isFarmer, mobile } = obj;
         console.log({ isFarmer, mobile })
 
 

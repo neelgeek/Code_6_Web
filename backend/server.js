@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const dbName = "SIH";
-mongoose.connect('mongodb://localhost/' + dbName);
+mongoose.connect('mongodb://neel:neel1997@ds115799.mlab.com:15799/sih');
 mongoose.connection.once('open', function(err) {
     if (err) throw err;
     console.log("successfully connected to database!");
@@ -53,38 +53,33 @@ app.use(require('cors')({
 }));
 //initialized body parser
 
-app.use(bodyParser({ limit: '50mb' }));
 
 app.use(session({
-    name: 'mySessionVariable',
-    secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true,
-    secure: false,
-    cookie: {
-
-        httpOnly: false,
-        secure: false
-    }
+    name: 'mysecretsession',
+    secret: 'Code_6',
+    saveUninitialized: false,
+    resave: false
 }));
 
 fs.readdirSync('./controllers').forEach(function(file) {
-    if (file.indexOf('.js')) {
-        const route = require('./controllers/' + file);
-        route.controllerFunction(app);
-    }
-})
-//included all controller files in main app using readdirSync which comes with fs module
-//it reads all files synchronously one by one and includes them using require function
+        if (file.indexOf('.js')) {
+            const route = require('./controllers/' + file);
+            route.controllerFunction(app);
+        }
+    })
+    //included all controller files in main app using readdirSync which comes with fs module
+    //it reads all files synchronously one by one and includes them using require function
 
 fs.readdirSync('./schema').forEach(function(file) {
-    if (file.indexOf('.js')) {
-        require('./schema/' + file);
-    }
-})
-//included all model files in main app using readdirSync which comes with fs module
-//it reads all files synchronously one by one and includes them using require function
+        if (file.indexOf('.js')) {
+            require('./schema/' + file);
+        }
+    })
+    //included all model files in main app using readdirSync which comes with fs module
+    //it reads all files synchronously one by one and includes them using require function
 
-app.listen(8000, function() {
-    console.log("app server running on port:8000");
+app.set('port', (process.env.PORT || 8000))
+
+app.listen(app.get('port'), function() {
+    console.log("app server running on port: " + app.get('port'));
 })
