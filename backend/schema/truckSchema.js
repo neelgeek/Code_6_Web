@@ -8,7 +8,12 @@ const truckSchema = mongoose.Schema({
     type: String,
     activated: { type: Boolean, default: true },
     status: { type: String, default: 'Unassigned' },
-    currentLoc: { type: String }
+    currentLoc: { type: String },
+    trip: {
+        origin: { type: Array, default: null },
+        destination: { type: Array, default: null }
+
+    }
 });
 
 

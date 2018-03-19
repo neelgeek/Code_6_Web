@@ -68,12 +68,26 @@ class transaction {
     updateTruckStatus(details) {
         let id = details.id;
         let status = details.status;
-        return this.truckModel.findByIdAndUpdate(id, { status }).then(response => {
-                return response;
-            })
-            .catch(err => {
-                throw err;
-            })
+        let newtrip = details.trip;
+
+        return this.truckModel.findById(id).then(response => {
+            //console.log(response);
+            let origin = response.trip.origin;
+            let destination = response.trip.destination;
+            origin.push(newtrip.origin);
+            destination.push(newtrip.destination);
+
+            let trip = { origin, destination };
+            return this.truckModel.findByIdAndUpdate(id, { status, trip }).then(response => {
+                    return response;
+                })
+                .catch(err => {
+                    throw err;
+                })
+        }).catch(err => {
+            throw err;
+        });
+
     }
 
     getType(weight) {

@@ -45,6 +45,9 @@ exports.controllerFunction = function(app) {
         let value = req.body.amount;
         let orderId = req.body.orderId;
         let truckId = req.body.truckId;
+        let origin = req.body.origin;
+        let destination = req.body.destination;
+        let tripinfo = { origin, destination };
 
         var newTransaction = gateway.transaction.sale({
             amount: value,
@@ -71,7 +74,8 @@ exports.controllerFunction = function(app) {
                         .then(newTransaction => {
                             let details = {
                                 id: truckId,
-                                status: 'Assigned'
+                                status: 'Assigned',
+                                trip: tripinfo
                             }
                             transaction.updateTruckStatus(details).then(truck => {
                                 res.send(result);
@@ -99,6 +103,7 @@ exports.controllerFunction = function(app) {
             location: req.body.location,
             status: 'Unassigned'
         }
+
         let truck = new transactionModel();
         return truck.findTruck(details).then(response => {
             res.status(200).json(response[0]);
@@ -111,6 +116,21 @@ exports.controllerFunction = function(app) {
     });
 
 
+    router.post('/updatestat', (req, res) => {
+        let details = {
+            id: req.body.id,
+            status: req.body.status,
+            trip: req.body.trip
+        }
+
+        let tran = new transactionModel();
+
+        tran.updateTruckStatus(details).then(resp => {
+            res.send(resp);
+        }).catch(err => {
+            res.status(500).send(err);
+        });
+    });
 
     app.use('/order', router);
 }
