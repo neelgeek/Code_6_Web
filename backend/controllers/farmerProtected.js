@@ -24,7 +24,7 @@ module.exports.controllerFunction = function(app) {
             crop: req.body.crop,
             type: req.body.type,
             quantity: req.body.quantity,
-            price: req.body.price
+
         }
         console.log(details);
         const farmermodel = new farmerModel();
@@ -40,26 +40,7 @@ module.exports.controllerFunction = function(app) {
 
 
 
-    route.get('/produce/:name/:type/:quantity', (req, res) => {
-        const farmermodel = new farmerModel();
-        details = {
-            cropname: req.params.name,
-            type: req.params.type,
-            quantity: req.params.quantity
-
-        }
-        farmermodel.find(details).then(response => {
-            res.status(200).json(response);
-        }).catch(err => {
-            res.status(500).json({
-                message: err.message
-            });
-        });
-
-    });
-
-
-    route.delete('/delete/farmer', (req, res) => {
+route.delete('/delete/farmer', (req, res) => {
         let user = new userModel({});
         user.findOneAndDelete(req.session.user).then(deletedUser => {
                 res.status(200).json({ deleted: true })

@@ -18,9 +18,10 @@ class produceModel {
             if (product) {
                 return this.getFarmerinfo(product.farmerId).then(info => {
                     var farmerinfo = {
+                        id: info._id,
                         name: info.name,
                         mobile: info.mobile,
-                        address: info.addr1 + "," + info.taluka + "," + info.state + "," + info.pincode
+                        address: info.addr + "," + info.district + "," + info.state
                     }
 
                     var productinfo = {
@@ -31,12 +32,13 @@ class produceModel {
 
                     var costInfo = {
                         transport: null,
-                        crop: details.quantity * 10
+                        crop: details.quantity * 10,
+                        total: null
                     }
 
                     var transportInfo = {
-                        destination: details.district,
-                        origin: "A4/401,Rutupark,Majiwada,Thane"
+                        destination: details.address,
+                        origin: farmerinfo.address
                     }
 
                     return { farmerinfo, productinfo, costInfo, transportInfo };
@@ -58,6 +60,7 @@ class produceModel {
     getFarmerinfo(id) {
 
         const user = new userModel();
+        console.log(id)
         return user.findbyId(id).then(response => {
             return response;
         }).catch(err => {
