@@ -99,13 +99,14 @@ exports.controllerFunction = function(app) {
 
     router.post('/findTruck', (req, res) => {
         let details = {
-            weight: req.body.weight,
+            weight: req.body.quantity,
             location: req.body.location,
             status: 'Unassigned'
         }
 
         let truck = new transactionModel();
         return truck.findTruck(details).then(response => {
+            console.log(response)
             res.status(200).json(response[0]);
         }).catch(err => {
             res.status(500).json({

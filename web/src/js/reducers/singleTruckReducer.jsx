@@ -11,21 +11,17 @@ const initialState = {
 
 const handlers = {
     //string property value
-    [singleProduceService.postServiceReturn().success]: (initialState,action) => ({
+    [singleProduceService.postServiceTruckReturn().success]: (initialState,action) => ({
     	...initialState,
-    	crop:action.response.data
+    	data:action.response.data
         
        // set state
-    }),
-    [singleProduceService.postServiceReturn().fail]:(initialState,action) =>({
-        ...initialState,
-        crop:undefined
     }),
     [REHYDRATE]: (state, action) => ({
         // set state
      }),
 };
 
-export default function singleProduceReducer(state = initialState, action) {
+export default function singleTruckReducer(state = initialState, action) {
     return UtilService.actionHandlers(state, action, handlers);
 }

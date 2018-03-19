@@ -10,7 +10,19 @@ class singleProduce extends Component {
    	constructor(props){
    		super(props);
    		console.log(props.match)
+   		console.log(singleProduce)
+   		
    		this.props.dispatch(singleProduceService.postServiceApi(`/merchantProtected/product/${props.match.params.cropId}`,{quantity:this.props.match.params.quantity}))
+   		.then(()=>{
+   			let postData ={
+   				location:this.props.state.crop.farmerinfo.address,
+   				quantity:this.props.state.crop.productinfo.quantity
+   		}
+   		this.props.dispatch(singleProduceService.postServiceApiTruck(`/order/findTruck`,postData));
+   		
+   		})
+
+   		
    		this.state={
    			farmerinfo:{
    				address:"null",
@@ -24,9 +36,20 @@ class singleProduce extends Component {
    		}
    	}
    	redirectToPayment =(ev)=>{
+   		
+   	}
+   	onBuyButtonClick = (ev) =>{
+
    		this.setState({
    			redirectToPayment:true
    		})
+   		
+   	}
+   	componentWillReceiveProps(nextProps,prevProps){
+   		
+
+   
+
    	}
   
 
@@ -34,7 +57,7 @@ class singleProduce extends Component {
     	if(this.state.redirectToPayment){
     		return <Redirect to="/product/crop/buy" />
     	}
-
+    	
 
     	console.log(this.props.state.crop)
     	let {farmerinfo ,costInfo,productinfo,transportInfo} = this.props.state.crop;
@@ -105,7 +128,7 @@ class singleProduce extends Component {
 		        				<button className="btn btn-waves">share</button>
 		        			</div>
 		        			<div className="col s6">
-		        				<Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
+		        				<Link to="/product/crop/buy"><button className="btn btn-waves" onClick={this.onBuyButtonClick} >buy</button></Link>
 		        		</div>	
         				</div>
         					
@@ -123,7 +146,8 @@ class singleProduce extends Component {
 
 let select = (state) => {
     return {
-       	state:state.singleProduceReducer
+       	state:state.singleProduceReducer,
+       	truck:state.singleTruckReducer,
         
         
     };

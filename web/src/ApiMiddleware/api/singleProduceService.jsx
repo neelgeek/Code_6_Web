@@ -17,10 +17,24 @@ export default class singleProduceService {
             }
         }
     }
+     static postServiceApiTruck(url,data){
+        return {
+            callApi:{
+                types:[singleProduceService.postServiceTruckReturn().success,singleProduceService.postServiceTruckReturn().fail],
+                apiCall:singleProduceService.postService(url,data)
+            }
+        }
+    }
     static postServiceReturn(){
         return {
             success:'sucessful return',
-            fail:'failure return'
+            fail:'failure  return'
+        }
+    }
+    static postServiceTruckReturn(){
+        return {
+            success:'sucessful Truck return',
+            fail:'failure Truck return'
         }
     }
 
