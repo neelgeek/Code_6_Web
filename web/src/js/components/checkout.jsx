@@ -17,7 +17,9 @@ export default class Checkout extends React.Component{
 			else{
 				let data ={
 					paymentMethodNonce:payload.nounce,
-					amount:
+					amount:main.props.state.crop.costInfo.total,
+					origin:main.props.state.crop.transportInfo.origin,
+					destination:main.props.state.crop.transportInfo.destination
 				}
 				this.props.dispatch()
 			}
