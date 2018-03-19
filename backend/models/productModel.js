@@ -21,7 +21,8 @@ class produceModel {
                         id: info._id,
                         name: info.name,
                         mobile: info.mobile,
-                        address: info.addr + "," + info.district + "," + info.state
+                        address: info.addr + "," + info.district + "," + info.state,
+                        district: info.district
                     }
 
                     var productinfo = {

@@ -7,6 +7,7 @@ const truckSchema = mongoose.Schema({
     password: String,
     type: String,
     activated: { type: Boolean, default: true },
+    status: { type: String, default: 'Unassigned' },
     currentLoc: { type: String }
 });
 

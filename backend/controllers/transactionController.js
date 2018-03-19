@@ -1,7 +1,9 @@
+const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 const transactionModel = require('../models/transactionModel');
 var braintree = require("braintree");
+
 
 var gateway = braintree.connect({
     environment: braintree.Environment.Sandbox,
@@ -17,9 +19,12 @@ exports.controllerFunction = function(app) {
         let data = req.body;
         let details = {
             merchant_id: req.session.user._id,
+            transport_id: data.transportInfo.truckId,
             crop_details: data.productinfo,
             farmer_amount: data.costInfo.crop,
-            transport_amount: data.costInfo.transport
+            transport_amount: data.costInfo.transport,
+            merchant_otp: null,
+            farmer_otp: null
         };
         let order = new transactionModel();
         order.createOrder(details).then(response => {
@@ -36,8 +41,10 @@ exports.controllerFunction = function(app) {
     router.post('/checkout', function(req, res, next) {
 
         let transaction = new transactionModel();
-        var nonceFromTheClient = req.body.paymentMethodNonce;
-        var value = req.body.amount;
+        let nonceFromTheClient = req.body.paymentMethodNonce;
+        let value = req.body.amount;
+        let orderId = req.body.orderId;
+        let truckId = req.body.truckId;
 
         var newTransaction = gateway.transaction.sale({
             amount: value,
@@ -48,22 +55,37 @@ exports.controllerFunction = function(app) {
                 submitForSettlement: true
             }
         }, function(error, result) {
-            if (result) {
-                if (result.success) {
-                    let details = {
+            if (result.success) {
+                let orderDet = {
+                    id: orderId,
+                    status: 'Placed'
+                }
+                transaction.updateOrder(orderDet).then(updatedOrder => {
+                    let transac_details = {
                         transaction_id: result.id,
-                        order_id: req.body.orderid,
-                        user_id: req.session.user._id,
+                        order_id: mongoose.Types.ObjectId(updatedOrder._id),
+                        user_id: mongoose.Types.ObjectId(req.session.id),
                         amount: value
                     }
-                    transaction.createTransaction(details).then(response => {
-                            //assign Farmer and truck
+                    transaction.createTransaction(transac_details)
+                        .then(newTransaction => {
+                            let details = {
+                                id: truckId,
+                                status: 'Assigned'
+                            }
+                            transaction.updateTruckStatus(details).then(truck => {
+                                res.send(result);
+                            }).catch(err => {
+                                throw err;
+                            })
                         })
                         .catch(err => {
-                            throw err;
+                            res.status(500).send(err);
                         })
-                }
-                res.send(result);
+                }).catch(err => {
+                    res.status(500).send(err);
+                });
+
             } else {
                 res.status(500).send(error);
             }
@@ -71,7 +93,22 @@ exports.controllerFunction = function(app) {
     });
 
 
+    router.post('/findTruck', (req, res) => {
+        let details = {
+            weight: req.body.weight,
+            location: req.body.location,
+            status: 'Unassigned'
+        }
+        let truck = new transactionModel();
+        return truck.findTruck(details).then(response => {
+            res.status(200).json(response[0]);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            })
+        });
 
+    });
 
 
 

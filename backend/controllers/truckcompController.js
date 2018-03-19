@@ -3,6 +3,7 @@ const route = express.Router();
 const mongoose = require('mongoose');
 const truckCompanyModel = require('../models/truckcompModel');
 
+
 module.exports.controllerFunction = function(app) {
 
     route.post('/signup', (req, res) => {
@@ -79,6 +80,7 @@ module.exports.controllerFunction = function(app) {
         });
 
     });
+
 
 
     app.use('/truckCompany', route);
