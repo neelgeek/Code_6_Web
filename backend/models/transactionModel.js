@@ -53,7 +53,7 @@ class transaction {
     findTruck(details) {
         let type = this.getType(details.weight);
         let currentLoc = details.location;
-        console.log(type,currentLoc)
+        console.log(type, currentLoc)
         return this.truckModel.find({ type, currentLoc }).then(response => {
             if (response.length !== 0) {
                 return response;
@@ -69,15 +69,13 @@ class transaction {
     updateTruckStatus(details) {
         let id = details.id;
         let status = details.status;
-        let newtrip = details.trip;
+        let order = details.order;
 
         return this.truckModel.findById(id).then(response => {
             //console.log(response);
-            let trip = response.trip;
-
-            origin.push(newtrip);
-
-            let trip = { origin, destination };
+            let temp = response.trip;
+            temp.push(order);
+            let trip = temp;
             return this.truckModel.findByIdAndUpdate(id, { status, trip }).then(response => {
                     return response;
                 })
