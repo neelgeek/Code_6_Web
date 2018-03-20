@@ -9,7 +9,9 @@ const orderSchema = mongoose.Schema({
     transport_amount: Number,
     status: { type: String, default: "Processing" },
     merchant_otp: String,
-    farmer_otp: String
+    farmer_otp: String,
+    origin: { type: String, default: null },
+    destination: { type: String, default: null }
 });
 
 module.exports = orderSchema;

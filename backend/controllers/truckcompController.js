@@ -83,6 +83,9 @@ module.exports.controllerFunction = function(app) {
 
 
 
+
+
+
     app.use('/truckCompany', route);
 
 }

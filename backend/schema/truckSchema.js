@@ -10,9 +10,8 @@ const truckSchema = mongoose.Schema({
     status: { type: String, default: 'Unassigned' },
     currentLoc: { type: String },
     trip: {
-        origin: { type: Array, default: null },
-        destination: { type: Array, default: null }
-
+        type: Array,
+        default: null
     }
 });
 

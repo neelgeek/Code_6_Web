@@ -40,7 +40,7 @@ class transaction {
 
     updateOrder(details) {
 
-        return this.orderModel.findByIdAndUpdate(details.id, { status: details.status })
+        return this.orderModel.findByIdAndUpdate(details.id, { status: details.status, origin: details.torigin, destination: details.tdest })
             .then(response => {
                 return response;
             }).catch(err => {
@@ -72,10 +72,9 @@ class transaction {
 
         return this.truckModel.findById(id).then(response => {
             //console.log(response);
-            let origin = response.trip.origin;
-            let destination = response.trip.destination;
-            origin.push(newtrip.origin);
-            destination.push(newtrip.destination);
+            let trip = response.trip;
+
+            origin.push(newtrip);
 
             let trip = { origin, destination };
             return this.truckModel.findByIdAndUpdate(id, { status, trip }).then(response => {
@@ -89,6 +88,7 @@ class transaction {
         });
 
     }
+
 
     getType(weight) {
         let type = null;

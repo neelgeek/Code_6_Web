@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const transactionModel = require('../models/transactionModel');
 var braintree = require("braintree");
-
+const truckmodel = require('../models/truckModel');
 
 var gateway = braintree.connect({
     environment: braintree.Environment.Sandbox,
@@ -61,21 +61,24 @@ exports.controllerFunction = function(app) {
             if (result.success) {
                 let orderDet = {
                     id: orderId,
-                    status: 'Placed'
+                    status: 'Placed',
+                    torigin: origin,
+                    tdest: destination
                 }
                 transaction.updateOrder(orderDet).then(updatedOrder => {
                     let transac_details = {
                         transaction_id: result.id,
                         order_id: mongoose.Types.ObjectId(updatedOrder._id),
                         user_id: mongoose.Types.ObjectId(req.session.id),
-                        amount: value
+                        amount: value,
+
                     }
                     transaction.createTransaction(transac_details)
                         .then(newTransaction => {
                             let details = {
                                 id: truckId,
                                 status: 'Assigned',
-                                trip: tripinfo
+                                trip: orderId
                             }
                             transaction.updateTruckStatus(details).then(truck => {
                                 res.send(result);
@@ -84,14 +87,20 @@ exports.controllerFunction = function(app) {
                             })
                         })
                         .catch(err => {
-                            res.status(500).send(err);
+                            res.status(500).json({
+                                message: err.message
+                            });
                         })
                 }).catch(err => {
-                    res.status(500).send(err);
+                    res.status(500).json({
+                        message: err.message
+                    });
                 });
 
             } else {
-                res.status(500).send(error);
+                res.status(500).json({
+                    message: err.message
+                });
             }
         });
     });
@@ -127,11 +136,15 @@ exports.controllerFunction = function(app) {
         let tran = new transactionModel();
 
         tran.updateTruckStatus(details).then(resp => {
-            res.send(resp);
+            res.status(200).json(resp);
         }).catch(err => {
             res.status(500).send(err);
         });
     });
+
+
+
+
 
     app.use('/order', router);
 }

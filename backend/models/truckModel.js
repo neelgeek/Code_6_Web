@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const truckSchema = require('../schema/truckSchema');
+const orderSchema = require('../schema/orderSchema');
 
 
 class trucks {
 
     constructor() {
         this.truckModel = mongoose.model("truck", truckSchema);
+        this.orderModel = mongoose.model("order", orderSchema);
     }
 
     save(details) {
@@ -51,5 +53,32 @@ class trucks {
         });
     }
 
+
+    clearTrips(id) {
+        let trip = [];
+        return this.truckModel.findByIdAndUpdate(id, { trip }).then(response => {
+            return response;
+        }).catch(err => {
+            throw err;
+        });
+    }
+
+    getTrips(orders) {
+        let trips = {
+            origins: [],
+            destinations: []
+        }
+        orders.foreach(order => {
+            this.orderModel.findById(order).then(response => {
+                trips.origins.push(response.origin);
+                trips.destinations.push(response.destinations);
+            }).catch(err => {
+                throw err;
+            })
+
+        });
+        return trips;
+    }
+
 }
-module.exports = trucks;
+module.exports = trucks
