@@ -54,7 +54,7 @@ class transaction {
         let type = this.getType(details.weight);
         let currentLoc = details.location;
         return this.truckModel.find({ type, currentLoc }).then(response => {
-            if (response !== null) {
+            if (response.length !== 0) {
                 return response;
             } else {
                 throw new Error('No trucks Found');

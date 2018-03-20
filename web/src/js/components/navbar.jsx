@@ -27,7 +27,6 @@ class navbar extends React.Component {
 
 		    		},{
 		    			url:"/Login/buyer",
-		    			link:"login as Buyer"
 
 		    		},{
 		    			url:"/Signup/farmer",

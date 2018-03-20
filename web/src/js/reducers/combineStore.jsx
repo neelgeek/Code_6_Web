@@ -3,6 +3,8 @@ import commonReducer from './commonReducer'
 import itemReducer from './itemReducer'
 import authReducer from './authReducer'
 import singleProduceReducer from './singleItemReducer'
+import singleTruckReducer from './singleTruckReducer'
+
 
 
 
@@ -13,6 +15,7 @@ const combineStore = combineReducers({
     itemReducer,
     authReducer,
     singleProduceReducer,
+    singleTruckReducer,
   // imported reducers
 });
 

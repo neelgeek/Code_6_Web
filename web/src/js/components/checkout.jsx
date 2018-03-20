@@ -11,10 +11,17 @@ export default class Checkout extends React.Component{
 
 	}
 	buy = () =>{
+		let main = this;
 		const { nonce } = this.state.instance.requestPaymentMethod((err,payload)=>{
 			if(err) alert(err);
 			else{
-				console.log('payload',payload)
+				let data ={
+					paymentMethodNonce:payload.nounce,
+					amount:main.props.state.crop.costInfo.total,
+					origin:main.props.state.crop.transportInfo.origin,
+					destination:main.props.state.crop.transportInfo.destination
+				}
+				this.props.dispatch()
 			}
 		});
 		console.log(nonce)
@@ -33,5 +40,11 @@ export default class Checkout extends React.Component{
 
 			)
 
+	}
+}
+
+let select = (state) =>{
+	return {
+		state: state.singleProduceReducer
 	}
 }

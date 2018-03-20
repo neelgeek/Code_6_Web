@@ -10,6 +10,7 @@ module.exports.controllerFunction = function(app) {
     router.post('/product/:id', (req, res) => {
         let buyerdetails = req.session.user;
         var details = {
+
             quantity: req.body.quantity,
             address: buyerdetails.addr + "," + buyerdetails.district + "," + buyerdetails.state,
             produce_id: req.params.id
@@ -19,9 +20,11 @@ module.exports.controllerFunction = function(app) {
 
         product.viewProduct(details).then(response => {
 
+            console.log(response.transportInfo)
+
             maps.get({
-                origin: response.transportInfo.origin,
-                destination: response.transportInfo.destination
+                origin:'Amrut Paradise, Kalwa,Thane,Maharashtra',
+                destination:  'Ghantali Mandir,Thane,Maharashtra'
             }, (err, data) => {
                 if (data) {
                     distance = data.distanceValue / 1000;
@@ -31,6 +34,7 @@ module.exports.controllerFunction = function(app) {
                     res.status(200).json(response);
                 }
                 if (err) {
+                    console.log(err)
                     res.status(500).json({
                         message: "Location Error"
                     })
