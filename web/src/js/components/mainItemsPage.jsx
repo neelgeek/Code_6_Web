@@ -49,8 +49,8 @@ class MainItemsPage extends Component {
 	}
 	
     render() {
-    	let crops =["gehu","wheat","jawhar","bajra","corn"];
-    	let types=["jawhar","wheat","kolam","basmati"];
+    	let crops =["gehu","Rice","jawhar","bajra","corn"];
+    	let types=["jawhar","wheat","Kolam","Basmati"];
         return(
         	<div classNameName="mainPage">
         		<div className="nav-wrapper subnav-filters">

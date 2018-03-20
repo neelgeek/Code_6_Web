@@ -81,12 +81,13 @@ exports.controllerFunction = function(app) {
                                 trip: orderId
                             }
                             transaction.updateTruckStatus(details).then(truck => {
-                                res.send(result);
+                                res.json(result);
                             }).catch(err => {
                                 throw err;
                             })
                         })
                         .catch(err => {
+
                             res.status(500).json({
                                 message: err.message
                             });
@@ -95,6 +96,7 @@ exports.controllerFunction = function(app) {
                     res.status(500).json({
                         message: err.message
                     });
+
                 });
 
             } else {
