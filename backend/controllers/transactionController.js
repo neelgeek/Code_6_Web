@@ -115,7 +115,7 @@ exports.controllerFunction = function(app) {
 
     });
 
-
+    //route only for testing, do not use
     router.post('/updatestat', (req, res) => {
         let details = {
             id: req.body.id,
