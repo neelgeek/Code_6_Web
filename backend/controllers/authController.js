@@ -83,7 +83,7 @@ module.exports.controllerFunction = function(app) {
                     res.status(403).json(err.message)
                 })
         } else {
-            res.send('please fill all credentails')
+            res.send('please fill all credentails');
 
         }
 

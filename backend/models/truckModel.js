@@ -63,17 +63,16 @@ class trucks {
         });
     }
 
-    getTrips(orders) {
-        let trips = [];
-        orders.foreach(order => {
-            this.orderModel.findById(order).then(response => {
-                trips.push(response);
-            }).catch(err => {
-                throw err;
-            })
+    getTrips(order) {
 
+        return this.orderModel.findById(order).then(response => {
+            return response;
+        }).catch(err => {
+            throw err;
         });
-        return trips;
+
+
+
     }
 
 }

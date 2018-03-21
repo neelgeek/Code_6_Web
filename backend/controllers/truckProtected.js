@@ -67,17 +67,16 @@ module.exports.controllerFunction = function(app) {
         })
     });
 
-    router.post('/getTrips', (req, res) => {
-        let orders = req.body.orders;
+    router.get('/getTrips/:id', (req, res) => {
+        let order = req.params.id;
         let trucks = new truckModel();
-        let trips = trucks.getTrips(orders);
-        if (trips) {
-            res.status(200).json(trips);
-        } else {
+        trucks.getTrips(order).then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
             res.status(500).json({
-                message: "No Trips Assigned"
-            })
-        }
+                message: err.message
+            });
+        });
     });
 
 
