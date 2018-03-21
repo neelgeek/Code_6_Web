@@ -68,15 +68,13 @@ class transaction {
     updateTruckStatus(details) {
         let id = details.id;
         let status = details.status;
-        let newtrip = details.trip;
+        let order = details.order;
 
         return this.truckModel.findById(id).then(response => {
             //console.log(response);
-            let trip = response.trip;
-
-            origin.push(newtrip);
-
-            let trip = { origin, destination };
+            let temp = response.trip;
+            temp.push(order);
+            let trip = temp;
             return this.truckModel.findByIdAndUpdate(id, { status, trip }).then(response => {
                     return response;
                 })

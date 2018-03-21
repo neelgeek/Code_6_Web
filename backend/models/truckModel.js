@@ -64,14 +64,10 @@ class trucks {
     }
 
     getTrips(orders) {
-        let trips = {
-            origins: [],
-            destinations: []
-        }
+        let trips = [];
         orders.foreach(order => {
             this.orderModel.findById(order).then(response => {
-                trips.origins.push(response.origin);
-                trips.destinations.push(response.destinations);
+                trips.push(response);
             }).catch(err => {
                 throw err;
             })

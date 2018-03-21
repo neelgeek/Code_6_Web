@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const truckCompanyModel = require('../models/truckcompModel');
 const truckModel = require('../models/truckModel');
+const orderModel = require('../models/transactionModel');
 
 
 module.exports.controllerFunction = function(app) {
@@ -74,12 +75,15 @@ module.exports.controllerFunction = function(app) {
             res.status(200).json(trips);
         } else {
             res.status(500).json({
-                message: "Error Fetching Trucks"
+                message: "No Trips Assigned"
             })
         }
     });
 
 
+    router.post('/submitOtp/:otp', (req, res) => {
+
+    });
 
 
 

@@ -38,7 +38,7 @@ class produceModel {
                     }
 
                     var transportInfo = {
-                        destination: details.address,
+                        destination: details.buyaddress,
                         origin: farmerinfo.address
                     }
 

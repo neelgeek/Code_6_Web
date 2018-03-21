@@ -70,21 +70,20 @@ exports.controllerFunction = function(app) {
                         transaction_id: result.id,
                         order_id: mongoose.Types.ObjectId(updatedOrder._id),
                         user_id: mongoose.Types.ObjectId(req.session.id),
-                        amount: value,
-
+                        amount: value
                     }
                     transaction.createTransaction(transac_details)
                         .then(newTransaction => {
                             let details = {
                                 id: truckId,
                                 status: 'Assigned',
-                                trip: orderId
+                                order: orderId
                             }
                             transaction.updateTruckStatus(details).then(truck => {
                                 res.send(result);
                             }).catch(err => {
                                 throw err;
-                            })
+                            });
                         })
                         .catch(err => {
                             res.status(500).json({
@@ -98,9 +97,7 @@ exports.controllerFunction = function(app) {
                 });
 
             } else {
-                res.status(500).json({
-                    message: err.message
-                });
+                res.status(500).send(error);
             }
         });
     });
@@ -112,12 +109,15 @@ exports.controllerFunction = function(app) {
             location: req.body.location,
             status: 'Unassigned'
         }
-
+        console.log(details.location);
         let truck = new transactionModel();
         return truck.findTruck(details).then(response => {
             console.log(response)
-            res.status(200).json(response[0]);
+            if (response != null) {
+                res.status(200).json(response[0]);
+            }
         }).catch(err => {
+            console.log(err.message);
             res.status(500).json({
                 message: err.message
             })

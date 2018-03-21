@@ -4,7 +4,7 @@ const authProtected = require('../middlewares/authProtected');
 const productModel = require('../models/productModel');
 const maps = require('google-distance');
 const farmerModel = require('../models/farmerModel');
-
+maps.apiKey = 'AIzaSyCfB-yxrLRQZgBnhCjwFmzp0mvY6CxtvSU';
 module.exports.controllerFunction = function(app) {
 
     router.post('/product/:id', (req, res) => {
@@ -12,7 +12,7 @@ module.exports.controllerFunction = function(app) {
         var details = {
 
             quantity: req.body.quantity,
-            address: buyerdetails.addr + "," + buyerdetails.district + "," + buyerdetails.state,
+            buyaddress: buyerdetails.addr + "," + buyerdetails.district + "," + buyerdetails.state,
             produce_id: req.params.id
         }
 
@@ -23,8 +23,9 @@ module.exports.controllerFunction = function(app) {
             console.log(response.transportInfo)
 
             maps.get({
-                origin:'Amrut Paradise, Kalwa,Thane,Maharashtra',
-                destination:  'Ghantali Mandir,Thane,Maharashtra'
+                origin: 'Rutupark,Majiwada,Thane,Maharashtra,India',
+                destination: 'Shivam Society,Sector 17,Airoli,Maharashtra,India',
+                mode: 'driving'
             }, (err, data) => {
                 if (data) {
                     distance = data.distanceValue / 1000;
@@ -32,8 +33,7 @@ module.exports.controllerFunction = function(app) {
                     response.costInfo.transport = distanceCost;
                     response.costInfo.total = distanceCost + response.costInfo.crop;
                     res.status(200).json(response);
-                }
-                if (err) {
+                } else if (err) {
                     console.log(err)
                     res.status(500).json({
                         message: "Location Error"
@@ -42,13 +42,14 @@ module.exports.controllerFunction = function(app) {
             });
 
         }).catch(err => {
+            console.log(err.message);
             res.status(500).json({
                 message: err.message
             })
         });
 
     });
-    
+
 
 
 
