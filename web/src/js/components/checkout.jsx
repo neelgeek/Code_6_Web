@@ -1,7 +1,11 @@
 import React from 'react'
 import DropIn from 'braintree-web-drop-in-react';
+import { connect } from "react-redux";
 
-export default class Checkout extends React.Component{
+import checkoutService from "../../ApiMiddleware/api/checkoutService"
+
+
+class Checkout extends React.Component{
 	constructor(){
 		super();
 		this.state={
@@ -12,21 +16,28 @@ export default class Checkout extends React.Component{
 	}
 	buy = () =>{
 		let main = this;
-		const { nonce } = this.state.instance.requestPaymentMethod((err,payload)=>{
-			if(err) alert(err);
-			else{
-				let data ={
-					paymentMethodNonce:payload.nounce,
-					amount:main.props.state.crop.costInfo.total,
-					origin:main.props.state.crop.transportInfo.origin,
-					destination:main.props.state.crop.transportInfo.destination
+		this.state.instance.requestPaymentMethod((err,payload)=>{
+				const nounce = payload.nonce
+				console.log(payload)
+				console.log(main.props)
+
+				if(err) alert(err);
+				else{
+					let data ={
+						paymentMethodNonce:nounce,
+						amount:main.props.state.crop.costInfo.total,
+						origin:main.props.state.crop.transportInfo.origin,
+						destination:main.props.state.crop.transportInfo.destination,
+						orderId:main.props.order.order._id,
+						truckId:main.props.state.crop.transportInfo.truckId
+					}
+					main.props.dispatch(checkoutService.postServiceApi(`/order/checkout`,data))
 				}
-				this.props.dispatch()
 			}
-		});
-		console.log(nonce)
+	   );
 	}
 	render(){
+
 		return(
 			<div>
 					<DropIn
@@ -45,6 +56,13 @@ export default class Checkout extends React.Component{
 
 let select = (state) =>{
 	return {
-		state: state.singleProduceReducer
+		state: state.singleProduceReducer,
+		truck:state.truckReducer,
+		order:state.orderReducer,
+		checkout:state.checkoutReducer
+
 	}
 }
+
+  
+  export default connect (select)(Checkout);

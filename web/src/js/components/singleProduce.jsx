@@ -3,6 +3,8 @@ import {Component} from "react";
 import {Link} from "react-router-dom"
 import { connect } from "react-redux";
 import singleProduceService from "../../ApiMiddleware/api/singleProduceService"
+import orderProduceService from "../../ApiMiddleware/api/orderProduceService"
+
 
 
 
@@ -15,7 +17,7 @@ class singleProduce extends Component {
    		this.props.dispatch(singleProduceService.postServiceApi(`/merchantProtected/product/${props.match.params.cropId}`,{quantity:this.props.match.params.quantity}))
    		.then(()=>{
    			let postData ={
-   				location:this.props.state.crop.farmerinfo.address,
+   				location:this.props.state.crop.farmerinfo.district,
    				quantity:this.props.state.crop.productinfo.quantity
    		}
    		this.props.dispatch(singleProduceService.postServiceApiTruck(`/order/findTruck`,postData));
@@ -39,10 +41,12 @@ class singleProduce extends Component {
    		
    	}
    	onBuyButtonClick = (ev) =>{
-
-   		this.setState({
-   			redirectToPayment:true
-   		})
+   		let productData = this.props.state.crop;
+   		let truckId = this.props.truck.data._id
+   		console.log(truckId)
+   		productData.transportInfo.truckId = truckId;
+   		console.log(productData)
+   		this.props.dispatch(orderProduceService.postServiceApi(`/order/create`,productData))
    		
    	}
    	componentWillReceiveProps(nextProps,prevProps){
@@ -54,12 +58,15 @@ class singleProduce extends Component {
   
 
     render() {
+    	if(this.props.truck.noTruckFound){
+    		alert("sorry we cannot assign any trucks to you right at this moment for this order")
+    	}
     	if(this.state.redirectToPayment){
     		return <Redirect to="/product/crop/buy" />
     	}
     	
 
-    	console.log(this.props.state.crop)
+    	console.log(this.props)
     	let {farmerinfo ,costInfo,productinfo,transportInfo} = this.props.state.crop;
         return(<div className="section no-pad-bot singleProduce row">
         		<div className="col s5 m5">

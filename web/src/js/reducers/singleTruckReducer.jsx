@@ -5,7 +5,8 @@ import singleProduceService from "../../ApiMiddleware/api/singleProduceService";
 
 
 const initialState = {
-    crop:{}
+    noTruckFound:false,
+    data:{}
  
 };
 
@@ -14,6 +15,12 @@ const handlers = {
     [singleProduceService.postServiceTruckReturn().success]: (initialState,action) => ({
     	...initialState,
     	data:action.response.data
+        
+       // set state
+    }),
+    [singleProduceService.postServiceTruckReturn().fail]: (initialState,action) => ({
+        ...initialState,
+        noTruckFound:true
         
        // set state
     }),

@@ -53,6 +53,7 @@ class transaction {
     findTruck(details) {
         let type = this.getType(details.weight);
         let currentLoc = details.location;
+        console.log(type, currentLoc)
         return this.truckModel.find({ type, currentLoc }).then(response => {
             if (response.length !== 0) {
                 return response;
@@ -90,9 +91,9 @@ class transaction {
 
     getType(weight) {
         let type = null;
-        if (weight < 1000) {
+        if (weight < 100) {
             type = "Small";
-        } else if (weight < 5000 && weight > 1000) {
+        } else if (weight < 500 && weight > 100) {
             type = "Medium";
         } else {
             type = "Large"

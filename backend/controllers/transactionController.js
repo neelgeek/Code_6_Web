@@ -39,10 +39,10 @@ exports.controllerFunction = function(app) {
 
 
     router.post('/checkout', function(req, res, next) {
-
+        console.log(req.body)
         let transaction = new transactionModel();
         let nonceFromTheClient = req.body.paymentMethodNonce;
-        let value = req.body.amount;
+        let value = Math.floor(req.body.amount);
         let orderId = req.body.orderId;
         let truckId = req.body.truckId;
         let origin = req.body.origin;
@@ -50,7 +50,7 @@ exports.controllerFunction = function(app) {
         let tripinfo = { origin, destination };
 
         var newTransaction = gateway.transaction.sale({
-            amount: value,
+            amount: String(value),
             paymentMethodNonce: nonceFromTheClient,
             options: {
                 // This option requests the funds from the transaction
@@ -58,6 +58,7 @@ exports.controllerFunction = function(app) {
                 submitForSettlement: true
             }
         }, function(error, result) {
+            console.log(result)
             if (result.success) {
                 let orderDet = {
                     id: orderId,
@@ -69,8 +70,9 @@ exports.controllerFunction = function(app) {
                     let transac_details = {
                         transaction_id: result.id,
                         order_id: mongoose.Types.ObjectId(updatedOrder._id),
-                        user_id: mongoose.Types.ObjectId(req.session.id),
-                        amount: value
+                        user_id: mongoose.Types.ObjectId(req.session.user.id),
+                        amount: value,
+
                     }
                     transaction.createTransaction(transac_details)
                         .then(newTransaction => {
@@ -80,7 +82,7 @@ exports.controllerFunction = function(app) {
                                 order: orderId
                             }
                             transaction.updateTruckStatus(details).then(truck => {
-                                res.send(result);
+                                res.status(200).json(result);
                             }).catch(err => {
                                 throw err;
                             });
@@ -94,10 +96,13 @@ exports.controllerFunction = function(app) {
                     res.status(500).json({
                         message: err.message
                     });
+
                 });
 
             } else {
-                res.status(500).send(error);
+                res.status(500).json({
+                    message: error.message
+                });
             }
         });
     });

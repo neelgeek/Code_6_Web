@@ -27,7 +27,7 @@ class farmer {
 
         return this.produceModel.find({ crop: cname, type: ctype, quantity: { $gt: cquantity } }).then(response => {
 
-            if (response.length != null) {
+            if (response.length != 0) {
                 return response;
             } else {
                 throw new Error("No Produce Found");
