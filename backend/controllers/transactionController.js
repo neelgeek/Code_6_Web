@@ -18,6 +18,7 @@ exports.controllerFunction = function(app) {
     router.post('/create', (req, res) => {
         let data = req.body;
         let details = {
+            farmer_id: req.body.farmerinfo.id,
             merchant_id: req.session.user._id,
             transport_id: data.transportInfo.truckId,
             crop_details: data.productinfo,
@@ -42,12 +43,14 @@ exports.controllerFunction = function(app) {
         console.log(req.body)
         let transaction = new transactionModel();
         let nonceFromTheClient = req.body.paymentMethodNonce;
+        let farmer = req.body.farmerid;
         let value = Math.floor(req.body.amount);
         let orderId = req.body.orderId;
         let truckId = req.body.truckId;
         let origin = req.body.origin;
         let destination = req.body.destination;
         let tripinfo = { origin, destination };
+
 
         var newTransaction = gateway.transaction.sale({
             amount: String(value),
@@ -64,7 +67,8 @@ exports.controllerFunction = function(app) {
                     id: orderId,
                     status: 'Placed',
                     torigin: origin,
-                    tdest: destination
+                    tdest: destination,
+                    farmer: farmerid
                 }
                 transaction.updateOrder(orderDet).then(updatedOrder => {
                     let transac_details = {

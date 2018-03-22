@@ -20,6 +20,7 @@ exports.controllerFunction = function(app) {
 
 
     router.post('/getRequests', (req, res) => {
+        console.log(req.body);
         let date = new Date(req.body.date);
         date.setHours(0, 0, 0, 0);
         console.log(date);
@@ -32,5 +33,12 @@ exports.controllerFunction = function(app) {
             });
         });
     });
+
+    router.post('/postGroups', (req, res) => {
+        let assigned = req.body.Assigned;
+
+        res.status(200).json(req.body);
+    });
+
     app.use('/shareRequest', router);
 }

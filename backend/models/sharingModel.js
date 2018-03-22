@@ -23,6 +23,10 @@ class SharingRequest {
             throw err;
         });
     }
+
+    createShareGroup(details) {
+
+    }
 }
 
 module.exports = SharingRequest;

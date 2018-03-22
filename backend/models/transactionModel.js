@@ -40,7 +40,7 @@ class transaction {
 
     updateOrder(details) {
 
-        return this.orderModel.findByIdAndUpdate(details.id, { status: details.status, origin: details.torigin, destination: details.tdest })
+        return this.orderModel.findByIdAndUpdate(details.id, { farmer_id: details.farmer, status: details.status, origin: details.torigin, destination: details.tdest })
             .then(response => {
                 return response;
             }).catch(err => {

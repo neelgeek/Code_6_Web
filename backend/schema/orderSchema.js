@@ -11,7 +11,8 @@ const orderSchema = mongoose.Schema({
     merchant_otp: String,
     farmer_otp: String,
     origin: { type: String, default: null },
-    destination: { type: String, default: null }
+    destination: { type: String, default: null },
+    createdon: { type: mongoose.Schema.Types.Date, default: new Date() }
 });
 
 module.exports = orderSchema;

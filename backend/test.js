@@ -1,5 +1,2 @@
-const uniqid = require('uniqid');
-
-console.log(uniqid());
-console.log(uniqid().substr(0, 5));
-console.log(uniqid().substr(5, 5));
+let date = new Date("2018-03-19T23:39:26.044904");
+console.log(date);
