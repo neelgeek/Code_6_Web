@@ -71,6 +71,10 @@ module.exports.controllerFunction = function(app) {
         const truck = new truckCompanyModel();
         truck.findOneTruck(number).then(response => {
             if (pass === response.password) {
+                response = {
+                    message: true,
+                    response
+                };
                 res.status(200).json(response);
             } else {
                 res.status(200).json({ message: false });

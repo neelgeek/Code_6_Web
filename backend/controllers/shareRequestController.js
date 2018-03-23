@@ -9,6 +9,7 @@ exports.controllerFunction = function(app) {
         let details = req.body;
 
         let newReq = new sharingModel();
+
         newReq.createShareReq(details).then(response => {
             res.status(200).json(response);
         }).catch(err => {
@@ -25,6 +26,7 @@ exports.controllerFunction = function(app) {
         date.setHours(0, 0, 0, 0);
         console.log(date);
         let request = new sharingModel();
+
         request.getOrders(date).then(response => {
             res.status(200).json(response);
         }).catch(err => {
@@ -36,9 +38,29 @@ exports.controllerFunction = function(app) {
 
     router.post('/postGroups', (req, res) => {
         let assigned = req.body.Assigned;
+        let shareModel = new sharingModel();
 
-        res.status(200).json(req.body);
+        shareModel.CreateShareGroups(assigned, shareModel).then(response => {
+            shareModel.saveShareGroups(response).then(response => {
+                res.status(200).json(response);
+                console.log("Hello");
+            }).catch(err => {
+                res.status(500).json({
+                    message: err.message
+                });
+            })
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            });
+        });
+
     });
+
+
+
+
+
 
     app.use('/shareRequest', router);
 }
