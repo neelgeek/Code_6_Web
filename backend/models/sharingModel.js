@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const shareReqSchema = require('../schema/sharingReqSchema');
 const shareGroupScehma = require('../schema/shareGroupSchema');
+const truckmodel = require('../models/truckModel');
 
 
 
@@ -19,7 +20,7 @@ class SharingRequest {
         });
     }
 
-    getOrders(date) {
+    getRequest(date) {
         return this.SharingReqModel.find({ createdon: { $gte: date } }).then(response => {
             return response;
         }).catch(err => {
@@ -27,31 +28,67 @@ class SharingRequest {
         });
     }
 
-
-    CreateShareGroups(assigned, model) {
-        let shareGroups = [];
-        return new Promise(function(resolve, reject) {
-            Object.keys(assigned).forEach(truckid => {
-                let truck_id = truckid;
-                model.populateOrders(assigned[truckid]).then(orders => {
-                    let newShareOrder = { truck_id, orders };
-                    shareGroups.push(newShareOrder)
-                });
-            })
-            resolve(shareGroups);
+    getRequestById(id) {
+        return this.SharingReqModel.findById(id).then(response => {
+            return response;
+        }).catch(err => {
+            throw err
         });
     }
 
-    populateOrders(shareorderids) {
-        let orders = [];
+    CreateShareGroups(assigned, model) {
+        let shareGroups = [];
+        let truck = new truckmodel();
         return new Promise(function(resolve, reject) {
-            shareorderids.forEach(sorderid => {
-                let shareOrder = {
-                    shareReqid: sorderid,
-                    orderid: null,
-                    status: "Unpaid"
-                }
-                orders.push(shareOrder);
+            Object.keys(assigned).forEach(truckid => {
+                let truck_id = truckid;
+                truck.getTruckRate(truck_id).then(rate => {
+                    model.populateOrders(assigned[truckid], rate, model).then(orders => {
+                        let newShareOrder = { truck_id, orders };
+                        shareGroups.push(newShareOrder)
+                    });
+                }).catch(err => {
+                    throw err;
+                })
+
+            })
+
+            if (shareGroups) {
+                console.log(shareGroups);
+                resolve(shareGroups);
+            }
+        });
+    }
+
+    populateOrders(shareorderids, rate, model) {
+        let orders = [];
+
+        return new Promise(function(resolve, reject) {
+            shareorderids.forEach(sreqid => {
+                let transport_costs = [];
+                model.getRequestById(sreqid).then(shareReq => {
+                        let shareOrder = {
+                            shareReqid: sreqid,
+                            orderid: null,
+                            status: "Unpaid",
+                            crop_amount: shareReq.amount,
+                        }
+                        orders.push(shareOrder);
+                        transport_costs.push(shareReq.distance * rate);
+
+                    }).catch(err => {
+                        throw err;
+                    })
+                    // console.log(transport_costs);
+
+                let maxCost = transport_costs.sort((a, b) => { return a - b; })[0];
+                let divided_cost = maxCost / shareorderids.length;
+                orders.forEach(order => {
+                    order.transport_amount = divided_cost;
+                    order.total = divided_cost + order.crop_amount;
+                });
+
+
             });
             if (orders) {
                 resolve(orders);
@@ -62,11 +99,16 @@ class SharingRequest {
     }
 
     saveShareGroups(groups) {
+
         return this.ShareGroupModel.insertMany(groups).then(response => {
             return response;
         }).catch(err => {
             throw err;
         })
+    }
+
+    createOrder(sharereqid) {
+
     }
 }
 

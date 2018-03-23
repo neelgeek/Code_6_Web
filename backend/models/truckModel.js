@@ -70,10 +70,29 @@ class trucks {
         }).catch(err => {
             throw err;
         });
-
-
-
     }
 
+    getTruckRate(id) {
+        return this.truckModel.findById(id).then(truckinfo => {
+            return this.CalcRate(truckinfo.type);
+        }).catch(err => {
+            throw err;
+        })
+    }
+
+    CalcRate(type) {
+        switch (type) {
+            case 'Small':
+                return 20;
+                break;
+            case 'Medium':
+                return 30;
+                break;
+            case 'Large':
+                return 45;
+                break;
+
+        }
+    }
 }
 module.exports = trucks

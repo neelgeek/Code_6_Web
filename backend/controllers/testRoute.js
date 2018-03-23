@@ -29,6 +29,16 @@ module.exports.controllerFunction = function(app) {
         }
     });
 
+    router.get('/getRate/:id', (req, res) => {
+        let truck = new truckModel();
+        truck.getTruckRate(req.params.id).then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            });
+        });
+    });
 
 
     app.use('/test', router);

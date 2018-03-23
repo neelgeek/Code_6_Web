@@ -9,6 +9,8 @@ const sharingReqSchema = mongoose.Schema({
     origin: String,
     destination: String,
     weight: Number,
+    distance: Number,
+    amount: Number,
     createdon: { type: mongoose.Schema.Types.Date, default: today }
 });
 

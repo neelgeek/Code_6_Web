@@ -93,7 +93,7 @@ class transaction {
         let type = null;
         if (weight < 100) {
             type = "Small";
-        } else if (weight < 500 && weight > 100) {
+        } else if (weight <= 500 && weight >= 100) {
             type = "Medium";
         } else {
             type = "Large"
