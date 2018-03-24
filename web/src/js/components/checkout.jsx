@@ -21,8 +21,9 @@ class Checkout extends React.Component{
 
 				if(err) alert(err);
 				else{
+					console.log(main.props.state.crop)
 					let data ={
-						farmerid:main.props.state.crop.farmerinfo._id,
+						farmerid:main.props.state.crop.farmerinfo.id,
 						paymentMethodNonce:nounce,
 						amount:main.props.state.crop.costInfo.total,
 						origin:main.props.state.crop.transportInfo.origin,

@@ -53,19 +53,16 @@ class MainItemsPage extends Component {
 	
 	onCropNameChange = (ev) =>{
 		let crop = ev.target.value
-
 		this.setState({
 
 			crop,
-
 			
 		})
 
-		console.log(this.state)
+		
 	}
 	
     render() {
-    	let type=[];
     	let crops = [
     	{
     		cropType:"Rice",
@@ -89,22 +86,20 @@ class MainItemsPage extends Component {
 					    <form className="col s12"  onSubmit={this.handleSubmit}>
 					      <div className="row">
 					        <div className="input-field col s3">
-					          <select   name="cropName" id="cropName" onChange={this.onCropNameChange}>
-					          <option value="">---</option>
+					          <select  name="cropName" id="cropName" onChange={this.onCropNameChange}>
 					         {crops.map((crop,key)=>{
 					         	return <option key={key} value={crop.cropType}>{crop.cropType}</option>
-					         })}	
-					 
+					         })}
 					        </select>
-					          <label>crop's name</label>
+					          <label>crop name</label>
 					        </div>
 					        <div className="input-field col s3">
-					         	<select name="cropType"  id="cropType">
+					         	<select name="cropType" id="cropType">
 									<option value="">---</option>
-									{type.map((type,key)=>{
+									{crops[0].subTypes.map((type,key)=>{
 										return <option key={key} value={type}>{type}</option>
-									})}
-									
+									})
+									}
 								</select>
 
 

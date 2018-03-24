@@ -68,7 +68,7 @@ exports.controllerFunction = function(app) {
                     status: 'Placed',
                     torigin: origin,
                     tdest: destination,
-                    farmer: farmerid
+                    farmer
                 }
                 transaction.updateOrder(orderDet).then(updatedOrder => {
                     let transac_details = {
