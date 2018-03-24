@@ -52,11 +52,11 @@ class SharingRequest {
                 })
 
             })
-
-            if (shareGroups) {
-                console.log(shareGroups);
+            setTimeout(function() {
                 resolve(shareGroups);
-            }
+            }, 5000);
+
+
         });
     }
 
@@ -76,18 +76,16 @@ class SharingRequest {
                         orders.push(shareOrder);
                         transport_costs.push(shareReq.distance * rate);
 
+                        let maxCost = transport_costs.sort((a, b) => { return a - b; })[0];
+                        let divided_cost = maxCost / shareorderids.length;
+                        orders.forEach(order => {
+                            order.transport_amount = divided_cost;
+                            order.total = divided_cost + order.crop_amount;
+                        });
                     }).catch(err => {
                         throw err;
                     })
                     // console.log(transport_costs);
-
-                let maxCost = transport_costs.sort((a, b) => { return a - b; })[0];
-                let divided_cost = maxCost / shareorderids.length;
-                orders.forEach(order => {
-                    order.transport_amount = divided_cost;
-                    order.total = divided_cost + order.crop_amount;
-                });
-
 
             });
             if (orders) {
@@ -110,6 +108,7 @@ class SharingRequest {
     createOrder(sharereqid) {
 
     }
+
 }
 
 module.exports = SharingRequest;

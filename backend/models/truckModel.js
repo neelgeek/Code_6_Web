@@ -78,6 +78,8 @@ class trucks {
         }).catch(err => {
             throw err;
         })
+
+
     }
 
     CalcRate(type) {

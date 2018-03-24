@@ -41,13 +41,14 @@ exports.controllerFunction = function(app) {
         let shareModel = new sharingModel();
 
         shareModel.CreateShareGroups(assigned, shareModel).then(groups => {
-            shareModel.saveShareGroups(groups).then(response => {
-                res.status(200).json(response);
-            }).catch(err => {
-                res.status(500).json({
-                    message: err.message
-                });
-            })
+            res.status(200).json(req.body);
+            // shareModel.saveShareGroups(groups).then(response => {
+            //     res.status(200).json(response);
+            // }).catch(err => {
+            //     res.status(500).json({
+            //         message: err.message
+            //     });
+            // })
         }).catch(err => {
             res.status(500).json({
                 message: err.message
