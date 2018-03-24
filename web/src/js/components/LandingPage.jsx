@@ -3,6 +3,7 @@ import {Component} from "react";
 import { connect } from "react-redux";
 import "../../css/LandingPage.css";
 import{ Link ,Redirect} from "react-router-dom";
+import {Carousel} from 'react-responsive-carousel';
 
 
 
@@ -35,29 +36,45 @@ class LandingPage extends Component {
     	}
 
         return(
+        	<div>
+	        	<div className="row">
+		         
 
-        		<div className="LandingPage-login-box">
-        			
+	        	</div>
 
-		        	<div className="row">
-					    <div className="col offset-s2 s6 class-btn">
-					    	<button className="btn waves-light btn-large btn-farmer" onClick={this.onFarmerButton} >
-					    		Login As Farmer
-					    	</button>
-					    </div>
-					 </div>
-					 <div className="row">
-					    <div className="col offset-s2 s6 class-btn">
-					    	<button className="btn waves-light btn-large btn-buyer" onClick={this.onBuyerButton} >
-					    		Login As buyer
-					    	</button>
-					    </div>
+
+	        	<div className="LandingPage-login-box section row">
+	        			<div className="col s6">
+	        				<p className="flow-text">
+	        					Welcome to Community of Farmers!!
+	        				</p>
+	        			</div>
+	        			<div className="col s6">
+				        		<div className="LandingPage-login-box">
+				        			
+
+						        	<div className="row">
+									    <div className="col offset-s2 s6 class-btn ">
+									    	<button className="btn waves-light btn-large btn-farmer" onClick={this.onFarmerButton} >
+									    		Login As Farmer
+									    	</button>
+									    </div>
+									 </div>
+									 <div className="row">
+									    <div className="col offset-s2 s6 class-btn "  >
+									    	<button className="btn waves-light btn-large btn-buyer" onClick={this.onBuyerButton} >
+									    		Login As buyer
+									    	</button>
+									    </div>
+									  </div>
+										
+										
+
+									  
+								 </div>
+							</div>
 					  </div>
-						
-						
-
-					  
-				 </div>
+			</div>
         	
         )
     }

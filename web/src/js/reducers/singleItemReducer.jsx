@@ -19,7 +19,7 @@ const handlers = {
     }),
     [singleProduceService.postServiceReturn().fail]:(initialState,action) =>({
         ...initialState,
-        crop:undefined
+        crop:false
     }),
     [REHYDRATE]: (state, action) => ({
         // set state

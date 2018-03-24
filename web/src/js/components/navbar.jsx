@@ -41,7 +41,7 @@ class navbar extends React.Component {
        	
        	return(
        					<nav>
-						    <div className="nav-wrapper">
+						    <div className="nav-fixed">
 						    	{this.props.user.loggedIn?
 						    		(this.props.user.user.user.isFarmer?( 
 						    			<ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -59,7 +59,20 @@ class navbar extends React.Component {
 						    				
 						    		 </ul>)
 									):(
-						      	 	<ul id="nav-mobile" className="right hide-on-med-and-down"> </ul>
+						      	 	<ul id="nav-mobile" className="right hide-on-med-and-down">
+						      	 		<li>
+						      	 			<Link to = "/Signup/farmer">sign up as Farmer</Link>
+						      	 		</li>
+						      	 		<li>
+						      	 			<Link to = "/Signup/buyer">sign up as buyer</Link>
+
+						      	 		</li>
+						      	 		<li>
+						      	 			<Link to = "/">Home</Link>
+
+						      	 		</li>
+
+						      	 	 </ul>
 						      	)}			         
 						     
 						    </div>

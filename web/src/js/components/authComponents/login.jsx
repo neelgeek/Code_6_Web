@@ -38,6 +38,7 @@ class Login extends Component {
 				}
 			})
 			.catch(err =>{
+				console.error(err);
 				alert(err.message)
 			})
 		}

@@ -4,9 +4,8 @@ import ItemCard from "./LandingPageComponents/itemCard"
 import { connect } from "react-redux";
 import produceService from "../../ApiMiddleware/api/produceService";
 import "../../css/LandingPage.css";
-
-
-
+import select from 'react-select';
+               	
 
 
 class MainItemsPage extends Component {
@@ -17,17 +16,19 @@ class MainItemsPage extends Component {
 
 		this.state ={
 			quantity:0,
-			crop:"",
+			crop:"Rice",
 			type:""
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onQuantityChange = this.onQuantityChange.bind(this);
-		 $(document).ready(function() {
-                    $('select').material_select();
-                });
+		 
 
 	}
-	
+	componentDidMount(){
+	 
+     $('select').material_select();
+              
+	 }
 	
 
 	
@@ -38,19 +39,49 @@ class MainItemsPage extends Component {
 	}
 	handleSubmit (event){
 		event.preventDefault();
-		this.setState({
-			crop :$("#cropName").val(),
-			type:$("#type").val(),
-		}) 	
-		let {crop ,type,quantity} = this.state
+		
+		let data = {
+			crop:event.target.cropName.value,
+			type:event.target.cropType.value,
+			quantity:this.state.quantity
+		}
+		let { crop, type, quantity } = data
 		console.log(crop,type,quantity)
 		this.props.dispatch(produceService.getServiceApi(`/merchantProtected/search/?name=${crop}&type=${type}&quant=${quantity}`)).then(response =>console.log(response))
 
 	}
 	
+	onCropNameChange = (ev) =>{
+		let crop = ev.target.value
+
+		this.setState({
+
+			crop,
+
+			
+		})
+
+		console.log(this.state)
+	}
+	
     render() {
-    	let crops =["gehu","Rice","jawhar","bajra","corn"];
-    	let types=["jawhar","wheat","Kolam","Basmati"];
+    	let type=[];
+    	let crops = [
+    	{
+    		cropType:"Rice",
+    		subTypes:["Basmati","Brown Rice","Red Rice","Black Rice","Kolam"]
+
+    	}
+    	,{
+    		cropType:"Maize",
+    		subTypes:["baby-corn","sweet-corn","pop-corn","indian corn"]
+
+    	},
+    	{
+    		cropType:"Wheat",
+    		subTypes:["Hard Red Winter Wheat","White Wheat"]
+
+    	}]
         return(
         	<div classNameName="mainPage">
         		<div className="nav-wrapper subnav-filters">
@@ -58,19 +89,25 @@ class MainItemsPage extends Component {
 					    <form className="col s12"  onSubmit={this.handleSubmit}>
 					      <div className="row">
 					        <div className="input-field col s3">
-					          <select  onChange={this.onCropNameChange} id="cropName" >
+					          <select   name="cropName" id="cropName" onChange={this.onCropNameChange}>
+					          <option value="">---</option>
 					         {crops.map((crop,key)=>{
-					         	return <option key={key} value={crop}>{crop}</option>
-					         })}
+					         	return <option key={key} value={crop.cropType}>{crop.cropType}</option>
+					         })}	
+					 
 					        </select>
-					          <label>crop name</label>
+					          <label>crop's name</label>
 					        </div>
 					        <div className="input-field col s3">
-					          <select onChange={this.onCropTypeChange} id="type">
-					         	 {types.map((type,key)=>{
-					         	return <option key={key} value={type}>{type}</option>
-					         })}
-					        </select>
+					         	<select name="cropType"  id="cropType">
+									<option value="">---</option>
+									{type.map((type,key)=>{
+										return <option key={key} value={type}>{type}</option>
+									})}
+									
+								</select>
+
+
 					          <label>crop Type</label>
 					        </div>
 					        <div className="input-field col s3">
@@ -103,10 +140,10 @@ class MainItemsPage extends Component {
 }
 
 
-let select = (state) => {
+let mapStateToProps = (state) => {
     return {
        state : state.itemReducer, 
     };
   }
   
-  export default connect (select)(MainItemsPage);
+  export default connect (mapStateToProps)(MainItemsPage);

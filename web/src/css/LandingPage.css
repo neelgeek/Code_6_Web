@@ -17,7 +17,7 @@
          border-width: 1px;
          border-radius: 6px;
          box-shadow: 4px 1px 5px #bfbfbf;
-         margin: 130px 5% 137px;
+         margin: 1 5% 137px;
      }
  }
 
@@ -35,9 +35,13 @@
 
 .btn-buyer{
     background-color: #836bf7;
+    white-space:nowrap;
+
 }
 .btn-farmer{
     background-color: #ed6464;
+    white-space:nowrap;
+
 }
  .select-wrapper input.select-dropdown {
      border-bottom: 1px solid #0d0d0d;
@@ -51,4 +55,8 @@
  .card-input{
     border: solid 1px black;
     height: 10%;
+ }
+ 
+ nav{
+    background-color: #5b456f !important;
  }
