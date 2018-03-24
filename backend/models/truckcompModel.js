@@ -23,7 +23,7 @@ class truckCompany {
     }
 
     findOne(email) {
-        return this.CompanyModel.findOne({ emailid: email })
+        return this.CompanyModel.findOne({ emailId: email })
             .then(response => {
                 if (response) {
                     console.log(response);

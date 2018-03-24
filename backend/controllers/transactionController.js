@@ -118,7 +118,6 @@ exports.controllerFunction = function(app) {
             location: req.body.location,
             status: 'Unassigned'
         }
-        console.log(details.location);
         let truck = new transactionModel();
         return truck.findTruck(details).then(response => {
             console.log(response)
