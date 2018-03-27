@@ -11,6 +11,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import Login  from './authComponents/login';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
 
     
@@ -114,9 +115,36 @@ class LandingPage extends Component {
                        
                     </div>
                     <div className="row Halign-wrapper">
-                        <div className="login-buttons center-align">
-                            <RaisedButton onClick={(ev)=>this.setState({redirectToFarmer:true})} label="login as farmer" primary={true}/>
-                            <RaisedButton onClick={(ev)=>this.setState({redirectToBuyer:true})}  label="login as Buyer" secondary={true}/>
+                        <div className="login-buttons center-align  container">
+                        <Card  className=" col s6" style={{"maxHeight":"50%"}}>
+                            <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
+                                <div className="row">
+                                   <img src={require("../../images/if_Farmer_379478.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
+}}/>
+                                   </div>
+                            </CardMedia>
+                             <CardActions>
+                                  <FlatButton label="Login as Farmer" onClick={this.onFarmerButton}/>
+                                  
+                            </CardActions>
+                           
+                           
+                        </Card>
+                        <Card  className=" col s6" style={{"maxHeight":"50%"}}>
+                            <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
+                                <div className="row">
+                                   <img src={require("../../images/if_profile_3018530.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
+}}/>
+                                   </div>
+                            </CardMedia>
+                             <CardActions>
+                                  <FlatButton label="Login as Buyer" onClick={this.onBuyerButton} />
+                                  
+                            </CardActions>
+                           
+                           
+                        </Card>
+                            
 
                           </div>
                            <Dialog

@@ -76,7 +76,7 @@ class Login extends Component {
 					          <label for="password">password</label>
 					      </div>
 					      <div className="row">
-						      <div className="input-field col s6">
+						      <div className="input-field col offset-s10">
 						        <button type="submit" className="btn btn-waves" >Login</button>
 						      </div>
 					      </div>
