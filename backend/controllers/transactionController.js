@@ -25,7 +25,9 @@ exports.controllerFunction = function(app) {
             farmer_amount: data.costInfo.crop,
             transport_amount: data.costInfo.transport,
             merchant_otp: null,
-            farmer_otp: null
+            farmer_otp: null,
+            origin: data.transportInfo.origin,
+            destination: data.transportInfo.destination
         };
         let order = new transactionModel();
         order.createOrder(details).then(response => {

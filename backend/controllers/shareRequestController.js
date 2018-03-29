@@ -1,16 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const sharingModel = require('../models/sharingModel');
+const transactionModel = require('../models/sharingModel');
 
 
 exports.controllerFunction = function(app) {
 
     router.post('/create', (req, res) => {
-        let details = req.body;
-
+        let data = req.body;
+        let shareReq = {
+            farmer_id: req.body.farmerinfo.id,
+            merchant_id: req.session.user._id,
+            transport_id: null,
+            crop_details: data.productinfo,
+            farmer_amount: data.costInfo.crop,
+            transport_amount: null,
+            distance: data.transportInfo.distance,
+            origin: data.farmerinfo.district,
+            destination: req.session.user.district
+        }
         let newReq = new sharingModel();
 
-        newReq.createShareReq(details).then(response => {
+        newReq.createShareReq(shareReq).then(response => {
             res.status(200).json(response);
         }).catch(err => {
             res.status(500).json({
@@ -41,14 +52,13 @@ exports.controllerFunction = function(app) {
         let shareModel = new sharingModel();
 
         shareModel.CreateShareGroups(assigned, shareModel).then(groups => {
-            res.status(200).json(req.body);
-            // shareModel.saveShareGroups(groups).then(response => {
-            //     res.status(200).json(response);
-            // }).catch(err => {
-            //     res.status(500).json({
-            //         message: err.message
-            //     });
-            // })
+            shareModel.saveShareGroups(groups).then(response => {
+                res.status(200).json(response);
+            }).catch(err => {
+                res.status(500).json({
+                    message: err.message
+                });
+            })
         }).catch(err => {
             res.status(500).json({
                 message: err.message

@@ -10,7 +10,6 @@ module.exports.controllerFunction = function(app) {
     router.post('/product/:id', (req, res) => {
         let buyerdetails = req.session.user;
         var details = {
-
             quantity: req.body.quantity,
             buyaddress: buyerdetails.addr + "," + buyerdetails.district + "," + buyerdetails.state,
             produce_id: req.params.id
@@ -23,8 +22,8 @@ module.exports.controllerFunction = function(app) {
             console.log(response.transportInfo)
 
             maps.get({
-                origin: 'Rutupark,Majiwada,Thane,Maharashtra,India',
-                destination: 'Shivam Society,Sector 17,Airoli,Maharashtra,India',
+                origin: ('Shivam Society,Sector 17,Airoli,Maharashtra'),
+                destination: (response.transportInfo.destination),
                 mode: 'driving'
             }, (err, data) => {
                 if (data) {
@@ -32,6 +31,7 @@ module.exports.controllerFunction = function(app) {
                     distanceCost = distance * 25;
                     response.costInfo.transport = distanceCost;
                     response.costInfo.total = distanceCost + response.costInfo.crop;
+                    response.transportInfo.distance = distance;
                     res.status(200).json(response);
                 } else if (err) {
                     console.log(err)
