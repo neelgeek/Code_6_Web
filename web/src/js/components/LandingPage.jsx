@@ -116,7 +116,7 @@ class LandingPage extends Component {
                     </div>
                     <div className="row Halign-wrapper">
                         <div className="login-buttons center-align  container">
-                        <Card  className=" col s6" style={{"maxHeight":"50%"}}>
+                        <Card  className="card col s6" style={{"maxHeight":"50%"}}>
                             <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
                                 <div className="row">
                                    <img src={require("../../images/if_Farmer_379478.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
@@ -130,13 +130,14 @@ class LandingPage extends Component {
                            
                            
                         </Card>
-                        <Card  className=" col s6" style={{"maxHeight":"50%"}}>
+                        <Card  className="card col s6" style={{"maxHeight":"50%"}}>
                             <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
                                 <div className="row">
                                    <img src={require("../../images/if_profile_3018530.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
 }}/>
                                    </div>
                             </CardMedia>
+                            <divider/>
                              <CardActions>
                                   <FlatButton label="Login as Buyer" onClick={this.onBuyerButton} />
                                   

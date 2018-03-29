@@ -58,25 +58,27 @@ class Login extends Component {
 
         return(
 
-        		<div >
-        			<h1 className="center-align">{this.props.role} Login</h1>
+        		<div className="login-form" >
 
 		        	<div className="row">
-					    <form className="form-horizantal" onSubmit={this.onSubmit}>
-					      
-					        <div className="input-field col s6 ">
+					    <form className="form-vertical" onSubmit={this.onSubmit}>
+							<br/>
+					      <div className="row">
+					        <div className="input-field col s9 offset-s1 ">
 					          <input  id="adhar_number" type="text" name="phoneNumber" className="validate"/>
 					          <label for="adhar_number">phone number</label>
 					        </div>
+									</div>
 					       
 					       
-					     
-					      <div className="input-field col s6 ">
+					     <div className="row">
+					      <div className="input-field col s9 offset-s1">
 					        <input  id="password" type="password" name="password" className="validate"/>
 					          <label for="password">password</label>
 					      </div>
+								</div>
 					      <div className="row">
-						      <div className="input-field col offset-s10">
+						      <div className="input-field col offset-s7">
 						        <button type="submit" className="btn btn-waves" >Login</button>
 						      </div>
 					      </div>

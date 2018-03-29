@@ -3,7 +3,12 @@ import {Component} from "react";
 import {Link} from "react-router-dom"
 import { connect } from "react-redux";
 import singleProduceService from "../../ApiMiddleware/api/singleProduceService"
-import orderProduceService from "../../ApiMiddleware/api/orderProduceService"
+import orderProduceService from "../../ApiMiddleware/api/orderProduceService";
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+
 
 
 
@@ -67,85 +72,32 @@ class singleProduce extends Component {
 
     	console.log(this.props)
     	let {farmerinfo ,costInfo,productinfo,transportInfo} = this.props.state.crop;
-        return(<div className="section no-pad-bot singleProduce row">
-        		<div className="col s5 m5">
-        			<div className="row">
-		        		<div className="farmerInfo section no-pad-bot">
-		        			<div className="row">
-		        				<div className="col">
-		        					<h1>farmer Info</h1>
-		        				</div>
-		        			</div>
-		        			
-		        			<div className="row">
-		        				<div className="col">
-		        					<p>Address:   {farmerinfo && farmerinfo.address}</p>
-		        				</div>
-		        			</div>
-		        			<div className="row">
-		        				<div className="col">
-		        					<p>mobile:{farmerinfo && farmerinfo.mobile}</p>
-		        				</div>
-		        			</div>
-		        			
-		        			
-		        			
-		        			
+        return(
+			<MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+		 <div className="singleProduce">
+		 	<div className="container">
+			 	<div className="row">
+					<Card>
+						<CardText>
+								<ul>
+								 	<li></li>
+									 <li></li>
 
-		        		</div>
-	        		</div>
-	        		<div className="row">
-		        		<div className="farmerInfo section no-pad-bot">
-		        			<div className="row">
-		        				<div className="col">
-		        					<h1>produce Info</h1>
-		        				</div>
-		        			</div>
-		        			<div className="row">
-		        				<div className="col">
-		        					<p>crop Name:{productinfo && productinfo.name}</p>
-		        				</div>
-		        			</div>
-		        			<div className="row">
-		        				<div className="col">
-		        					<p>crop type:{productinfo && productinfo.type}</p>
-		        				</div>
-		        			</div>
-		        			<div className="row">
-		        				<div className="col">
-		        					<p>quantity:{productinfo && productinfo.quantity}</p>
-		        				</div>
-		        			</div>
-		        			
 
-		        		</div>
-	        		</div>
-        		</div>
+								</ul>
 
-        		<div className="col s6 m6">
-        				<div className="farmerInfo section no-pad-bot">
-        					<h1>price prediction</h1>
-        					<p>crop cost: {costInfo && costInfo.crop}</p>
-        					<p>transport cost: {costInfo && costInfo.transport}</p>
-        					<p>total :{costInfo && costInfo.total}</p>
 
-        					<div className=" row">
-		        			<div className="col s6">
-		        				<button className="btn btn-waves">share</button>
-		        			</div>
-		        			<div className="col s6">
-		        				<Link to="/product/crop/buy"><button className="btn btn-waves" onClick={this.onBuyButtonClick} disabled={!error}>buy</button></Link>
-		        		</div>	
-        				</div>  
-        					
+						</CardText>
 
-        		</div> 	 
-      	  			
-        		</div>
-        			
+					</Card>
 
-        		
-        	</div>)
+				 </div>
+
+			 </div>
+
+		 </div>
+		 </MuiThemeProvider>
+		)
     }
 }
 

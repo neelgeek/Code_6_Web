@@ -87,7 +87,7 @@ class MainItemsPage extends Component {
 					    <div className="row">
 					      <form className="col s12"  onSubmit={this.handleSubmit}>
 					        <div className="row">
-					           <div className="input-field col s3 pull-right">
+					           <div className="input-field col s2 pull-right">
 					 		         <DropDownMenu
 					 		           floatingLabelText="crop name"
 					 		           value={this.state.crop}
@@ -100,7 +100,7 @@ class MainItemsPage extends Component {
 					 		 								          	)}
 					 		         </DropDownMenu>
 					          </div>
-					           <div className="input-field col s3 pull-right">
+					           <div className="input-field col s2 pull-right">
 					            
 					 		         <DropDownMenu
 					 		           floatingLabelText="crop type"
@@ -117,7 +117,7 @@ class MainItemsPage extends Component {
 					          </div>
 					         
 					         
-					          <div className="input-field col s3 pull-right">
+					          <div className="input-field col s2 pull-right">
 					          <DropDownMenu
 			 		           floatingLabelText="crop type"
 			 		           value={this.state.quantity}

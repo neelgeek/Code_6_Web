@@ -141,7 +141,7 @@ class navbar extends React.Component {
     			<AppBar title="SmartIndiaHackathon"
     			onLeftIconButtonClick={this.handleClick}
     			iconElementRight={this.props.user.loggedIn?<logged/>:<FlatButton label="login" />}
-    			style={{"backgroundColor":"#2e7d32"}}
+    			style={{"backgroundColor":"#2e7d32"}} //"#2e7d32"
     			 />
     			
 

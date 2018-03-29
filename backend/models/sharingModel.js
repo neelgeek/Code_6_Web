@@ -75,11 +75,13 @@ class SharingRequest {
         return new Promise(function(resolve, reject) {
             shareorderids.forEach(sreqid => {
                 let transport_costs = [];
+
                 model.getRequestById(sreqid).then(shareReq => {
+                        console.log("Line 80 " + truckid);
                         let orderFromReq = {
                             farmer_id: shareReq.farmer_id,
                             merchant_id: shareReq.merchant_id,
-                            tranport_id: truckid,
+                            transport_id: truckid,
                             crop_details: shareReq.crop_details,
                             farmer_amount: shareReq.farmer_amount,
                             status: 'WSP',
@@ -89,13 +91,14 @@ class SharingRequest {
                             merchant_otp: null,
                             farmer_otp: null
                         }
+
                         model.createOrder(orderFromReq).then(newOrder => {
                             console.log(newOrder);
                             let shareOrder = {
                                 shareReqid: sreqid,
                                 farmer_id: shareReq.farmer_id,
                                 merchant_id: shareReq.merchant_id,
-                                orderid: null, //newOrder._id,
+                                orderid: newOrder._id, //newOrder._id,
                                 status: "Unpaid"
                             }
                             orders.push(shareOrder);
