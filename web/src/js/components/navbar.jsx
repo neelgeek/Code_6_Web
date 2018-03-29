@@ -1,20 +1,68 @@
-import React  from "react";
+import React ,{Component} from "react";
 import {Link, withRouter} from 'react-router-dom'
 import { connect } from "react-redux";
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton'; 		
+import RaisedButton from 'material-ui/RaisedButton'
+import FlatButton from 'material-ui/FlatButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
+
+
+class Login extends Component {
+  static muiName = 'FlatButton';
+
+  render() {
+    return (
+      <FlatButton {...this.props} label="Login" />
+    );
+  }
+}
+
+const Logged = (props) => (
+  <IconMenu
+    {...props}
+    iconButtonElement={
+      <IconButton><MoreVertIcon /></IconButton>
+    }
+    targetOrigin={{horizontal: 'right', vertical: 'top'}}
+    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+  >
+   
+    <MenuItem primaryText="Sign out" />
+  </IconMenu>
+);
+
+Logged.muiName = 'IconMenu';
+
 
 
 class navbar extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
-			login:false
+			login:false,
+			open:false
+
 		}
+		console.log(this.state)
 		
+	}
+
+	handleClick=(ev)=>{
+		this.setState({
+			open:!this.state.open
+		})
 	}
 	
 
     render() {
-    	console.log(this.props.user)
+    	console.log(this.state)
     		let buyerNav =[];
     		let farmerNav =[{
 		    			url:"/uploadCrop",
@@ -40,30 +88,74 @@ class navbar extends React.Component {
 
        	
        	return(
-       					<nav>
-						    <div className="nav-wrapper">
-						    	{this.props.user.loggedIn?
-						    		(this.props.user.user.user.isFarmer?( 
-						    			<ul id="nav-mobile" className="right hide-on-med-and-down">
-						    				<li>
-						    					<Link to="/uploadCrop">upload Crop</Link>
+      	// 				<nav>
+						 //    <div className="nav-fixed">
+						 //    	{this.props.user.loggedIn?
+						 //    		(this.props.user.user.user.isFarmer?( 
+						 //    			<ul id="nav-mobile" className="right hide-on-med-and-down">
+						 //    				<li>
+						 //    					<Link to="/uploadCrop">upload Crop</Link>
 
-						    				</li>
-						    				<li>
-						    					<Link to="/logout">logout</Link>
+						 //    				</li>
+						 //    				<li>
+						 //    					<Link to="/logout">logout</Link>
 
 						    				
-						    				</li>
-						    			 </ul>):
-						    		(<ul id="nav-mobile" className="right hide-on-med-and-down">
+						 //    				</li>
+						 //    			 </ul>):
+
+
+
+
+
+
+
+
+
+
+						 //    		(<ul id="nav-mobile" className="right hide-on-med-and-down">
 						    				
-						    		 </ul>)
-									):(
-						      	 	<ul id="nav-mobile" className="right hide-on-med-and-down"> </ul>
-						      	)}			         
+						 //    		 </ul>)
+							// 		):(
+						 //      	 	<ul id="nav-mobile" className="right hide-on-med-and-down">
+						 //      	 		<li>
+						 //      	 			<Link to = "/Signup/farmer">sign up as Farmer</Link>
+						 //      	 		</li>
+						 //      	 		<li>
+						 //      	 			<Link to = "/Signup/buyer">sign up as buyer</Link>
+
+						 //      	 		</li>
+						 //      	 		<li>
+						 //      	 			<Link to = "/">Home</Link>
+
+						 //      	 		</li>
+
+						 //      	 	 </ul>
+						 //      	)}			         
 						     
-						    </div>
-		 				</nav>
+						 //    </div>
+		 				// </nav>
+		 	<MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+		 	<div>
+			
+    			<AppBar title="SmartIndiaHackathon"
+    			onLeftIconButtonClick={this.handleClick}
+    			iconElementRight={this.props.user.loggedIn?<logged/>:<FlatButton label="login" />}
+    			style={{"backgroundColor":"#2e7d32"}}
+    			 />
+    			
+
+    			
+  			<Drawer open={this.state.open}>
+  				<FlatButton onClick={this.handleClick} label="close"/>
+		          <MenuItem><Link to = "/Signup/farmer">sign up as Farmer</Link></MenuItem>
+		          <MenuItem><Link to = "/Signup/buyer">sign up as buyer</Link></MenuItem>
+		        </Drawer>
+		  		
+	        </div>
+  			</MuiThemeProvider>
+
+
        		)
     }
 }

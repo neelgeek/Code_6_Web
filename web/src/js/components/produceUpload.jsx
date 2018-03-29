@@ -28,7 +28,7 @@ class ProduceUpload extends Component {
 			quantity:quantity.value,
 			price:price.value
 		}
-		this.props.dispatch(produceService.postServiceApi('/farmerProtected/produce',data))
+		this.props.dispatch(produceService.postServiceApi('/farmerProtected/produce',data)).then(response=>console.log(response))
 
 	}
    

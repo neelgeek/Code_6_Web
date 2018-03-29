@@ -42,10 +42,10 @@ module.exports.controllerFunction = function(app) {
                 req.session.truckadmin = response;
                 res.status(200).json({ message: true });
             } else {
-                res.status(200).json({ message: false });
+                res.status(403).json({ message: false });
             }
         }).catch(err => {
-            res.json(err.message);
+            res.status(403).json(err.message);
         });
 
     });
@@ -85,7 +85,7 @@ module.exports.controllerFunction = function(app) {
                 }
                 res.status(200).json(truckLogin);
             } else {
-                res.status(200).json({ message: false });
+                res.status(403).json({ message: false });
             }
         }).catch(err => {
             res.status(500).json(err.message);

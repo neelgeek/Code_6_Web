@@ -4,8 +4,12 @@ import ItemCard from "./LandingPageComponents/itemCard"
 import { connect } from "react-redux";
 import produceService from "../../ApiMiddleware/api/produceService";
 import "../../css/LandingPage.css";
-
-
+import DropDownMenu from 'material-ui/DropDownMenu';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MenuItem from 'material-ui/MenuItem';  
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 
@@ -16,97 +20,224 @@ class MainItemsPage extends Component {
 
 
 		this.state ={
-			quantity:0,
-			crop:"",
-			type:""
+			quantity:100,
+			crop:"Rice",
+			type:"Basmati"
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onQuantityChange = this.onQuantityChange.bind(this);
-		 $(document).ready(function() {
-                    $('select').material_select();
-                });
+		 
 
 	}
 	
 	
 
 	
-	onQuantityChange(event){
+	onQuantityChange(event,index,value){
 		this.setState({
-			quantity:event.target.value
+			quantity:value
 		})
 	}
 	handleSubmit (event){
 		event.preventDefault();
-		this.setState({
-			crop :$("#cropName").val(),
-			type:$("#type").val(),
-		}) 	
-		let {crop ,type,quantity} = this.state
-		console.log(crop,type,quantity)
-		this.props.dispatch(produceService.getServiceApi(`/merchantProtected/search/?name=${crop}&type=${type}&quant=${quantity}`)).then(response =>console.log(response))
 
+		let {crop,type,quantity} = this.state;
+		
+		console.log(crop,type,quantity)
+		this.props.dispatch(produceService.getServiceApi(`/merchantProtected/search/?name=${crop}&type=${type}&quant=${quantity}`))
 	}
 	
+	onCropNameChange = (ev,index,value) =>{
+		this.setState({
+
+			crop:value,
+			
+		})
+
+		
+	}
+	onCropTypeChange =(ev,target,value) =>this.setState({type:value})
+	
     render() {
-    	let crops =["gehu","Rice","jawhar","bajra","corn"];
-    	let types=["jawhar","wheat","Kolam","Basmati"];
+    	console.log(this.state)
+    	let crops = {
+    	
+    		"Rice":
+    		["Basmati","Brown Rice","Red Rice","Black Rice","Kolam"]
+
+    	
+    	,"Maize":
+    		["baby-corn","sweet-corn","pop-corn","indian corn"]
+
+    	,
+    	
+    		"Wheat":
+    		["Hard Red","Winter Wheat","White Wheat"]
+
+    	}
+    	let weight = [];
+    	for(var i = 100 ; i<=1000;i=i+5)
+    		weight.push(i);
+    	let cropTypes= Object.keys(crops);
+    	console.log(cropTypes)
         return(
-        	<div classNameName="mainPage">
-        		<div className="nav-wrapper subnav-filters">
-					  <div className="row">
-					    <form className="col s12"  onSubmit={this.handleSubmit}>
-					      <div className="row">
-					        <div className="input-field col s3">
-					          <select  onChange={this.onCropNameChange} id="cropName" >
-					         {crops.map((crop,key)=>{
-					         	return <option key={key} value={crop}>{crop}</option>
-					         })}
-					        </select>
-					          <label>crop name</label>
+		 	<MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+		 	<div className="mainPage">
+         		<div className="nav-wrapper subnav-filters">
+					    <div className="row">
+					      <form className="col s12"  onSubmit={this.handleSubmit}>
+					        <div className="row">
+					           <div className="input-field col s3 pull-right">
+					 		         <DropDownMenu
+					 		           floatingLabelText="crop name"
+					 		           value={this.state.crop}
+					 		           onChange={this.onCropNameChange}
+					 		         	>
+					 		           {cropTypes.map((crop,key)=> <MenuItem key={key} 
+					 		 								          	value={crop} 
+					 		 								          	primaryText={crop}
+					 		 								          	/>
+					 		 								          	)}
+					 		         </DropDownMenu>
+					          </div>
+					           <div className="input-field col s3 pull-right">
+					            
+					 		         <DropDownMenu
+					 		           floatingLabelText="crop type"
+					 		           value={this.state.type}
+					 		           onChange={this.onCropTypeChange}
+
+					 		         	>
+					 		           {crops[this.state.crop || "Rice"].map((crop,key)=> <MenuItem key={key} 
+					 		 								          	value={crop} 
+					 		 								          	primaryText={crop}
+					 		 								          	/>
+					 		 								          	)}
+					 		         </DropDownMenu>
+					          </div>
+					         
+					         
+					          <div className="input-field col s3 pull-right">
+					          <DropDownMenu
+			 		           floatingLabelText="crop type"
+			 		           value={this.state.quantity}
+			 		           onChange={this.onQuantityChange}
+
+			 		         	>
+			 		         	{weight.map((wieght)=><MenuItem 
+			 		         		value={wieght}
+			 		         		primaryText={wieght+" kg"}
+			 		         		/>)}
+					 		           									
+					 		   </DropDownMenu>
+					          </div>
+					           <div className="input-field col pull-right">
+					            <RaisedButton type="submit" className="btn btn-waves">search</RaisedButton>
+					          </div>
 					        </div>
-					        <div className="input-field col s3">
-					          <select onChange={this.onCropTypeChange} id="type">
-					         	 {types.map((type,key)=>{
-					         	return <option key={key} value={type}>{type}</option>
-					         })}
-					        </select>
-					          <label>crop Type</label>
-					        </div>
-					        <div className="input-field col s3">
-					          <input type="number" placeholder="quantity in (kg)" id="quantity" onInput={this.onQuantityChange}	/>
-					          <label for="quantity">quantity</label>
-					        </div>
-					         <div className="input-field col s3">
-					          <button type="submit" className="btn btn-waves">search</button>
-					        </div>
-					      </div>
-					    </form>
-					  </div>
-					</div>
-	        	<div className=" section no-pad-bot mainPage">
-		        	 <div className="container">
-			        	 <div className="row">
-			        	 {this.props.state.items.map((item)=>{
-			        	 	console.log("item are",item)
-			        	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id}/>
-			        	 })}
+					      </form>
+					    </div>
+					   
+					 </div>
+	         	<div className=" section no-pad-bot mainPage">
+		         	 <div className="container">
+			         	 <div className="row">
+			         	 {this.props.state.items.map((item)=>{
+			         	 	console.log("item are",item)
+			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id}/>
+			         	 })}
 			        	 	
 
-			        	 </div>
-	        		</div>
-        		</div>
-        	</div>
+			         	 </div>
+	         		</div>
+         		</div>
+         	</div>
+
+
+        	
+				</MuiThemeProvider>
+      //   	<div className="mainPage">
+      //    		<div className="nav-wrapper subnav-filters">
+					 //    <div className="row">
+					 //      <form className="col s12"  onSubmit={this.handleSubmit}>
+					 //        <div className="row">
+					 //           <div className="input-field col s3">
+					 //             <select  name="cropName" id="cropName" onChange={this.onCropNameChange}>
+					 //            {crops.map((crop,key)=>{
+					 //            	return <option key={key} value={crop.cropType}>{crop.cropType}</option>
+					 //            })}
+					 //          </select>
+					 // 		         <DropDownMenu
+					 // 		           floatingLabelText="crop name"
+					 // 		           value={this.state.crop}
+					 // 		           onChange={this.handleChange}
+					 // 		         	>
+					 // 		           {crops.map((crop,key)=> <MenuItem key={key} 
+					 // 		 								          	value={crop.cropType} 
+					 // 		 								          	primaryText={crop.cropType}
+					 // 		 								          	/>
+					 // 		 								          	)}
+					 // 		         </DropDownMenu>
+					 //          </div>
+					 //          <div className="input-field col s3">
+					 //            	<select name="cropType" id="cropType">
+					 // 		 	 	<option value="">---</option>
+					 // 		 	 	{crops[0].subTypes.map((type,key)=>{
+					 // 		 	 		return <option key={key} value={type}>{type}</option>
+					 // 		 	 	})
+					 // 		 	 	}
+					 // 		 	 </select>
+					 // 		 	  <DropDownMenu
+					 // 		            floatingLabelText="crop name"
+					 // 		            value={this.state.value}
+					 // 		            onChange={this.handleChange}
+					 // 		          >
+					 // 		            {crops.map((crop,key)=> <MenuItem key={key} value={crop.cropType} primaryText={crop.cropType}/>)}
+					 // 		       </DropDownMenu>
+
+
+					 //          </div>
+					 //          <div className="input-field col s3">
+					 //            <input type="number" placeholder="quantity in (kg)" id="quantity" onInput={this.onQuantityChange}	/>
+					 //            <label for="quantity">quantity</label>
+					 //          </div>
+					 //           <div className="input-field col s3">
+					 //            <button type="submit" className="btn btn-waves">search</button>
+					 //          </div>
+					 //        </div>
+					 //      </form>
+					 //    </div>
+					 //   <DropDownMenu
+				  //          floatingLabelText="crop name"
+				  //          value={this.state.value}
+				  //          onChange={this.handleChange}
+				  //        >
+				  //          {crops.map((crop,key)=> <MenuItem key={key} value={crop.cropType} primaryText={crop.cropType}/>)}
+				  //     </DropDownMenu>
+					 // </div>
+	     //     	<div className=" section no-pad-bot mainPage">
+		    //      	 <div className="container">
+			   //       	 <div className="row">
+			   //       	 {this.props.state.items.map((item)=>{
+			   //       	 	console.log("item are",item)
+			   //       	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id}/>
+			   //       	 })}
+			        	 	
+
+			   //       	 </div>
+	     //     		</div>
+      //    		</div>
+      //    	</div>
 
         )
     }
 }
 
 
-let select = (state) => {
+let mapStateToProps = (state) => {
     return {
        state : state.itemReducer, 
     };
   }
   
-  export default connect (select)(MainItemsPage);
+  export default connect (mapStateToProps)(MainItemsPage);

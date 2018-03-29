@@ -1,4 +1,4 @@
-import React  from "react";
+  import React  from "react";
 import {Component} from "react";
 import {Link} from "react-router-dom"
 import { connect } from "react-redux";
@@ -20,9 +20,11 @@ class singleProduce extends Component {
    				location:this.props.state.crop.farmerinfo.district,
    				quantity:this.props.state.crop.productinfo.quantity
    		}
+      console.log(postData)
    		this.props.dispatch(singleProduceService.postServiceApiTruck(`/order/findTruck`,postData));
    		
    		})
+
 
    		
    		this.state={
@@ -37,9 +39,7 @@ class singleProduce extends Component {
 
    		}
    	}
-   	redirectToPayment =(ev)=>{
-   		
-   	}
+   
    	onBuyButtonClick = (ev) =>{
    		let productData = this.props.state.crop;
    		let truckId = this.props.truck.data._id
@@ -49,19 +49,18 @@ class singleProduce extends Component {
    		this.props.dispatch(orderProduceService.postServiceApi(`/order/create`,productData))
    		
    	}
-   	componentWillReceiveProps(nextProps,prevProps){
-   		
-
-   
-
-   	}
+   	
   
 
     render() {
-    	if(this.props.truck.noTruckFound){
+      console.log(this.props)
+      let error = true
+    	if(this.props.truck.noTruckFound && this.props.state.crop){
+        error = false
     		alert("sorry we cannot assign any trucks to you right at this moment for this order")
     	}
     	if(this.state.redirectToPayment){
+
     		return <Redirect to="/product/crop/buy" />
     	}
     	
@@ -135,9 +134,9 @@ class singleProduce extends Component {
 		        				<button className="btn btn-waves">share</button>
 		        			</div>
 		        			<div className="col s6">
-		        				<Link to="/product/crop/buy"><button className="btn btn-waves" onClick={this.onBuyButtonClick} >buy</button></Link>
+		        				<Link to="/product/crop/buy"><button className="btn btn-waves" onClick={this.onBuyButtonClick} disabled={!error}>buy</button></Link>
 		        		</div>	
-        				</div>
+        				</div>  
         					
 
         		</div> 	 

@@ -38,6 +38,7 @@ class Login extends Component {
 				}
 			})
 			.catch(err =>{
+				console.error(err);
 				alert(err.message)
 			})
 		}
@@ -57,7 +58,7 @@ class Login extends Component {
 
         return(
 
-        		<div className="login-box ">
+        		<div >
         			<h1 className="center-align">{this.props.role} Login</h1>
 
 		        	<div className="row">
@@ -75,7 +76,7 @@ class Login extends Component {
 					          <label for="password">password</label>
 					      </div>
 					      <div className="row">
-						      <div className="input-field col s6">
+						      <div className="input-field col offset-s10">
 						        <button type="submit" className="btn btn-waves" >Login</button>
 						      </div>
 					      </div>
