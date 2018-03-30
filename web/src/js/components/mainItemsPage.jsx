@@ -87,11 +87,16 @@ class MainItemsPage extends Component {
 					    <div className="row">
 					      <form className="col s12"  onSubmit={this.handleSubmit}>
 					        <div className="row">
-					           <div className="input-field col s2 pull-right">
+					           <div className="input-field col s3  pull-right">
 					 		         <DropDownMenu
 					 		           floatingLabelText="crop name"
 					 		           value={this.state.crop}
 					 		           onChange={this.onCropNameChange}
+					 		           style={{
+					 		           	"width":"100%"
+					 		           }}
+					 		           
+
 					 		         	>
 					 		           {cropTypes.map((crop,key)=> <MenuItem key={key} 
 					 		 								          	value={crop} 
@@ -100,12 +105,15 @@ class MainItemsPage extends Component {
 					 		 								          	)}
 					 		         </DropDownMenu>
 					          </div>
-					           <div className="input-field col s2 pull-right">
+					           <div className="input-field col s3 pull-right">
 					            
 					 		         <DropDownMenu
 					 		           floatingLabelText="crop type"
 					 		           value={this.state.type}
 					 		           onChange={this.onCropTypeChange}
+					 		           style={{
+					 		           	"width":"100%"
+					 		           }}
 
 					 		         	>
 					 		           {crops[this.state.crop || "Rice"].map((crop,key)=> <MenuItem key={key} 
@@ -117,11 +125,14 @@ class MainItemsPage extends Component {
 					          </div>
 					         
 					         
-					          <div className="input-field col s2 pull-right">
+					          <div className="input-field col s3 pull-right">
 					          <DropDownMenu
 			 		           floatingLabelText="crop type"
 			 		           value={this.state.quantity}
 			 		           onChange={this.onQuantityChange}
+			 		           style={{
+					 		           	"width":"100%"
+					 		           }}
 
 			 		         	>
 			 		         	{weight.map((wieght)=><MenuItem 
@@ -131,21 +142,37 @@ class MainItemsPage extends Component {
 					 		           									
 					 		   </DropDownMenu>
 					          </div>
-					           <div className="input-field col pull-right">
-					            <RaisedButton type="submit" className="btn btn-waves">search</RaisedButton>
+					           <div className="input-field col s3 pull-right">
+					            <RaisedButton type="submit" className="btn btn-waves"><i className="material-icons">search</i> search </RaisedButton>
 					          </div>
 					        </div>
 					      </form>
 					    </div>
 					   
 					 </div>
-	         	<div className=" section no-pad-bot mainPage">
+	         	<div className="mainPage">
 		         	 <div className="container">
-			         	 <div className="row">
+			         	 <div className="row item-card">
 			         	 {this.props.state.items.map((item)=>{
 			         	 	console.log("item are",item)
-			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id}/>
+			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id} />
+			         	 			
 			         	 })}
+			         	 
+			         	 {this.props.state.items.map((item)=>{
+			         	 	console.log("item are",item)
+			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id} />
+			         	 			
+			         	 })}
+			         	 
+			         	 {this.props.state.items.map((item)=>{
+			         	 	console.log("item are",item)
+			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id} />
+			         	 			
+			         	 })}
+			         	 
+			         	
+			         	 
 			        	 	
 
 			         	 </div>
