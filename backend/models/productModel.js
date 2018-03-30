@@ -78,6 +78,14 @@ class produceModel {
         })
     }
 
+    findAll() {
+        return this.produceModel.find({}).then(produce => {
+            return produce;
+        }).catch(err => {
+            throw err;
+        })
+    }
+
 
 }
 

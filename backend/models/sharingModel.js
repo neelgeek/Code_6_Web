@@ -91,7 +91,8 @@ class SharingRequest {
                             origin: shareReq.origin,
                             destination: shareReq.destination,
                             merchant_otp: null,
-                            farmer_otp: null
+                            farmer_otp: null,
+                            shareReqId: sreqid
                         }
 
                         model.createOrder(orderFromReq).then(newOrder => {

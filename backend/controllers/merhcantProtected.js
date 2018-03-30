@@ -72,6 +72,17 @@ module.exports.controllerFunction = function(app) {
 
     });
 
+    router.get('/getProducts', (req, res) => {
+        let products = new productModel();
+        products.findAll().then(products => {
+            res.status(200).json(products);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            });
+        })
+    });
+
     app.use('/merchantProtected', router);
 }
 
