@@ -70,14 +70,16 @@ class SharingRequest {
 
 
     populateOrders(shareorderids, rate, model, truckid) {
+        let Shareorders = [];
         let orders = [];
 
         return new Promise(function(resolve, reject) {
+            let i = 0;
             shareorderids.forEach(sreqid => {
                 let transport_costs = [];
 
                 model.getRequestById(sreqid).then(shareReq => {
-                        console.log("Line 80 " + truckid);
+                        // console.log("Line 80 " + truckid);
                         let orderFromReq = {
                             farmer_id: shareReq.farmer_id,
                             merchant_id: shareReq.merchant_id,
@@ -93,7 +95,8 @@ class SharingRequest {
                         }
 
                         model.createOrder(orderFromReq).then(newOrder => {
-                            console.log(newOrder);
+                            //console.log(newOrder);
+                            orders.push(newOrder._id);
                             let shareOrder = {
                                 shareReqid: sreqid,
                                 farmer_id: shareReq.farmer_id,
@@ -101,15 +104,25 @@ class SharingRequest {
                                 orderid: newOrder._id, //newOrder._id,
                                 status: "Unpaid"
                             }
-                            orders.push(shareOrder);
+                            Shareorders.push(shareOrder);
                             transport_costs.push(shareReq.distance * rate);
+                            i += 1;
+                            if (i === shareorderids.length) {
+                                // console.log('Calculating Max Cost');
+                                let maxCost = transport_costs.sort((a, b) => { return a - b; })[0];
+                                console.log(orders);
+                                let divided_cost = maxCost / shareorderids.length;
+                                Shareorders.forEach(order => {
+                                    order.transport_amount = divided_cost;
+                                    order.total = divided_cost + order.crop_amount;
+                                });
 
-                            let maxCost = transport_costs.sort((a, b) => { return a - b; })[0];
-                            let divided_cost = maxCost / shareorderids.length;
-                            orders.forEach(order => {
-                                order.transport_amount = divided_cost;
-                                order.total = divided_cost + order.crop_amount;
-                            });
+                                model.updateTransportAmount(orders, 1000).then(upOrders => {
+                                    console.log(upOrders);
+                                }).catch(err => {
+                                    throw err;
+                                })
+                            }
                         }).catch(err => {
                             throw err;
                         })
@@ -123,7 +136,7 @@ class SharingRequest {
 
             });
             if (orders) {
-                resolve(orders);
+                resolve(Shareorders);
             } else {
                 reject(Error("Orders Empty"));
             }
@@ -148,12 +161,21 @@ class SharingRequest {
         //console.log(orderDet);
         let newOrder = new this.orderModel(orderDet);
         return newOrder.save().then(order => {
+            console.log("Orders Saved");
             return order;
         }).catch(err => {
             throw err;
         })
     }
 
+    updateTransportAmount(ids, amount) {
+        return this.orderModel.update({ _id: { $in: ids } }, { $set: { transport_amount: amount } }).then(updatedOrders => {
+            console.log(updatedOrders);
+            return updatedOrders;
+        }).catch(err => {
+            throw err;
+        });
+    }
 }
 
 module.exports = SharingRequest;
