@@ -150,7 +150,10 @@ class navbar extends React.Component {
   				<FlatButton onClick={this.handleClick} label="close"/>
   					 	{this.props.user.loggedIn?
 						    		(this.props.user.user.user.isFarmer?(
+						    		<div>
 						    		<MenuItem><Link to = "/myOrders/farmer">my orders</Link></MenuItem> 
+						    		<MenuItem><Link to ="/uploadCrop">upload crop</Link></MenuItem>
+						    		</div>
 		          			
 									
 

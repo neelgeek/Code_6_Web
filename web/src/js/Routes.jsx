@@ -28,7 +28,7 @@ export const getRoutes = store => {
     return (
         <div>
         	<Route path ="*" component={navbar} />
-            <Route exact path="/" component={TransportHome}/>
+            <Route exact path="/" component={LandingPage}/>
             <Route exact path="/transport" component={TransportSignIn}/>
             <Route exact path="/transport/home" component={TransportHome}/>
             <Route exact path="/transport/add" component={TransportAddTruck}/>

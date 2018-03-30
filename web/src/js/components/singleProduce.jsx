@@ -6,6 +6,7 @@ import singleProduceService from "../../ApiMiddleware/api/singleProduceService"
 import orderProduceService from "../../ApiMiddleware/api/orderProduceService";
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import "../../css/global.css";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -152,78 +153,69 @@ class singleProduce extends Component {
             
           // </div>
           <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-          <div className="singleProduce no-pad bot">
-           <div className="row">
-            <div className="col s6">
-                      <button className="btn btn-waves" >Buy</button>
-           
-            
-            
-           
-
-
-            </div>
-             <ul className="col s6 collection">
-              <li className="collection-item">
-                  <div className="row">
-                    
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <p>Crop :{productinfo && productinfo.name}</p>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <p> Type:{productinfo && productinfo.type}</p>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <p>Quantity:{productinfo && productinfo.quantity}</p>
-                    </div>
-                  </div>
-              </li>
-              <li className="collection-item">
-                  <div className="row">
-                  <div className="farmerInfo section no-pad-bot">
-                    <div className="row">
-                     
-                    </div>
-                    
-                    <div className="row">
-                      <div className="col">
-                        <p>Address:   {farmerinfo && farmerinfo.address}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col">
-                        <p>Mobile:{farmerinfo && farmerinfo.mobile}</p>
-                      </div>
-                    </div>
-                    </div>
-                  </div>
-              </li>
-              <li>
-                <div className="farmerInfo section no-pad-bot">
-                  <p>Base cost: {costInfo && costInfo.crop}</p>
-                  <p>Transport cost: {costInfo && costInfo.transport}</p>
-                  <p>total (Base Cost + Transport Cost) :{costInfo && costInfo.total}</p>
- 
-                  <div className=" row">
-                 
-                  <div className="col s6">
-                  <Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
-                </div>  
-                </div>
+          <div className="singleProduce no-pad bot" >
+           <div className="row" style={{"background":"white"}}>
+                <div className="col" style={{"padding":"5% 5% 5% 5%"}}>
                   
- 
-            </div>   
+                  <img src="http://localhost:8080/images/rice.jpg" style={{"height":"400px","width":"400px","border":"2px"}} id="myPic"/>
+                  <div className="bow" style={{"background":"#E0E0E0" ,"height":"110px","paddingLeft":"4%"}}>
+                  <br/>
+                  <br/>
+                  <br/>
+                    <Link to="/product/crop/share"><button className="btn btn-waves" >Share</button></Link>    
+                  </div>
+                </div>
 
-              </li>
+                
 
-            </ul>
+                <ul className="col s6" style={{"background":"#E0E0E0","paddingTop":"1%","marginRight":"5%","marginTop":"5%","width":"45%"}} id="myUl">
+                    <p><h5>usdgfuasdgf audfgdsoiu fg uegf </h5></p>
+                    <div className="divider" style={{"background":"#424242"}}></div>
+                    <li>   
+                      <p><b>Crop :</b> {productinfo && productinfo.name}</p>
+                                                            
+                      <p><b>Type: </b>{productinfo && productinfo.type}</p>
+                                                      
+                      <p><b>Quantity:</b> {productinfo && productinfo.quantity}</p>
+                        
+                    </li>
+
+                    <div className="divider" style={{"background":"#424242"}}></div>
+
+                    <li>
+                             
+                      <p><b>Address:</b> {farmerinfo && farmerinfo.address}</p>
+                      
+                      <p><b>Mobile:</b> {farmerinfo && farmerinfo.mobile}</p>
+      
+                    </li>
+
+                    <div className="divider" style={{"background":"#424242"}}></div>
+
+                    <li>
+                      
+                        <p><b>Base cost:</b> {costInfo && costInfo.crop}</p>
+                        <p><b>Transport cost:</b> {costInfo && costInfo.transport}</p>
+                        <p><b>total (Base Cost + Transport Cost) :</b> {costInfo && costInfo.total}</p>
+                        
+                        
+
+                    </li>
+
+                    <div className="divider" style={{"background":"#424242"}}></div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div className="row">
+                        <div className="col s6">
+                        <Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
+                        </div>
+                    </div>
+
+              </ul>
+
             </div>
+
           </div>
           </MuiThemeProvider>
           )
