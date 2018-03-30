@@ -23,17 +23,29 @@ class ItemCard extends Component {
       })
    
   }
+  functionToReturnImage=(type)=>{
+    if(type == "wheat")
+        return <img src={require(`../../../images/wheat.jpg`)}/>
+    else if (type == "Rice")
+        return <img src ={require(`../../../images/rice.jpg`)}/>
+      else
+        return <img src ={require(`../../../images/wheat.jpg`)}/>
+  }
 
     render() {
+
       if(this.state.redirect)
         return <Redirect to={`/product/crop/${this.props.id}/${this.props.quantity}`}/>
       
         return(
         	
-                <div className="col s4 m3">
+                <div className="col s4">
                   <div className="card">
                   <div className="card-image">
-                    <img src={require("../../../images/rice.jpg")}/>
+                    
+                     {this.functionToReturnImage(this.props.crop)}
+                   
+
                     <span className="card-title">{this.props.crop}</span>
                   </div>
                     

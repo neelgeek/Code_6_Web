@@ -26,6 +26,7 @@ class MainItemsPage extends Component {
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.onQuantityChange = this.onQuantityChange.bind(this);
+		this.props.dispatch(produceService.getServiceApi(`/merchantProtected/getProducts`))
 		 
 
 	}
@@ -53,6 +54,7 @@ class MainItemsPage extends Component {
 			crop:value,
 			
 		})
+		//merchantProtected/getProducts
 
 		
 	}
@@ -150,6 +152,7 @@ class MainItemsPage extends Component {
 					      </form>
 					    </div>
 					   
+
 					 </div>
 	         	<div className="mainPage">
 		         	 <div className="container">
@@ -160,22 +163,7 @@ class MainItemsPage extends Component {
 			         	 			
 			         	 })}
 			         	 
-			         	 {this.props.state.items.map((item)=>{
-			         	 	console.log("item are",item)
-			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id} />
-			         	 			
-			         	 })}
-			         	 
-			         	 {this.props.state.items.map((item)=>{
-			         	 	console.log("item are",item)
-			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id} />
-			         	 			
-			         	 })}
-			         	 
 			         	
-			         	 
-			        	 	
-
 			         	 </div>
 	         		</div>
          		</div>
