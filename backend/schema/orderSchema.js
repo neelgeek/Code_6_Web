@@ -12,6 +12,7 @@ const orderSchema = mongoose.Schema({
     farmer_otp: String,
     origin: { type: String, default: null },
     destination: { type: String, default: null },
+    shareReqId: mongoose.Schema.Types.ObjectId,
     createdon: { type: mongoose.Schema.Types.Date, default: new Date() }
 });
 

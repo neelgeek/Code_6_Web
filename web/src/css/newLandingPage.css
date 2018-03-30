@@ -8,3 +8,6 @@
 .card img {
     max-width: 100%;
 }
+.landing-page .card {
+	height:337px !important;
+}

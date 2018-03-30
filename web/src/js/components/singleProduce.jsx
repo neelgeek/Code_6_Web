@@ -8,6 +8,9 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+
+
 
 
 
@@ -57,48 +60,175 @@ class singleProduce extends Component {
    	
   
 
-    render() {
-      console.log(this.props)
-      let error = true
-    	if(this.props.truck.noTruckFound && this.props.state.crop){
-        error = false
-    		alert("sorry we cannot assign any trucks to you right at this moment for this order")
-    	}
-    	if(this.state.redirectToPayment){
+   
+     render() {
+     if(this.state.redirectToPayment){
+       return <Redirect to="/product/crop/buy" />
+   }
+ 
+ 
+      console.log(this.props.state.crop)
+      let {farmerinfo ,costInfo,productinfo,transportInfo} = this.props.state.crop;
+         return(
 
-    		return <Redirect to="/product/crop/buy" />
-    	}
-    	
+          //<div className
+          // <div className="section no-pad-bot singleProduce row">
+          //   <div className="col s5 m5">
+          //     <div className="row">
+          //       <div className="farmerInfo section no-pad-bot">
+          //         <div className="row">
+          //           <div className="col">
+          //             <h1>farmer Info</h1>
+          //           </div>
+          //         </div>
+                  
+          //         <div className="row">
+          //           <div className="col">
+          //             <p>Address:   {farmerinfo && farmerinfo.address}</p>
+          //           </div>
+          //         </div>
+          //         <div className="row">
+          //           <div className="col">
+          //             <p>mobile:{farmerinfo && farmerinfo.mobile}</p>
+          //           </div>
+          //         </div>
+                  
+                  
+                  
+                  
+ 
+          //       </div>
+          //     </div>
+          //     <div className="row">
+          //       <div className="farmerInfo section no-pad-bot">
+          //         <div className="row">
+          //           <div className="col">
+          //             <h1>produce Info</h1>
+          //           </div>
+          //         </div>
+          //         <div className="row">
+          //           <div className="col">
+          //             <p>crop Name:{productinfo && productinfo.name}</p>
+          //           </div>
+          //         </div>
+          //         <div className="row">
+          //           <div className="col">
+          //             <p>crop type:{productinfo && productinfo.type}</p>
+          //           </div>
+          //         </div>
+          //         <div className="row">
+          //           <div className="col">
+          //             <p>quantity:{productinfo && productinfo.quantity}</p>
+          //           </div>
+          //         </div>
+                  
+ 
+          //       </div>
+          //     </div>
+          //   </div>
+ 
+          //   <div className="col s6 m6">
+          //       <div className="farmerInfo section no-pad-bot">
+          //         <h1>price prediction</h1>
+          //         <p>crop cost: {costInfo && costInfo.crop}</p>
+          //         <p>transport cost: {costInfo && costInfo.transport}</p>
+          //         <p>total :{costInfo && costInfo.total}</p>
+ 
+          //         <div className=" row">
+          //         <div className="col s6">
+          //           <button className="btn btn-waves">share</button>
+          //         </div>
+          //         <div className="col s6">
+          //         <Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
+          //       </div>  
+          //       </div>
+                  
+ 
+          //   </div>   
+                
+          //   </div>
+              
+ 
+            
+          // </div>
+          <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+          <div className="singleProduce no-pad bot">
+           <div className="row">
+            <div className="col s6">
+                      <button className="btn btn-waves" >Buy</button>
+           
+            
+            
+           
 
-    	console.log(this.props)
-    	let {farmerinfo ,costInfo,productinfo,transportInfo} = this.props.state.crop;
-        return(
-			<MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-		 <div className="singleProduce">
-		 	<div className="container">
-			 	<div className="row">
-					<Card>
-						<CardText>
-								<ul>
-								 	<li></li>
-									 <li></li>
 
+            </div>
+             <ul className="col s6 collection">
+              <li className="collection-item">
+                  <div className="row">
+                    
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <p>Crop :{productinfo && productinfo.name}</p>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <p> Type:{productinfo && productinfo.type}</p>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <p>Quantity:{productinfo && productinfo.quantity}</p>
+                    </div>
+                  </div>
+              </li>
+              <li className="collection-item">
+                  <div className="row">
+                  <div className="farmerInfo section no-pad-bot">
+                    <div className="row">
+                     
+                    </div>
+                    
+                    <div className="row">
+                      <div className="col">
+                        <p>Address:   {farmerinfo && farmerinfo.address}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <p>Mobile:{farmerinfo && farmerinfo.mobile}</p>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+              </li>
+              <li>
+                <div className="farmerInfo section no-pad-bot">
+                  <p>Base cost: {costInfo && costInfo.crop}</p>
+                  <p>Transport cost: {costInfo && costInfo.transport}</p>
+                  <p>total (Base Cost + Transport Cost) :{costInfo && costInfo.total}</p>
+ 
+                  <div className=" row">
+                 
+                  <div className="col s6">
+                  <Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
+                </div>  
+                </div>
+                  
+ 
+            </div>   
 
-								</ul>
+              </li>
 
-
-						</CardText>
-
-					</Card>
-
-				 </div>
-
-			 </div>
-
-		 </div>
-		 </MuiThemeProvider>
-		)
-    }
+            </ul>
+            </div>
+          </div>
+          </MuiThemeProvider>
+          )
+     }
+ 
 }
 
 

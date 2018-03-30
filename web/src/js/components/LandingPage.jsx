@@ -154,6 +154,7 @@ class LandingPage extends Component {
                               modal={false}
                               open={this.state.redirectToFarmer}
                               onRequestClose={this.handleClose}
+                              backgroundColor="red"
                             >
                                 <Login isAuthenticated={this.props.user.loggedIn} role={this.state.redirectToFarmer ?"farmer":""}/>
 
@@ -164,6 +165,8 @@ class LandingPage extends Component {
                               modal={false}
                               open={this.state.redirectToBuyer}
                               onRequestClose={this.handleClose}
+                              backgroundColor="blue"
+
                             >
                                 <Login isAuthenticated={this.props.user.loggedIn} role={this.state.redirectToBuyer ?"buyer":""}/>
 

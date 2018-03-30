@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const userschema = require('../schema/userSchema');
 const objectId = mongoose.Types.ObjectId;
+const orderScehma = require('../schema/orderSchema');
 
 class UserModel {
     constructor() {
         this.usermodel = mongoose.model('user', userschema);
+        this.orderModel = mongoose.model('order', orderScehma);
     }
 
 
@@ -97,8 +99,21 @@ class UserModel {
         });
     }
 
+    getMerchantOrders(id) {
+        return this.orderModel.find({ merchant_id: id }).then(orders => {
+            return orders;
+        }).catch(err => {
+            throw err;
+        });
+    }
 
-
+    getFarmerOrders(id) {
+        return this.orderModel.find({ farmer_id: id }).then(orders => {
+            return orders;
+        }).catch(err => {
+            throw err;
+        });
+    }
 }
 
 module.exports = UserModel;

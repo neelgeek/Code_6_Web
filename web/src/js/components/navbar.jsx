@@ -148,6 +148,7 @@ class navbar extends React.Component {
     			
   			<Drawer open={this.state.open}>
   				<FlatButton onClick={this.handleClick} label="close"/>
+  				
 		          <MenuItem><Link to = "/Signup/farmer">sign up as Farmer</Link></MenuItem>
 		          <MenuItem><Link to = "/Signup/buyer">sign up as buyer</Link></MenuItem>
 		        </Drawer>

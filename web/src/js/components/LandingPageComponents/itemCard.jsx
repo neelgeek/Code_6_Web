@@ -30,8 +30,12 @@ class ItemCard extends Component {
       
         return(
         	
-                <div className="col s6 m3">
+                <div className="col s4 m3">
                   <div className="card">
+                  <div className="card-image">
+                    <img src={require("../../../images/rice.jpg")}/>
+                    <span className="card-title">{this.props.crop}</span>
+                  </div>
                     
                     <div className="card-content">
                       <p>crop Name : {this.props.crop}</p>
