@@ -1,15 +1,21 @@
 #myBox{
 
-	max-width: 80%;
-	margin-left: 10%;
-	background: #A5D6A7;
-	padding-left: 2%;
-	padding-right: 2%;
+	background: #CFD8DC;
+	padding-left: 1.5%;
+	padding-right:1.5%;
 	padding-top: 2%;
 }
 li{
 	padding-left: 20%;
 }
 #myCheck{
+	padding: 2% 2% 2% 2%;
 	float: right;
+	width: 45%;
+	border-color: black;
+	border-width: 1px;
+}
+#myLever{
+	float:right;
+	width:70%;
 }

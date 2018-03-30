@@ -15,11 +15,11 @@ class TransportHome extends Component{
 
 		super(props)
 		this.onClickAdd=this.onClickAdd.bind(this);
-		this.onClickView=this.onClickView.bind(this);
+		
 		this.state={
 			clicked:false,
-			type:"",
-			isHidden:true
+			type:""
+			
 		};
 		
 
@@ -35,26 +35,13 @@ class TransportHome extends Component{
 				{
 
 					clicked:true,
-					type:"ADD",
-					isHidden:true
+					type:"ADD"
+				
 				}
 		)
 	}
 
 
-	onClickView(event){
-
-		event.preventDefault();
-		this.setState(
-
-			{
-
-				clicked:true,
-				type:"VIEW",
-				isHidden:false
-			}
-		);
-	}
 
 	render(){
 
@@ -65,22 +52,27 @@ class TransportHome extends Component{
 		return(
 
 			<div className="TransportHome">
-				
-					<div className="row">
-						<div className="input-field col s6">
+				<div className="collection" style={{"height":"67px"}}>
+
+					<div className="row" style={{"background":"#212121","height":"65px","paddingLeft":"5%","borderRadius":"2px"}}>
+						<div className=" input-field col s6">
+							<input placeholder="Search " id="mySearchBar" type="text" class="validate"/>	
+						</div>
+						<div className="input-field col s3">
+							<button type="button"  className="btn btn-waves" >Search</button>
+						</div>
+						<div className="input-field col s3">
 							<button type="button" onClick={this.onClickAdd} className="btn btn-waves" >Add Truck</button>
 						</div>
 					</div>
 
-
-					<div className="row">
-						<div className="input-field col s6">
-							<button type="button" onClick={this.onClickView} className="btn btn-waves" >View Trucks</button>
-						</div>
-					</div>
+				</div>
+					
 
 
-					{ !this.state.isHidden && <TransportTruckView/>}
+				
+
+					{<TransportTruckView/>}
 
 
 						

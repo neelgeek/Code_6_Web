@@ -20,41 +20,46 @@ class TransportTruckView extends Component{
 	}
 
 	render(){
-		console.log(this.props.truck);
+		
 
 		return(
 
 			<div className="TransportTruckView">
 					<div className="collection" id="myBox">
+						
 
-						<div className="row">
+						<div className="collection" style={{"background":"#AED581","paddingTop":"2%","height":"auto"}}>
+								<div className="row">
+									
+										<div className="col s3">
+											<i className="material-icons" style={{"fontSize":"40px","marginLeft":"20%"}}>airport_shuttle</i>
+										</div>
+										<div className="col s3" style={{"width":"30%"}}>
+											
+										</div>
 
-							<div className="collection" style={{"background":"#EFEBE9"}}>
-								<div className="col s3">
-									<i class="fas fa-truck"></i>
+										<div className="col s3" id="myCheck">
+
+					
+											        <div className="switch col s6" id="myLever">
+													    <label>
+													      Deactivated
+													      <input type="checkbox"/>
+													      <span className="lever"></span>
+													      Activated
+													    </label>
+													</div>
+											  
+
+										</div>
+									
+
+
 								</div>
-								<div className="col s3">
-									<li>{this.props.trucks}</li>
-								</div>
-
-								<div className="col s3" id="myCheck">
-
-			
-									        <div className="switch col s6">
-											    <label>
-											      Deactivated
-											      <input type="checkbox"/>
-											      <span className="lever"></span>
-											      Activated
-											    </label>
-											</div>
-									  
-
-								</div>
-							</div>
-
-
 						</div>
+
+						
+
 
 					</div>
 			</div>
