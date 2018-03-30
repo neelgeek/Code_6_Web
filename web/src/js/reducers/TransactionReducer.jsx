@@ -5,12 +5,13 @@ import getOrderService from "../../ApiMiddleware/api/getOrderService";
 
 
 const initialState = {
+    data:{}
 // initial state
 };
 
 const handlers = {
     //string property value
-    [getOrderService.getServiceReturn()]: (initialState,action) => ({
+    [getOrderService.getServiceReturn().success]: (initialState,action) => ({
     	...initialState,
     	data:action.response.data
        // set state

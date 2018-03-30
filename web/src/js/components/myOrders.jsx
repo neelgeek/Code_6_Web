@@ -20,8 +20,73 @@ class myOrders extends Component{
 
 	}
 	render(){
-		console.log(this.props.state)
-		return()
+
+		console.log(this.props.transaction )
+		return(
+			<div className="transaction-box container">
+				<ul className="collection">
+					{(this.props.transaction != {})? this.props.transaction.map((transaction)=>{
+
+						return(
+							<li className="collection-item">
+			      		<div className="row">
+				      		<div className="col s4">
+				      			<div className="card">
+							        <div className="card-content white-text">
+							          <span classNam="card-title">Crop</span>
+								          <table >
+								          		<thead>
+								          		</thead>
+									          <tbody>
+										          <tr>
+										          	<th>Name</th>
+										          	<td>Wheat</td>
+										          </tr>
+										        </tbody>
+								          </table>
+
+
+							         
+							        </div>
+							      
+							      </div>
+				      		</div>
+				      		<div className="col s4">
+				      			<div className="card">
+							        <div className="card-content white-text">
+							          <span classNam="card-title">Transaction</span>
+
+							         
+							        </div>
+							      
+							      </div>
+				      		</div>
+				      		<div className="col s4">
+				      			<div className="card">
+							        <div className="card-content white-text">
+							          <span classNam="card-title">Transport</span>
+
+							         
+							        </div>
+							      
+							      </div>
+				      		</div>
+			      		</div>
+			      </li>
+
+							)
+
+					}):(<div></div>)}
+					
+
+
+
+
+			      
+			    
+			    </ul>
+			</div>
+			)
 	}
 }
 
@@ -33,4 +98,4 @@ let select = (state) =>{
 	}
 }
 
-exports default connect (select) (myOrders)
+export default connect (select) (myOrders)
