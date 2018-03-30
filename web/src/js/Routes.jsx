@@ -9,6 +9,8 @@ import Login  from './components/authComponents/login';
 import Signup  from './components/authComponents/Signup';
 import singleProduce  from './components/singleProduce';
 import Checkout  from './components/checkout';
+import myOrders  from './components/myOrders';
+
 
 
 
@@ -26,6 +28,8 @@ export const getRoutes = store => {
             <Route exact path="/buyer" component={MainItemsPage}/>
             <Route exact path="/product/crop/:cropId/:quantity" component={singleProduce}/>
             <Route exact path="/product/crop/buy" component={Checkout}/>
+            <Route exact path="/myOrders/buyer" component={myOrders}/>
+
 
 
 

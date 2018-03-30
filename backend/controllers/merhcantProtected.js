@@ -87,6 +87,7 @@ module.exports.controllerFunction = function(app) {
     router.get('/myOrders', (req, res) => {
         let merchant = new userModel();
         merchant.getMerchantOrders(req.session.user._id).then(orders => {
+            console.log(orders)
             res.status(200).json(orders);
         }).catch(err => {
             res.status(500).json({

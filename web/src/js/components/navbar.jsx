@@ -148,6 +148,30 @@ class navbar extends React.Component {
     			
   			<Drawer open={this.state.open}>
   				<FlatButton onClick={this.handleClick} label="close"/>
+  					 	{this.props.user.loggedIn?
+						    		(this.props.user.user.user.isFarmer?(
+						    		<MenuItem><Link to = "/myOrders/farmer">my orders</Link></MenuItem> 
+		          			
+									
+
+						    			):
+
+
+
+
+
+
+
+
+
+
+						    		(
+						    		<MenuItem><Link to = "/myOrders/buyer">my orders</Link></MenuItem>)
+									):(
+									<MenuItem><Link to ="/">Home</Link></MenuItem>
+						      	 	
+						      	 		
+						      	)}
   				
 		          <MenuItem><Link to = "/Signup/farmer">sign up as Farmer</Link></MenuItem>
 		          <MenuItem><Link to = "/Signup/buyer">sign up as buyer</Link></MenuItem>
