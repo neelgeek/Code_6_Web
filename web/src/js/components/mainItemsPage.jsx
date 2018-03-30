@@ -116,6 +116,7 @@ class MainItemsPage extends Component {
 					 		           }}
 
 					 		         	>
+					 		         	<MenuItem primaryText="choose your crop Type"/>
 					 		           {crops[this.state.crop || "Rice"].map((crop,key)=> <MenuItem key={key} 
 					 		 								          	value={crop} 
 					 		 								          	primaryText={crop}

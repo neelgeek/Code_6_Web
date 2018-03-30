@@ -2,7 +2,7 @@ import React  from "react";
 import {Component} from "react";
 import { connect } from "react-redux";
 import "../../css/LandingPage.css"
-import produceService from "../../ApiMiddleware/api/produceService"
+import produceService from "../../ApiMiddleware/api/produceService";
 
 
 
@@ -29,11 +29,30 @@ class ProduceUpload extends Component {
 			price:price.value
 		}
 		this.props.dispatch(produceService.postServiceApi('/farmerProtected/produce',data)).then(response=>console.log(response))
+		this.setState({
+			crop:undefined
 
+		})
 	}
    
 
     render() {
+    	let crops = {
+    	
+    		"Rice":
+    		["Basmati","Brown Rice","Red Rice","Black Rice","Kolam"]
+
+    	
+    	,"Maize":
+    		["baby-corn","sweet-corn","pop-corn","indian corn"]
+
+    	,
+    	
+    		"Wheat":
+    		["Hard Red","Winter Wheat","White Wheat"]
+
+    	}
+    	let cropTypes= Object.keys(crops);
 
 
         return(
@@ -45,19 +64,30 @@ class ProduceUpload extends Component {
 					    <form className="form-horizantal" onSubmit={this.onSubmit}>
 					      <div className="form-group">
 					        <div className="input-field col s6">
-					          <input  id="crop_name" type="text" name="cropName" className="validate"/>
-					          <label for="crop_name">Crop Name</label>
+					         <DropDownMenu
+					 		           floatingLabelText="crop name"
+					 		           value={this.state.crop}
+					 		           onChange={this.onCropNameChange}
+					 		           style={{
+					 		           	"width":"100%"
+					 		           }}
+					 		           
+
+					 		         	>
+					 		           {cropTypes.map((crop,key)=> <MenuItem key={key} 
+					 		 								          	value={crop} 
+					 		 								          	primaryText={crop}
+					 		 								          	/>
+					 		 								          	)}
+					 		        </DropDownMenu>
 					        </div>
 					       </div>
 					       
 					     
 					      <div className="form-group">
 					        <div class="input-field col s12">
-							    <select>
-							      <option value="rice">Rice</option>
-							      <option value="Wheat">wheat</option>
-							      <option value="sugar">Sugar</option>
-							    </select>
+								//crop types
+
 							  </div>
 					      </div>
 					      
