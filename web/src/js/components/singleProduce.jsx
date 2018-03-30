@@ -212,7 +212,7 @@ class singleProduce extends Component {
                   <div className=" row">
                  
                   <div className="col s6">
-                  <Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
+                  <Link to="/product/crop/buy"><button className="btn btn-waves" onClick={this.onBuyButtonClick}>buy</button></Link>
                 </div>  
                 </div>
                   
