@@ -21,15 +21,14 @@ class myOrders extends Component{
 	}
 	render(){
 
-		console.log(this.props.transaction )
+		console.log(this.props.transaction.data)
+
 		return(
 			<div className="transaction-box container">
 				<ul className="collection">
-					{(this.props.transaction != {})? this.props.transaction.map((transaction)=>{
-
-						return(
-							<li className="collection-item">
-			      		<div className="row">
+				{this.props.transaction.data.length && this.props.transaction.data.map((transaction)=>
+					<li className="collection-item">
+						<div className="row">
 				      		<div className="col s4">
 				      			<div className="card">
 							        <div className="card-content white-text">
@@ -40,8 +39,13 @@ class myOrders extends Component{
 									          <tbody>
 										          <tr>
 										          	<th>Name</th>
-										          	<td>Wheat</td>
+										          	<td>{transaction.crop_details.name}</td>
 										          </tr>
+										          <tr>
+										          	<th>type</th>
+										          	<td>{transaction.crop_details.type}</td>
+										          </tr>
+										           
 										        </tbody>
 								          </table>
 
@@ -54,7 +58,22 @@ class myOrders extends Component{
 				      		<div className="col s4">
 				      			<div className="card">
 							        <div className="card-content white-text">
-							          <span classNam="card-title">Transaction</span>
+							          <span className="card-title">Farmer</span>
+							          	 <table >
+								          		<thead>
+								          		</thead>
+									          <tbody>
+										          <tr>
+										          	<th>Cost</th>
+										          	<td>{transaction.farmer_amount}</td>
+										          </tr>
+										          <tr>
+										          	<th>status</th>
+										          	<td>{transaction.status}</td>
+										          </tr>
+										           
+										        </tbody>
+								          </table>
 
 							         
 							        </div>
@@ -64,19 +83,39 @@ class myOrders extends Component{
 				      		<div className="col s4">
 				      			<div className="card">
 							        <div className="card-content white-text">
-							          <span classNam="card-title">Transport</span>
+							          <span className="card-title">Transport</span>
+							          	 <table >
+								          		<thead>
+								          		</thead>
+									          <tbody>
+										          <tr>
+										          	<th>Cost</th>
+										          	<td>{transaction.transport_amount}</td>
+										          </tr>
+										          <tr>
+										          	<th>OTP</th>
+										          	<td>{transaction.merchant_otp}</td>
+										          </tr>
+										           
+										        </tbody>
+								          </table>
 
 							         
 							        </div>
 							      
 							      </div>
 				      		</div>
+				      		{transaction.status === "Processing"?<div className="btn btn-waves waves-large">
+				      		 Complete Share payment
+
+				      		</div>:<div></div>}
+				      		
 			      		</div>
 			      </li>
+			      		
 
-							)
-
-					}):(<div></div>)}
+					)}
+						
 					
 
 
