@@ -1,5 +1,7 @@
-var cron = require('node-cron');
+const mongoose = require('mongoose');
+const shareGroupSchema = require('../schema/shareGroupSchema');
+const ShareGroupModel = mongoose.model('sharegroup', shareGroupSchema);
 
-cron.schedule('* * * * * *', function() {
-    console.log('running a task every minute');
-});
+function CheckShareGroups() {
+
+}
