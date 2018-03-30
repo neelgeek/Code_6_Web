@@ -24,6 +24,7 @@ module.exports.controllerFunction = function(app) {
             crop: req.body.crop,
             type: req.body.type,
             quantity: req.body.quantity,
+            farmerPrice: req.body.farmerPrice
 
         }
         console.log(details);
@@ -32,6 +33,7 @@ module.exports.controllerFunction = function(app) {
             res.status(200).json({ response });
         }).catch(err => {
             res.status(500).send(err);
+
         });
 
 
