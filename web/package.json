@@ -23,6 +23,7 @@
         "random-string": "^0.2.0",
         "react": "^15.6.1",
         "react-braintree-fields": "^1.0.0",
+        "react-chartjs": "^1.2.0",
         "react-cookie": "^2.1.2",
         "react-dom": "^15.6.0",
         "react-redux": "^5.0.7",
