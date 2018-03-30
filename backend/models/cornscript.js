@@ -1,7 +1,16 @@
 const mongoose = require('mongoose');
 const shareGroupSchema = require('../schema/shareGroupSchema');
-const ShareGroupModel = mongoose.model('sharegroup', shareGroupSchema);
 
-function CheckShareGroups() {
 
+
+function ab() {
+    let ShareGroupModel = mongoose.model('sharegroup', shareGroupSchema);
+    ShareGroupModel.find({}).then(response => {
+        return response;
+    });
 }
+
+
+ab().then(a => {
+    console.log(a);
+});

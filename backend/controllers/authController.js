@@ -67,15 +67,20 @@ module.exports.controllerFunction = function(app) {
 
             let user = new userModel({});
             user.findOne(details).then((user) => {
+                    if (!user.isBlocked) {
+                        console.log("user is ", user)
+                        if (user.password == req.body.password) {
+                            req.session.user = user; // session established
 
-                    console.log("user is ", user)
-                    if (user.password == req.body.password) {
-                        req.session.user = user; // session established
+                            res.status(200).json({ user });
+                        } else {
 
-                        res.status(200).json({ user });
+                            res.status(403).json({ message: "fail" });
+                        }
                     } else {
-
-                        res.status(403).json({ message: "fail" });
+                        res.status(403).json({
+                            message: "User is Blocked"
+                        })
                     }
                 })
                 .catch(err => {
