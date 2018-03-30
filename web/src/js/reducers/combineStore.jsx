@@ -30,4 +30,4 @@ const combineStore = combineReducers({
 });
 
 
-export default combineStore;
+export default combineStore;		

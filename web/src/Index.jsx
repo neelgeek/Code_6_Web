@@ -9,6 +9,11 @@ import Root from './js/Root';
 import combineStore from './js/reducers/combineStore';
 import restService from './ApiMiddleware/api/HttpService';
 import apiMiddleware from './ApiMiddleware/ApiMiddleware';
+import 'materialize-css/dist/css/materialize.css';    
+import 'materialize-css/dist/js/materialize.js';   
+
+
+
 
 const middleware = [ thunk ];
 

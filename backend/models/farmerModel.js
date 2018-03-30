@@ -36,5 +36,13 @@ class farmer {
             throw err;
         });
     }
+
+    findById(id) {
+        return this.produceModel.findById(id).then(produce => {
+            return produce;
+        }).catch(err => {
+            throw err;
+        })
+    }
 }
 module.exports = farmer;

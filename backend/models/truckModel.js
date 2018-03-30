@@ -63,22 +63,38 @@ class trucks {
         });
     }
 
-    getTrips(orders) {
-        let trips = {
-            origins: [],
-            destinations: []
-        }
-        orders.foreach(order => {
-            this.orderModel.findById(order).then(response => {
-                trips.origins.push(response.origin);
-                trips.destinations.push(response.destinations);
-            }).catch(err => {
-                throw err;
-            })
+    getTrips(order) {
 
+        return this.orderModel.findById(order).then(response => {
+            return response;
+        }).catch(err => {
+            throw err;
         });
-        return trips;
     }
 
+    getTruckRate(id) {
+        return this.truckModel.findById(id).then(truckinfo => {
+            return this.CalcRate(truckinfo.type);
+        }).catch(err => {
+            throw err;
+        })
+
+
+    }
+
+    CalcRate(type) {
+        switch (type) {
+            case 'Small':
+                return 20;
+                break;
+            case 'Medium':
+                return 30;
+                break;
+            case 'Large':
+                return 45;
+                break;
+
+        }
+    }
 }
 module.exports = trucks

@@ -11,7 +11,19 @@ const orderSchema = mongoose.Schema({
     merchant_otp: String,
     farmer_otp: String,
     origin: { type: String, default: null },
-    destination: { type: String, default: null }
+    destination: { type: String, default: null },
+    createdon: { type: mongoose.Schema.Types.Date, default: new Date() }
 });
 
 module.exports = orderSchema;
+
+// createdon: 2018-03-26T18:30:00.000Z,
+//   _id: 5aba179a326b671fb43ac749,
+//   farmer_id: 5aac1483aaf3a919a4de8251,
+//   merchant_id: 5aac14a8aaf3a919a4de8252,
+//   transport_id: null,
+//   crop_details: { name: 'Rice', type: 'Basmati', quantity: 200 },
+//   farmer_amount: 2000,
+//   transport_amount: null,
+//   origin: 'Thane',
+//   destination: 'Thane',

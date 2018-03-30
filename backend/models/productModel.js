@@ -38,8 +38,9 @@ class produceModel {
                     }
 
                     var transportInfo = {
-                        destination: details.address,
-                        origin: farmerinfo.address
+                        destination: details.buyaddress,
+                        origin: farmerinfo.address,
+                        distance: null
                     }
 
                     return { farmerinfo, productinfo, costInfo, transportInfo };
@@ -69,6 +70,13 @@ class produceModel {
         });
     }
 
+    findById(id) {
+        return this.produceModel.findById(id).then(produce => {
+            return produce;
+        }).catch(err => {
+            return err;
+        })
+    }
 
 
 }

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
@@ -7,6 +8,8 @@ import { persistStore } from 'redux-persist';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //import { useScroll } from 'react-router-scroll';
 import  {getRoutes}  from './Routes';
+
+
 
 /*const customBrowserHistory = useRouterHistory(createHistory)({
     basename: '/PayAndPlay'

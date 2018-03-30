@@ -70,9 +70,21 @@ module.exports.controllerFunction = function(app) {
         var pass = req.body.password;
 
         const truck = new truckCompanyModel();
-        truck.findOneTruck(number).then(response => {
-            if (pass === response.password) {
-                res.status(200).json({ message: true });
+        truck.findOneTruck(number).then(truckinfo => {
+            if (pass === truckinfo.password) {
+                let truckLogin = {
+                    message: true,
+                    activated: truckinfo.activated,
+                    status: truckinfo.status,
+                    trip: truckinfo.trip,
+                    _id: truckinfo._id,
+                    comp_id: truckinfo.comp_id,
+                    trucknum: truckinfo.trucknum,
+                    password: truckinfo.password,
+                    type: truckinfo.type,
+                    currentLoc: truckinfo.currentLoc
+                }
+                res.status(200).json(truckLogin);
             } else {
                 res.status(403).json({ message: false });
             }

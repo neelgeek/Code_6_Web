@@ -18,13 +18,16 @@ exports.controllerFunction = function(app) {
     router.post('/create', (req, res) => {
         let data = req.body;
         let details = {
+            farmer_id: req.body.farmerinfo.id,
             merchant_id: req.session.user._id,
             transport_id: data.transportInfo.truckId,
             crop_details: data.productinfo,
             farmer_amount: data.costInfo.crop,
             transport_amount: data.costInfo.transport,
             merchant_otp: null,
-            farmer_otp: null
+            farmer_otp: null,
+            origin: data.transportInfo.origin,
+            destination: data.transportInfo.destination
         };
         let order = new transactionModel();
         order.createOrder(details).then(response => {
@@ -42,6 +45,7 @@ exports.controllerFunction = function(app) {
         console.log(req.body)
         let transaction = new transactionModel();
         let nonceFromTheClient = req.body.paymentMethodNonce;
+        let farmer = req.body.farmerid;
         let value = Math.floor(req.body.amount);
         let orderId = req.body.orderId;
         let truckId = req.body.truckId;
@@ -49,8 +53,9 @@ exports.controllerFunction = function(app) {
         let destination = req.body.destination;
         let tripinfo = { origin, destination };
 
+
         var newTransaction = gateway.transaction.sale({
-            amount:String(value) ,
+            amount: String(value),
             paymentMethodNonce: nonceFromTheClient,
             options: {
                 // This option requests the funds from the transaction
@@ -64,7 +69,8 @@ exports.controllerFunction = function(app) {
                     id: orderId,
                     status: 'Placed',
                     torigin: origin,
-                    tdest: destination
+                    tdest: destination,
+                    farmer
                 }
                 transaction.updateOrder(orderDet).then(updatedOrder => {
                     let transac_details = {
@@ -79,13 +85,13 @@ exports.controllerFunction = function(app) {
                             let details = {
                                 id: truckId,
                                 status: 'Assigned',
-                                trip: orderId
+                                order: orderId
                             }
                             transaction.updateTruckStatus(details).then(truck => {
                                 res.status(200).json(result);
                             }).catch(err => {
                                 throw err;
-                            })
+                            });
                         })
                         .catch(err => {
                             res.status(500).json({
@@ -99,8 +105,7 @@ exports.controllerFunction = function(app) {
 
                 });
 
-            } 
-             else{
+            } else {
                 res.status(500).json({
                     message: error.message
                 });
@@ -115,12 +120,14 @@ exports.controllerFunction = function(app) {
             location: req.body.location,
             status: 'Unassigned'
         }
-
         let truck = new transactionModel();
         return truck.findTruck(details).then(response => {
             console.log(response)
-            res.status(200).json(response[0]);
-        }).catch(err => {   
+            if (response != null) {
+                res.status(200).json(response[0]);
+            }
+        }).catch(err => {
+            console.log(err.message);
             res.status(500).json({
                 message: err.message
             })

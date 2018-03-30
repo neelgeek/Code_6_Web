@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const truckCompanyModel = require('../models/truckcompModel');
 const truckModel = require('../models/truckModel');
+const orderModel = require('../models/transactionModel');
 
 
 module.exports.controllerFunction = function(app) {
@@ -66,20 +67,22 @@ module.exports.controllerFunction = function(app) {
         })
     });
 
-    router.post('/getTrips', (req, res) => {
-        let orders = req.body.orders;
+    router.get('/getTrips/:id', (req, res) => {
+        let order = req.params.id;
         let trucks = new truckModel();
-        let trips = trucks.getTrips(orders);
-        if (trips) {
-            res.status(200).json(trips);
-        } else {
+        trucks.getTrips(order).then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
             res.status(500).json({
-                message: "Error Fetching Trucks"
-            })
-        }
+                message: err.message
+            });
+        });
     });
 
 
+    router.post('/submitOtp/:otp', (req, res) => {
+
+    });
 
 
 

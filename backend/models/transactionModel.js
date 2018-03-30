@@ -40,7 +40,7 @@ class transaction {
 
     updateOrder(details) {
 
-        return this.orderModel.findByIdAndUpdate(details.id, { status: details.status, origin: details.torigin, destination: details.tdest })
+        return this.orderModel.findByIdAndUpdate(details.id, { farmer_id: details.farmer, status: details.status, origin: details.torigin, destination: details.tdest })
             .then(response => {
                 return response;
             }).catch(err => {
@@ -93,7 +93,7 @@ class transaction {
         let type = null;
         if (weight < 100) {
             type = "Small";
-        } else if (weight < 500 && weight > 100) {
+        } else if (weight <= 500 && weight >= 100) {
             type = "Medium";
         } else {
             type = "Large"

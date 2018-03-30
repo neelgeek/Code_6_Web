@@ -73,7 +73,7 @@ class Signup extends Component {
     	
         return(
 
-        		<div className="login-box ">
+        		<div >
         			<h1 className="center-align">{this.props.role} signup</h1>
 
 		        	<div className="row">
