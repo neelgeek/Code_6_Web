@@ -4,6 +4,7 @@ const authProtected = require('../middlewares/authProtected');
 const productModel = require('../models/productModel');
 const maps = require('google-distance');
 const farmerModel = require('../models/farmerModel');
+const userModel = require('../models/userModel');
 maps.apiKey = 'AIzaSyCfB-yxrLRQZgBnhCjwFmzp0mvY6CxtvSU';
 module.exports.controllerFunction = function(app) {
 
@@ -81,6 +82,17 @@ module.exports.controllerFunction = function(app) {
                 message: err.message
             });
         })
+    });
+
+    router.get('/myOrders', (req, res) => {
+        let merchant = new userModel();
+        merchant.getMerchantOrders(req.session.user._id).then(orders => {
+            res.status(200).json(orders);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            });
+        });
     });
 
     app.use('/merchantProtected', router);
