@@ -11,7 +11,7 @@ import{ Link ,Redirect} from "react-router-dom";
 class Signup extends Component {
 	constructor(props){
 		super(props);
-		console.log(props)
+		console.log(props);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.state={
 			redirect:false

@@ -4,7 +4,11 @@ import MainItemsPage  from './components/mainItemsPage'
 import navbar  from './components/navbar';
 import ProduceUpload  from './components/produceUpload';
 import LandingPage  from './components/LandingPage';
-
+import TransportSignUp from './components/transportComponents/transportAuthComponents/transportSignUp';
+import TransportSignIn from './components/transportComponents/transportAuthComponents/transportSignIn';
+import TransportHome from './components/transportComponents/transportHome';
+import TransportAddTruck from './components/transportComponents/transportAddTruck';
+import TransportTruckView from './components/transportComponents/transportTruckView';
 import Login  from './components/authComponents/login';
 import Signup  from './components/authComponents/Signup';
 import singleProduce  from './components/singleProduce';
@@ -22,7 +26,10 @@ export const getRoutes = store => {
     return (
         <div>
         	<Route path ="*" component={navbar} />
-            <Route exact path="/" component={LandingPage}/>
+            <Route exact path="/" component={TransportTruckView}/>
+            <Route exact path="/transport" component={TransportSignIn}/>
+            <Route exact path="/transport/home" component={TransportHome}/>
+            <Route exact path="/transport/add" component={TransportAddTruck}/>
             <Route exact path="/buyer" component={MainItemsPage}/>
             <Route exact path="/product/crop/:cropId/:quantity" component={singleProduce}/>
             <Route exact path="/product/crop/buy" component={Checkout}/>

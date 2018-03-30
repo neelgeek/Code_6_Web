@@ -1,0 +1,15 @@
+#myBox{
+
+	max-width: 80%;
+	margin-left: 10%;
+	background: #A5D6A7;
+	padding-left: 2%;
+	padding-right: 2%;
+	padding-top: 2%;
+}
+li{
+	padding-left: 20%;
+}
+#myCheck{
+	float: right;
+}

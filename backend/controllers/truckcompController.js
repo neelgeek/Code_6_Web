@@ -7,7 +7,7 @@ const truckCompanyModel = require('../models/truckcompModel');
 module.exports.controllerFunction = function(app) {
 
     route.post('/signup', (req, res) => {
-
+        console.log(req.body)
 
         var details = {
             companyName: req.body.cname,
@@ -20,8 +20,9 @@ module.exports.controllerFunction = function(app) {
             state: req.body.state
         }
 
-        newCompany = new truckCompanyModel();
+        let newCompany = new truckCompanyModel();
         newCompany.save(details).then(response => {
+            console.log(response)
             res.status(200).json(response);
         }).catch(err => {
             res.status(500).json(err);
@@ -42,10 +43,10 @@ module.exports.controllerFunction = function(app) {
                 req.session.truckadmin = response;
                 res.status(200).json({ message: true });
             } else {
-                res.status(200).json({ message: false });
+                res.status(403).json({ message: false });
             }
         }).catch(err => {
-            res.json(err.message);
+            res.status(403).json(err.message);
         });
 
     });
@@ -73,7 +74,7 @@ module.exports.controllerFunction = function(app) {
             if (pass === response.password) {
                 res.status(200).json({ message: true });
             } else {
-                res.status(200).json({ message: false });
+                res.status(403).json({ message: false });
             }
         }).catch(err => {
             res.status(500).json(err.message);

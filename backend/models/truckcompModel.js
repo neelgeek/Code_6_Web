@@ -12,18 +12,19 @@ class truckCompany {
 
 
     save(details) {
-        let newCompany = new this.CompanyModel(details);
-        return newCompany.save().then(response => {
-
-            return response;
-        }).catch(err => {
-            throw err;
-        });
+        let truckCompanyModel = new this.CompanyModel(details);
+        //console.log() //replace with object
+        return truckCompanyModel
+            .save()
+            .then(response => { return response; })
+            .catch(err => {
+                throw err;
+            });
 
     }
 
     findOne(email) {
-        return this.CompanyModel.findOne({ emailid: email })
+        return this.CompanyModel.findOne({ emailId: email })
             .then(response => {
                 if (response) {
                     console.log(response);

@@ -6,6 +6,8 @@ import singleProduceReducer from './singleItemReducer'
 import singleTruckReducer from './singleTruckReducer'
 import orderReducer from './orderReducer'
 import checkoutReducer from './checkoutReducer'
+import transportAuthReducer from './transportAuthReducer'
+import transportTruckRequestReducer from './transportTruckRequestReducer'
 
 
 
@@ -22,6 +24,8 @@ const combineStore = combineReducers({
     singleTruckReducer,
     orderReducer,
     checkoutReducer,
+    transportAuthReducer,
+    transportTruckRequestReducer,
   // imported reducers
 });
 
