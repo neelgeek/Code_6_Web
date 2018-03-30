@@ -109,11 +109,9 @@ class LandingPage extends Component {
 
             <div >
                
-                    <div className="row landing-page">
-                    
-                        
-                       
-                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
                     <div className="row Halign-wrapper">
                         <div className="login-buttons center-align  container">
                         <Card  className="card col s6" style={{"maxHeight":"50%"}}>

@@ -2,6 +2,7 @@ const express = require('express');
 const route = express.Router();
 const mongoose = require('mongoose');
 const truckCompanyModel = require('../models/truckcompModel');
+const truckModel = require('../models/truckModel');
 
 
 module.exports.controllerFunction = function(app) {
@@ -94,6 +95,19 @@ module.exports.controllerFunction = function(app) {
 
     });
 
+
+    route.post('/editTruck', (req, res) => {
+        let trips = req.body.trips;
+        let id = req.body.id;
+        let truck = new truckCompanyModel();
+        truck.updateTrips(id, trips).then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            });
+        })
+    });
 
 
 

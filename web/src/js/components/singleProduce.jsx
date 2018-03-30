@@ -21,7 +21,6 @@ class singleProduce extends Component {
    	constructor(props){
    		super(props);
    		console.log(props.match)
-   		console.log(singleProduce)
    		
    		this.props.dispatch(singleProduceService.postServiceApi(`/merchantProtected/product/${props.match.params.cropId}`,{quantity:this.props.match.params.quantity}))
    		.then(()=>{

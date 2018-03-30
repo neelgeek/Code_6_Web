@@ -61,6 +61,14 @@ class truckCompany {
             });
     };
 
+    updateTrips(id, trip) {
+        return this.TruckModel.findByIdAndUpdate(id, { trip }).then(response => {
+            return response;
+        }).catch(err => {
+            throw err;
+        })
+    }
+
 }
 
 

@@ -57,5 +57,6 @@ module.exports.controllerFunction = function(app) {
         });
     });
 
+
     app.use('/truckProtected', protect.checkifTruckCompany, router);
 }

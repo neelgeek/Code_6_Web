@@ -93,8 +93,16 @@ class trucks {
             case 'Large':
                 return 45;
                 break;
-
         }
     }
+
+    removeTrip(tripId) {
+
+        return this.truckModel.findOneAndUpdate({ trip: tripId }, { $pull: { trip: tripId } }).then(newTruck => {
+            return newTruck;
+        }).catch(err => {
+            throw err;
+        })
+    }
 }
-module.exports = trucks
+module.exports = trucks;

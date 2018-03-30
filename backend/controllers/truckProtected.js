@@ -80,8 +80,16 @@ module.exports.controllerFunction = function(app) {
     });
 
 
-    router.post('/submitOtp/:otp', (req, res) => {
-
+    router.post('/completeTrip/:id', (req, res) => {
+        let tripId = req.params.id;
+        let truck = new truckModel();
+        truck.removeTrip(tripId).then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            });
+        })
     });
 
 
