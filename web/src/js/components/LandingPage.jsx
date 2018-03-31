@@ -128,47 +128,47 @@ class LandingPage extends Component {
                     <br/>
                     <div className="row Halign-wrapper">
                         <div className="login-buttons center-align  container">
-                        <Card  className="card col s6" style={{"maxHeight":"33%"}}>
+                        <Card  className="card col s6" style={{"maxHeight":"33%","width":"100%","background":"#EEEEEE"}}>
                             <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
                                 <div className="row">
                                    <img src={require("../../images/if_Farmer_379478.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
 }}/>
                                    </div>
                             </CardMedia>
-                             <CardActions>
-                                  <FlatButton label="Login as Farmer" onClick={this.onFarmerButton}/>
+                             
+                                  <button className="waves-effect waves-light btn-large" onClick={this.onFarmerButton } style={{"background":"#BDBDBD"}}>Login as Farmer </button>
                                   
-                            </CardActions>
+                            
                            
                            
                         </Card>
-                        <Card  className="card col s6" style={{"maxHeight":"33%"}}>
+                        <Card  className="card col s6" style={{"maxHeight":"33%","background":"#EEEEEE"}}>
                             <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
                                 <div className="row">
-                                   <img src={require("../../images/if_profile_3018530.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
+                                   <img src={require("../../images/if_user_285655.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
 }}/>
                                    </div>
                             </CardMedia>
                             
-                             <CardActions>
-                                  <FlatButton label="Login as Buyer" onClick={this.onBuyerButton} />
+                             
+                                  <button className="waves-effect waves-light btn-large" onClick={this.onBuyerButton } style={{"background":"#BDBDBD"}}>Login as Buyer </button>
                                   
-                            </CardActions>
+                            
                            
                            
                         </Card>
 
-                        <Card  className="card col s6" style={{"maxHeight":"33%"}}>
+                        <Card  className="card col s6" style={{"maxHeight":"33%","background":"#EEEEEE"}}>
                             <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
                                 <div className="row">
-                                   <img src={require("../../images/if_Farmer_379478.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
+                                   <img src={require("../../images/if_truck_406815.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
 }}/>
                                    </div>
                             </CardMedia>
-                             <CardActions>
-                                  <FlatButton label="Truck Company Login" onClick={this.onTransportButton}/>
+                             
+                                  <button className="waves-effect waves-light btn-large" onClick={this.onTransportButton } style={{"background":"#BDBDBD"}}>Login as Truck Company </button>
                                   
-                            </CardActions>
+                            
                            
                            
                         </Card>
