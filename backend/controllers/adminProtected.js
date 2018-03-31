@@ -51,6 +51,17 @@ module.exports.controllerFunction = function(app) {
             })
 
     })
+    route.put('/put/unblock/:userId', (req, res) => {
+        let userId = req.params;
+        let user = new userModel({});
+        user.findOneAndEdit(userId, { isBlocked: true }).then((response) => {
+                res.json(response);
+            })
+            .catch(err => {
+                res.status(500).json(err.message);
+            })
+
+    })
 
 
 

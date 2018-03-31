@@ -1,6 +1,7 @@
 import React from 'react'
 import DropIn from 'braintree-web-drop-in-react';
 import { connect } from "react-redux";
+import {Redirect} from "react-router-dom"
 
 import checkoutService from "../../ApiMiddleware/api/checkoutService"
 
@@ -10,7 +11,8 @@ class Checkout extends React.Component{
 		super();
 		this.state={
 			authToken:"sandbox_qqwzck9p_ht7w76kny3r63525",
-			instance: null
+			instance: null,
+			redirect:false
 		}
 
 	}
@@ -34,12 +36,14 @@ class Checkout extends React.Component{
 						orderId:main.props.order.order._id,
 						truckId:main.props.state.crop.transportInfo.truckId
 					}
-					main.props.dispatch(checkoutService.postServiceApi(`/order/checkout`,data))
+					main.props.dispatch(checkoutService.postServiceApi(`/order/checkout`,data)).then(response=>this.setState({redirect:true}))
 				}
 			}
 	   );
 	}
 	render(){
+		if(this.state.redirect)
+			return <Redirect to ="/buyer"/>
 
 		return(
 			<div className="container" style={{"padding":"2% 2% 2% 2%","":""}}>

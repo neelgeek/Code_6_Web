@@ -141,7 +141,7 @@ class navbar extends React.Component {
 			
     			<AppBar title="SmartIndiaHackathon"
     			onLeftIconButtonClick={this.handleClick}
-    			iconElementRight={this.props.user.loggedIn?<logged/>:<FlatButton label="login" />}
+    			
     			style={{"backgroundColor":"#2e7d32"}} //"#2e7d32"
     			 />
     			
@@ -172,14 +172,18 @@ class navbar extends React.Component {
 						    		(
 						    		<MenuItem><Link to = "/myOrders/buyer">my orders</Link></MenuItem>)
 									):(
+									<div>
+									 <MenuItem><Link to = "/Signup/farmer">sign up as Farmer</Link></MenuItem>
+							          <MenuItem><Link to = "/Signup/buyer">sign up as buyer</Link></MenuItem>
+							          <MenuItem><Link to = "/admin">Login as Admin</Link></MenuItem>
 									<MenuItem><Link to ="/">Home</Link></MenuItem>
+									//truck company routes
 						      	 	
+						      	 	</div>
 						      	 		
 						      	)}
   				
-		          <MenuItem><Link to = "/Signup/farmer">sign up as Farmer</Link></MenuItem>
-		          <MenuItem><Link to = "/Signup/buyer">sign up as buyer</Link></MenuItem>
-		          <MenuItem><Link to = "/admin">Login as Admin</Link></MenuItem>
+		         
 		        </Drawer>
 		  		
 	        </div>
