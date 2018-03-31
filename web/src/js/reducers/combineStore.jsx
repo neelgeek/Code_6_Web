@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import commonReducer from './commonReducer'
 import itemReducer from './itemReducer'
+import cropReducer from './cropReducer'
 import authReducer from './authReducer'
 import singleProduceReducer from './singleItemReducer'
 import singleTruckReducer from './singleTruckReducer'
@@ -30,7 +31,7 @@ const combineStore = combineReducers({
     transportAuthReducer,
     transportTruckRequestReducer,
     TransactionReducer,
-
+    cropReducer,
   // imported reducers
 });
 

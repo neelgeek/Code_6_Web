@@ -157,18 +157,19 @@ class singleProduce extends Component {
                 <div className="col" style={{"padding":"5% 5% 5% 5%"}}>
                   
                   <img src="http://localhost:8080/images/rice.jpg" style={{"height":"400px","width":"400px","border":"2px"}} id="myPic"/>
-                  <div className="bow" style={{"background":"#E0E0E0" ,"height":"110px","paddingLeft":"4%"}}>
+                  <div className="bow" style={{"background":"#E0E0E0" ,"height":"130px","paddingLeft":"4%"}}>
+                  <br/>
+                  <label style={{"color":"#757575"}}>*Orders are grouped every three days a week</label>
                   <br/>
                   <br/>
-                  <br/>
-                    <Link to="/product/crop/share"><button className="btn btn-waves" >Share</button></Link>    
+                  <Link to="/product/crop/share"><button className="btn btn-waves" style={{"background":"#00C853","position":"absolute","bottom":"11px"}}>Share Truck</button></Link>    
                   </div>
                 </div>
 
                 
 
                 <ul className="col s6" style={{"background":"#E0E0E0","paddingTop":"1%","marginRight":"5%","marginTop":"5%","width":"45%"}} id="myUl">
-                    <p><h5>usdgfuasdgf audfgdsoiu fg uegf </h5></p>
+                    <p style={{ "marginLeft":"20%"}}><h5>Order info</h5></p>
                     <div className="divider" style={{"background":"#424242"}}></div>
                     <li>   
                       <p><b>Crop :</b> {productinfo && productinfo.name}</p>
@@ -207,7 +208,7 @@ class singleProduce extends Component {
                     <br/>
                     <div className="row">
                         <div className="col s6">
-                        <Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
+                        <Link to="/product/crop/buy"><button className="btn btn-waves" style={{"background":"#00C853" }}>Direct buy</button></Link>
                         </div>
                     </div>
 

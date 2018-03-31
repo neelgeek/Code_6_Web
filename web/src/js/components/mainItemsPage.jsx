@@ -85,17 +85,23 @@ class MainItemsPage extends Component {
         return(
 		 	<MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
 		 	<div className="mainPage">
-         		<div className="nav-wrapper subnav-filters">
+         		
 					    <div className="row">
 					      <form className="col s12"  onSubmit={this.handleSubmit}>
-					        <div className="row">
+
+					        <div className="row" >
+
 					           <div className="input-field col s3  pull-right">
+					         
 					 		         <DropDownMenu
 					 		           floatingLabelText="crop name"
 					 		           value={this.state.crop}
 					 		           onChange={this.onCropNameChange}
 					 		           style={{
-					 		           	"width":"100%"
+					 		           	"width":"100%",
+					 		           	"position":"absolute",
+
+					 		           	"top":"10px"
 					 		           }}
 					 		           
 
@@ -108,18 +114,20 @@ class MainItemsPage extends Component {
 					 		         </DropDownMenu>
 					          </div>
 					           <div className="input-field col s3 pull-right">
-					            
+					           
 					 		         <DropDownMenu
 					 		           floatingLabelText="crop type"
 					 		           value={this.state.type}
 					 		           onChange={this.onCropTypeChange}
 					 		           style={{
-					 		           	"width":"100%"
+					 		           	"width":"100%",
+					 		           	"position":"absolute",
+					 		           	"top":"10px"
 					 		           }}
 
 					 		         	>
 					 		         	<MenuItem primaryText="choose your crop Type"/>
-					 		           {crops[this.state.crop || "Rice"].map((crop,key)=> <MenuItem key={key} 
+					 		           {crops["Rice"].map((crop,key)=> <MenuItem key={key} 
 					 		 								          	value={crop} 
 					 		 								          	primaryText={crop}
 					 		 								          	/>
@@ -129,12 +137,15 @@ class MainItemsPage extends Component {
 					         
 					         
 					          <div className="input-field col s3 pull-right">
+
 					          <DropDownMenu
 			 		           floatingLabelText="crop type"
 			 		           value={this.state.quantity}
 			 		           onChange={this.onQuantityChange}
 			 		           style={{
-					 		           	"width":"100%"
+					 		           	"width":"100%",
+					 		           	"position":"absolute",
+					 		           	"top":"10px"
 					 		           }}
 
 			 		         	>
@@ -145,18 +156,22 @@ class MainItemsPage extends Component {
 					 		           									
 					 		   </DropDownMenu>
 					          </div>
+
+					          <br/>
 					           <div className="input-field col s3 pull-right">
-					            <RaisedButton type="submit" className="btn btn-waves"><i className="material-icons">search</i> search </RaisedButton>
+					            <RaisedButton type="submit" className="btn btn-waves"><i className="material-icons" style={{"height": "36px","border-radius": "2px","position": "absolute","width": "75px","top": "-1px","left": "-48px"}}>search</i> search </RaisedButton>
 					          </div>
 					        </div>
+					        <div className="divider"></div>
+					        <br/>
+					        <br/>
 					      </form>
-					    </div>
+			 </div>
 					   
 
-					 </div>
-	         	<div className="mainPage">
+	         	<div className="mainPage"> 
 		         	 <div className="container">
-			         	 <div className="row item-card">
+			         	 <div className="row item-card" style={{"width":"90%"}}>
 			         	 {this.props.state.items.map((item)=>{
 			         	 	console.log("item are",item)
 			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id} />

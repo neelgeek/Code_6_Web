@@ -40,24 +40,24 @@ class ItemCard extends Component {
         return(
         	
                 <div className="col s4">
-                  <div className="card">
+                  <div className="card"  style={{"boxShadow":"3px 3px 30px  1px #888888"}}>
                   <div className="card-image">
                     
                      {this.functionToReturnImage(this.props.crop)}
                    
 
-                    <span className="card-title">{this.props.crop}</span>
+                    <span className="card-title" style={{"color":"white"}}>{this.props.crop}</span>
                   </div>
                     
-                    <div className="card-content">
-                      <p>crop Name : {this.props.crop}</p>
-                      <p>crop type : {this.props.type}</p>
-                      <p>crop Quantity : {this.props.quantity}</p>
+                    <div className="card-content" style={{"background":"#FAFAFA","fontsFamily":"sansSerif"}}>
+                      <p><b>Crop Name :</b> {this.props.crop}</p>
+                      <p><b>Crop type :</b> {this.props.type}</p>
+                      <p><b>Crop Quantity :</b> {this.props.quantity}</p>
 
 
                     </div>
-                    <div className="card-action">
-                      <button className="btn btn-waves" onClick={this.onViewCropButton}>view</button>
+                    <div className="card-action" style={{"background":"#EEEEEE","paddingLeft":"25%"}}>
+                      <button className="btn btn-waves" onClick={this.onViewCropButton} style={{"background":"#00C853"}}>view</button>
                   </div>
                 </div>
             </div>

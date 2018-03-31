@@ -41,14 +41,14 @@ class Checkout extends React.Component{
 	render(){
 
 		return(
-			<div>
+			<div className="container" style={{"padding":"2% 2% 2% 2%","":""}}>
 					<DropIn
 						options={{ authorization: this.state.authToken }}
 						onInstance={instance => (this.setState({
 							instance
 						}))}
 					/>
-					<button onClick={this.buy.bind(this)}>Buy</button>
+					<button className="btn btn-waves" style={{"background":"#00C853"}} onClick={this.buy.bind(this)}>Buy</button>
 				</div>
 
 			)

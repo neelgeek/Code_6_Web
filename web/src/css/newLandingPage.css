@@ -4,7 +4,12 @@
     background-color: rgba(197, 197, 197, 1);
     overflow: hidden;
 }
-
+body{
+	background:white;
+}
+.row item-card{
+	font-family:sans-serif;
+}
 .card img {
     max-width: 100%;
 }
