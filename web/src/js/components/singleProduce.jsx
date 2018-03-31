@@ -57,6 +57,9 @@ class singleProduce extends Component {
    		this.props.dispatch(orderProduceService.postServiceApi(`/order/create`,productData))
    		
    	}
+    shareTruckButton= (ev)=>{
+      
+    }
    	
   
 
@@ -138,6 +141,8 @@ class singleProduce extends Component {
           //         <div className="col s6">
           //           <button className="btn btn-waves">share</button>
           //         </div>
+
+
           //         <div className="col s6">
           //         <Link to="/product/crop/buy"><button className="btn btn-waves" >buy</button></Link>
           //       </div>  
@@ -162,7 +167,7 @@ class singleProduce extends Component {
                   <label style={{"color":"#757575"}}>*Orders are grouped every three days a week</label>
                   <br/>
                   <br/>
-                  <Link to="/product/crop/share"><button className="btn btn-waves" style={{"background":"#00C853","position":"absolute","bottom":"11px"}}>Share Truck</button></Link>    
+                  <Link to="/myOrders/buyer"><button className="btn btn-waves" onClick={this.shareTruckButton} style={{"background":"#00C853","position":"absolute","bottom":"11px"}}>Share Truck</button></Link>    
                   </div>
                 </div>
 

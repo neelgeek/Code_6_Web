@@ -18,9 +18,10 @@ class ProduceUpload extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onChange=this.onChange.bind(this);
 		this.state={
-			crop:null,
+			crop:"Enter Crop Name",
 			redirect:false,
-			std:false
+			std:false,
+			type:"Enter Crop Type"
 		}
 	}
 
@@ -126,7 +127,7 @@ class ProduceUpload extends Component {
 
 					        <div className="input-field col s6" id="cropType">
 					                 <DropDownMenu
-					 		           floatingLabelText="crop name"
+					 		           floatingLabelText="crop Type"
 					 		           value={this.state.type}
 					 		           onChange={this.onCropTypeChange}
 					 		           style={{
