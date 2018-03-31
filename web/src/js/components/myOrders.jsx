@@ -65,7 +65,7 @@ class myOrders extends Component{
 									          <tbody>
 										          <tr>
 										          	<th>Cost</th>
-										          	<td>{transaction.farmer_amount}</td>
+										          	<td>{Math.round(transaction.farmer_amount)}</td>
 										          </tr>
 										          <tr>
 										          	<th>status</th>
@@ -90,7 +90,7 @@ class myOrders extends Component{
 									          <tbody>
 										          <tr>
 										          	<th>Cost</th>
-										          	<td>{transaction.transport_amount}</td>
+										          	<td>{Math.round(transaction.transport_amount)}</td>
 										          </tr>
 										          <tr>
 										          	<th>OTP</th>
@@ -105,7 +105,7 @@ class myOrders extends Component{
 							      
 							      </div>
 				      		</div>
-				      		{transaction.status === "Processing" ||"WSP"?<div className="btn btn-waves waves-large">
+				      		{transaction.status === "Processing" ||"WSP"?<div className="btn btn-waves waves-large" onClick={()=>this.setState({redirect:true})}>
 				      		 Complete Share payment
 
 				      		</div>:<div></div>}

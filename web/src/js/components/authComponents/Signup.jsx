@@ -104,16 +104,13 @@ class Signup extends Component {
 					      </div>
 					      <div className="col s12">
 					        <input  id="address" type="text" name="addr" className="validate"/>
-					          <label for="address">address</label>
+					          <label for="address">Nearest address</label>
 					      </div>
 					       <div className="col s12">
 					        <input  id="district" type="text" name="district" className="validate"/>
-					          <label for="district">district</label>
+					          <label for="district">Nearest Mandi district</label>
 					      </div>
-					       <div className="col s12">
-					        <input  id="taluka" type="text" name="taluka" className="validate"/>
-					          <label for="taluka">taluka</label>
-					      </div>
+					      
 					      <div className="col s12">
 					        <input  id="state" type="text" name="state" className="validate"/>
 					          <label for="state">state</label>

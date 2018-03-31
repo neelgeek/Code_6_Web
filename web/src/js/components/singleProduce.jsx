@@ -1,6 +1,7 @@
-  import React  from "react";
+import React  from "react";
 import {Component} from "react";
 import {Link} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 import { connect } from "react-redux";
 import singleProduceService from "../../ApiMiddleware/api/singleProduceService"
 import orderProduceService from "../../ApiMiddleware/api/orderProduceService";
@@ -21,7 +22,7 @@ class singleProduce extends Component {
    	constructor(props){
    		super(props);
    		console.log(props.match)
-   		
+   		this.showNotif=this.showNotif.bind(this);
    		this.props.dispatch(singleProduceService.postServiceApi(`/merchantProtected/product/${props.match.params.cropId}`,{quantity:this.props.match.params.quantity}))
    		.then(()=>{
    			let postData ={
@@ -43,10 +44,20 @@ class singleProduce extends Component {
    			},
    			cropInfo:{},
    			productinfo:{},
-   			redirectToPayment:false
+   			redirectToPayment:false,
+        redirectToOrders:false
 
    		}
+       var elem = document.querySelector('.collapsible');
+        var instance = M.Collapsible.init(elem);
    	}
+
+    showNotif(ev){
+      this.setState({
+        redirectToOrders:true
+      });
+      console.log(this.state.redirectToOrders)
+    }
    
    	onBuyButtonClick = (ev) =>{
    		let productData = this.props.state.crop;
@@ -58,7 +69,7 @@ class singleProduce extends Component {
    		
    	}
     shareTruckButton= (ev)=>{
-      
+
     }
    	
   
@@ -67,6 +78,10 @@ class singleProduce extends Component {
      render() {
      if(this.state.redirectToPayment){
        return <Redirect to="/product/crop/buy" />
+   }
+   if(this.state.redirectToOrders){
+      alert("You will be notified in 3 days")
+          return <Redirect to="/myOrders/buyer"/>
    }
  
  
@@ -168,6 +183,7 @@ class singleProduce extends Component {
                   <br/>
                   <br/>
                   <Link to="/myOrders/buyer"><button className="btn btn-waves" onClick={this.shareTruckButton} style={{"background":"#00C853","position":"absolute","bottom":"11px"}}>Share Truck</button></Link>    
+
                   </div>
                 </div>
 
@@ -207,7 +223,38 @@ class singleProduce extends Component {
 
                     </li>
 
-                    <div className="divider" style={{"background":"#424242"}}></div>
+                    <div className="divider" style={{"background":"#424242"}}/>
+
+
+                    <li>  
+
+                         <p><b>Reference No. 1</b> </p>
+                         <p><b>Buyer name :</b> Ashish Mulgadkar</p>
+                         <p><b>Crops :</b> Wheat,Rice,Maize</p>
+                         <p><b>Contact no. :</b>9082062465</p>
+
+
+
+
+
+                    </li>
+                    <div className="divider" style={{"background":"#424242"}}/>
+                    
+                     <li>  
+
+                         <p><b>Reference No. 2</b> </p>
+                         <p><b>Buyer name :</b> Akhil Chaudhari</p>
+                         <p><b>Crops :</b> Wheat,Maize</p>
+                         <p><b>Contact no. :</b>9082342525</p>
+
+
+
+
+
+                    </li>
+
+
+                       
                     <br/>
                     <br/>
                     <br/>
@@ -219,7 +266,10 @@ class singleProduce extends Component {
   
               </ul>
 
+
             </div>
+
+
 
           </div>
           </MuiThemeProvider>
