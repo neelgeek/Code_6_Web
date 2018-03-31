@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const truckCompanyModel = require('../models/truckcompModel');
 const truckModel = require('../models/truckModel');
 const orderModel = require('../models/transactionModel');
+const transactionModel = require('../models/transactionModel');
 
 
 module.exports.controllerFunction = function(app) {
@@ -82,9 +83,18 @@ module.exports.controllerFunction = function(app) {
 
     router.post('/completeTrip/:id', (req, res) => {
         let tripId = req.params.id;
+        let transModel = new transactionModel();
         let truck = new truckModel();
         truck.removeTrip(tripId).then(response => {
-            res.status(200).json(response);
+            // res.status(200).json(response);
+            transModel.completeOrder(tripId).then(response => {
+                res.status(200).json(response);
+            }).catch(err => {
+                res.status(500).json({
+                    message: err.message
+                });
+            })
+
         }).catch(err => {
             res.status(500).json({
                 message: err.message

@@ -63,7 +63,7 @@ exports.controllerFunction = function(app) {
                 submitForSettlement: true
             }
         }, function(error, result) {
-            console.log(result)
+            //console.log(result)
             if (result.success) {
                 let orderDet = {
                     id: orderId,
@@ -73,6 +73,7 @@ exports.controllerFunction = function(app) {
                     farmer
                 }
                 transaction.updateOrder(orderDet).then(updatedOrder => {
+                    console.log(orderId);
                     let transac_details = {
                         transaction_id: result.id,
                         order_id: mongoose.Types.ObjectId(updatedOrder._id),
@@ -82,6 +83,7 @@ exports.controllerFunction = function(app) {
                     }
                     transaction.createTransaction(transac_details)
                         .then(newTransaction => {
+                            // transaction.addMoney(result.amount).then(account => {
                             let details = {
                                 id: truckId,
                                 status: 'Assigned',
@@ -92,6 +94,12 @@ exports.controllerFunction = function(app) {
                             }).catch(err => {
                                 throw err;
                             });
+                            // }).catch(err => {
+                            //     res.status(500).json({
+                            //         message: err.message
+                            //     })
+                            // })
+
                         })
                         .catch(err => {
                             res.status(500).json({
@@ -152,9 +160,21 @@ exports.controllerFunction = function(app) {
         });
     });
 
-    //5abddc3c08a1e5118c8f6b12
-    //5abddcd078d5241b4c2f2570
-    //5abddd024873fd290081c160
+
+
+    router.post('/addMoney', (req, res) => {
+            let trans = new transactionModel();
+            trans.addMoney(500).then(account => {
+                res.status(200).json(account);
+            }).catch(err => {
+                res.status(500).json({
+                    message: err.message
+                })
+            })
+        })
+        //5abddc3c08a1e5118c8f6b12
+        //5abddcd078d5241b4c2f2570
+        //5abddd024873fd290081c160
 
 
 

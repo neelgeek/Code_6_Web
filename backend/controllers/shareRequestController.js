@@ -16,8 +16,10 @@ exports.controllerFunction = function(app) {
             farmer_amount: data.costInfo.crop,
             transport_amount: null,
             distance: data.transportInfo.distance,
-            origin: data.farmerinfo.district,
-            destination: req.session.user.district
+            origin_district: data.farmerinfo.district,
+            destination_district: req.session.user.district,
+            origin: data.transportInfo.origin,
+            destination: data.transportInfo.destination,
         }
         let newReq = new sharingModel();
 

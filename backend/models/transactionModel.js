@@ -4,6 +4,8 @@ const transacSchema = require('../schema/transactionSchema');
 const truckSchema = require('../schema/truckSchema');
 const braintree = require('braintree');
 const uniqid = require('uniqid');
+const accountSchema = require('../schema/accounts');
+
 
 class transaction {
 
@@ -11,6 +13,7 @@ class transaction {
         this.orderModel = mongoose.model('order', orderScehma);
         this.transactionModel = mongoose.model('transaction', transacSchema);
         this.truckModel = mongoose.model('truck', truckSchema);
+        this.accountModel = mongoose.model('account', accountSchema);
     }
 
     createOrder(details) {
@@ -39,7 +42,6 @@ class transaction {
 
 
     updateOrder(details) {
-
         return this.orderModel.findByIdAndUpdate(details.id, { farmer_id: details.farmer, status: details.status, origin: details.torigin, destination: details.tdest })
             .then(response => {
                 return response;
@@ -48,6 +50,15 @@ class transaction {
             })
 
 
+    }
+
+
+    completeOrder(id) {
+        return this.orderModel.findByIdAndUpdate(id, { status: 'Complete' }).then(response => {
+            return response;
+        }).catch(err => {
+            throw err;
+        })
     }
 
     findTruck(details) {
@@ -71,23 +82,22 @@ class transaction {
         let status = details.status;
         let order = details.order;
 
-        return this.truckModel.findById(id).then(response => {
-            //console.log(response);
-            let temp = response.trip;
-            temp.push(order);
-            let trip = temp;
-            return this.truckModel.findByIdAndUpdate(id, { status, trip }).then(response => {
-                    return response;
-                })
-                .catch(err => {
-                    throw err;
-                })
+        return this.truckModel.findByIdAndUpdate(id, { $push: { trip: order }, status }).then(update => {
+            return update;
         }).catch(err => {
             throw err;
-        });
+        })
 
     }
 
+
+    addMoney(amount) {
+        return this.accountModel.update({ name: 'Admin' }, { $inc: { Amount: amount } }).then(account => {
+            return account;
+        }).catch(err => {
+            throw err;
+        })
+    }
 
     getType(weight) {
         let type = null;

@@ -85,6 +85,7 @@ module.exports.controllerFunction = function(app) {
                     type: truckinfo.type,
                     currentLoc: truckinfo.currentLoc
                 }
+                res.session.truck = truckinfo;
                 res.status(200).json(truckLogin);
             } else {
                 res.status(403).json({ message: false });

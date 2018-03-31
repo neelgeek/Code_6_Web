@@ -9,8 +9,10 @@ const sharingReqSchema = mongoose.Schema({
     crop_details: Object,
     farmer_amount: Number,
     transport_amount: Number,
-    origin: String,
+    origin_district: String,
+    destination_district: String,
     distance: Number,
+    origin: String,
     destination: String,
     weight: Number,
     createdon: { type: mongoose.Schema.Types.Date, default: today }
