@@ -43,7 +43,7 @@ class Checkout extends React.Component{
 	}
 	render(){
 		if(this.state.redirect)
-			return <Redirect to ="/buyer"/>
+			return <Redirect to ="/order-info"/>
 
 		return(
 			<div className="container" style={{"padding":"2% 2% 2% 2%","":""}}>

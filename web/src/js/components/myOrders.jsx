@@ -65,7 +65,7 @@ class myOrders extends Component{
 									          <tbody>
 										          <tr>
 										          	<th>Cost</th>
-										          	<td>{transaction.farmer_amount}</td>
+										          	<td>{Math.round(transaction.farmer_amount)}</td>
 										          </tr>
 										          <tr>
 										          	<th>status</th>
@@ -90,7 +90,7 @@ class myOrders extends Component{
 									          <tbody>
 										          <tr>
 										          	<th>Cost</th>
-										          	<td>{transaction.transport_amount}</td>
+										          	<td>{Math.round(transaction.transport_amount)}</td>
 										          </tr>
 										          <tr>
 										          	<th>OTP</th>

@@ -52,23 +52,23 @@ class TransportHome extends Component{
 		return(
 
 			<div className="TransportHome">
-				<div className="collection" style={{"height":"67px"}}>
+					<div className="collection" style={{"height":"67px"}}>
 
-					<div className="row" style={{"background":"#212121","height":"65px","paddingLeft":"5%","borderRadius":"2px"}}>
-						<div className=" input-field col s6">
-							<input placeholder="Search " id="mySearchBar" type="text" class="validate"/>	
+						<div className="row" style={{"background":"#212121","height":"65px","paddingLeft":"5%","borderRadius":"2px","position":"absolute","left":"0px","width":"100%"}}>
+							<div className=" input-field col s6">
+								<input placeholder="Search " id="mySearchBar" type="text" class="validate"/>	
+							</div>
+							<div className="input-field col s3 " style={{"paddingLeft":"11%"}}>
+								<button type="button"  className="btn btn-waves" >Search</button>
+							</div>
+							<div className="input-field col s3" style={{"paddingLeft":""}}>
+								<button type="button" onClick={this.onClickAdd} className="btn btn-waves" >Add Truck</button>
+							</div>
 						</div>
-						<div className="input-field col s3">
-							<button type="button"  className="btn btn-waves" >Search</button>
-						</div>
-						<div className="input-field col s3">
-							<button type="button" onClick={this.onClickAdd} className="btn btn-waves" >Add Truck</button>
-						</div>
+
 					</div>
-
-				</div>
 					
-
+				
 
 				
 

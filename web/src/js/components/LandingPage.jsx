@@ -12,7 +12,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import Login  from './authComponents/login';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-
+import TransportSignIn from './transportComponents/transportAuthComponents/transportSignIn';
 
     
 import "../../css/newLandingPage.css";
@@ -26,7 +26,8 @@ class LandingPage extends Component {
         super(props);
         this.state={
             redirectToFarmer:false,
-            redirectToBuyer:false
+            redirectToBuyer:false,
+            redirectToTransport:false
         }
     }
     onBuyerButton = (event) =>{
@@ -43,6 +44,12 @@ class LandingPage extends Component {
     onBuyerButton = (event) =>{
         this.setState({
             redirectToBuyer:!this.state.redirectToBuyer  
+        })
+    }
+
+     onTransportButton = (event) =>{
+        this.setState({
+            redirectToTransport:!this.state.redirectToTransport  
         })
     }
 
@@ -64,7 +71,14 @@ class LandingPage extends Component {
               
             ];
     
-       
+              const actionsForTransport = [
+              <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.onTransportButton}
+              />
+              
+            ];   
         return(
             // <div>
             //     <div className="row">
@@ -114,7 +128,7 @@ class LandingPage extends Component {
                     <br/>
                     <div className="row Halign-wrapper">
                         <div className="login-buttons center-align  container">
-                        <Card  className="card col s6" style={{"maxHeight":"50%"}}>
+                        <Card  className="card col s6" style={{"maxHeight":"33%"}}>
                             <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
                                 <div className="row">
                                    <img src={require("../../images/if_Farmer_379478.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
@@ -128,16 +142,31 @@ class LandingPage extends Component {
                            
                            
                         </Card>
-                        <Card  className="card col s6" style={{"maxHeight":"50%"}}>
+                        <Card  className="card col s6" style={{"maxHeight":"33%"}}>
                             <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
                                 <div className="row">
                                    <img src={require("../../images/if_profile_3018530.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
 }}/>
                                    </div>
                             </CardMedia>
-                            <divider/>
+                            
                              <CardActions>
                                   <FlatButton label="Login as Buyer" onClick={this.onBuyerButton} />
+                                  
+                            </CardActions>
+                           
+                           
+                        </Card>
+
+                        <Card  className="card col s6" style={{"maxHeight":"33%"}}>
+                            <CardMedia style={{"maxWidth":"44%","minWidth":"10%"}}>
+                                <div className="row">
+                                   <img src={require("../../images/if_Farmer_379478.png")}  style={{"maxWidth":"50%","minWidth":"10%","marginTop":"5%","marginBottom":"5%","position":"relative","left": "71%"
+}}/>
+                                   </div>
+                            </CardMedia>
+                             <CardActions>
+                                  <FlatButton label="Truck Company Login" onClick={this.onTransportButton}/>
                                   
                             </CardActions>
                            
@@ -167,6 +196,20 @@ class LandingPage extends Component {
 
                             >
                                 <Login isAuthenticated={this.props.user.loggedIn} role={this.state.redirectToBuyer ?"buyer":""}/>
+
+                            </Dialog>
+
+
+                             <Dialog
+                              title="Login for Truck Company"
+                              actions={actionsForTransport}
+                              modal={false}
+                              open={this.state.redirectToTransport}
+                              onRequestClose={this.handleClose}
+                              backgroundColor="blue"
+
+                            >
+                                <TransportSignIn isAuthenticated={this.props.user.loggedIn} role={this.state.redirectToTransport ?"transport":""}/>
 
                             </Dialog>
                          

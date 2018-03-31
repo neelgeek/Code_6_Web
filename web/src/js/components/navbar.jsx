@@ -176,8 +176,8 @@ class navbar extends React.Component {
 									 <MenuItem><Link to = "/Signup/farmer">sign up as Farmer</Link></MenuItem>
 							          <MenuItem><Link to = "/Signup/buyer">sign up as buyer</Link></MenuItem>
 							          <MenuItem><Link to = "/admin">Login as Admin</Link></MenuItem>
+									<MenuItem><Link to="/transport/signUp">Sign Up as Truck Company</Link></MenuItem>
 									<MenuItem><Link to ="/">Home</Link></MenuItem>
-									//truck company routes
 						      	 	
 						      	 	</div>
 						      	 		

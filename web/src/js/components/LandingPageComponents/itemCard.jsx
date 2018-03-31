@@ -40,8 +40,8 @@ class ItemCard extends Component {
         return(
         	
                 <div className="col s4">
-                  <div className="card">
-                  <div className="card-image">
+                  <div className="card" style={{"height":"40%"}}>
+                  <div className="card-image" style={{"width":"","height":""}}>
                     
                      {this.functionToReturnImage(this.props.crop)}
                    
