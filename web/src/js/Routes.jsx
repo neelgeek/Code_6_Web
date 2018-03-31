@@ -14,6 +14,8 @@ import Signup  from './components/authComponents/Signup';
 import singleProduce  from './components/singleProduce';
 import Checkout  from './components/checkout';
 import myOrders  from './components/myOrders';
+import adminPage  from './components/adminPage';
+
 
 
 
@@ -40,6 +42,7 @@ export const getRoutes = store => {
 
 
 
+            <Route  path="/admin" component={adminPage}/>
 
             <Route  path="/uploadCrop" component={ProduceUpload}/>
             <Route  path="/Login/farmer" render={()=><Login isAuthenticated={store.getState().authReducer.loggedIn} role={"farmer"}/>}/>

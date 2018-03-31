@@ -21,6 +21,7 @@ class Checkout extends React.Component{
 
 				if(err) alert(err);
 				else{
+					console.log(main.props.order)
 					console.log(main.props.state.crop)
 					let data ={
 

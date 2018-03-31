@@ -69,6 +69,14 @@ class truckCompany {
         })
     }
 
+    getCompanies() {
+        return this.CompanyModel.find().then(response => {
+            return response;
+        }).catch(err => {
+            throw err;
+        })
+    }
+
 }
 
 

@@ -114,6 +114,22 @@ class UserModel {
             throw err;
         });
     }
+
+    getMerchants() {
+        return this.usermodel.find({ isFarmer: false }).then(merchants => {
+            return merchants;
+        }).catch(err => {
+            throw err;
+        })
+    }
+
+    getFarmers() {
+        return this.usermodel.find({ isFarmer: true }).then(merchants => {
+            return merchants;
+        }).catch(err => {
+            throw err;
+        })
+    }
 }
 
 module.exports = UserModel;

@@ -36,14 +36,14 @@ module.exports.controllerFunction = function(app) {
 
     })
 
-    route.get('/get/all/truckCompanies', (req, res) => {
-        //to complete later
-    })
+    // route.get('/get/all/truckCompanies', (req, res) => {
+    //     //to complete later
+    // })
 
     route.put('/put/block/:userId', (req, res) => {
         let userId = req.params;
         let user = new userModel({});
-        user.findOneAndEdit(userId, { isBlocked: true }).then((response) => {
+        user.findOneAndEdit(userId, { isBlocked: false }).then((response) => {
                 res.json(response);
             })
             .catch(err => {

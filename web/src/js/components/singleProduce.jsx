@@ -211,7 +211,7 @@ class singleProduce extends Component {
                         <Link to="/product/crop/buy"><button className="btn btn-waves" style={{"background":"#00C853" }}>Direct buy</button></Link>
                         </div>
                     </div>
-
+  
               </ul>
 
             </div>
