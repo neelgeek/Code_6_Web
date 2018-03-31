@@ -139,7 +139,7 @@ class navbar extends React.Component {
 		 	<MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
 		 	<div>
 			
-    			<AppBar title="SmartIndiaHackathon"
+    			<AppBar title="SIH"
     			onLeftIconButtonClick={this.handleClick}
     			
     			style={{"backgroundColor":"#2e7d32"}} //"#2e7d32"
@@ -152,7 +152,6 @@ class navbar extends React.Component {
   					 	{this.props.user.loggedIn?
 						    		(this.props.user.user.user.isFarmer?(
 						    		<div>
-						    		<MenuItem><Link to = "/myOrders/farmer">my orders</Link></MenuItem> 
 						    		<MenuItem><Link to ="/uploadCrop">upload crop</Link></MenuItem>
 						    		</div>
 		          			

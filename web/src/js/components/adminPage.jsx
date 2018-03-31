@@ -38,7 +38,7 @@ class adminPage extends Component{
 					<div className="row">
 
 					    <div className="col s12 m6">
-					      
+					      		<h1>Farmer Use</h1>
 					        	<ul className="collection">
 							      <li className="collection-item">
 							      <div className="row">

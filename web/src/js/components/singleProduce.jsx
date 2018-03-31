@@ -48,6 +48,8 @@ class singleProduce extends Component {
         redirectToOrders:false
 
    		}
+       var elem = document.querySelector('.collapsible');
+        var instance = M.Collapsible.init(elem);
    	}
 
     showNotif(ev){
@@ -67,7 +69,7 @@ class singleProduce extends Component {
    		
    	}
     shareTruckButton= (ev)=>{
-      
+
     }
    	
   
@@ -221,7 +223,38 @@ class singleProduce extends Component {
 
                     </li>
 
-                    <div className="divider" style={{"background":"#424242"}}></div>
+                    <div className="divider" style={{"background":"#424242"}}/>
+
+
+                    <li>  
+
+                         <p><b>Reference No. 1</b> </p>
+                         <p><b>Buyer name :</b> Ashish Mulgadkar</p>
+                         <p><b>Crops :</b> Wheat,Rice,Maize</p>
+                         <p><b>Contact no. :</b>9082062465</p>
+
+
+
+
+
+                    </li>
+                    <div className="divider" style={{"background":"#424242"}}/>
+                    
+                     <li>  
+
+                         <p><b>Reference No. 2</b> </p>
+                         <p><b>Buyer name :</b> Akhil Chaudhari</p>
+                         <p><b>Crops :</b> Wheat,Maize</p>
+                         <p><b>Contact no. :</b>9082342525</p>
+
+
+
+
+
+                    </li>
+
+
+                       
                     <br/>
                     <br/>
                     <br/>
@@ -233,7 +266,10 @@ class singleProduce extends Component {
   
               </ul>
 
+
             </div>
+
+
 
           </div>
           </MuiThemeProvider>

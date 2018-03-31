@@ -105,7 +105,7 @@ class myOrders extends Component{
 							      
 							      </div>
 				      		</div>
-				      		{transaction.status === "Processing"?<div className="btn btn-waves waves-large">
+				      		{transaction.status === "Processing" ||"WSP"?<div className="btn btn-waves waves-large" onClick={()=>this.setState({redirect:true})}>
 				      		 Complete Share payment
 
 				      		</div>:<div></div>}

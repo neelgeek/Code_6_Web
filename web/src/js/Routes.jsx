@@ -14,7 +14,14 @@ import Signup  from './components/authComponents/Signup';
 import singleProduce  from './components/singleProduce';
 import Checkout  from './components/checkout';
 import myOrders  from './components/myOrders';
+
 import OrderInfo  from './components/orderInfo';
+
+import farmerLandingPage  from './components/farmerLandingPage';
+
+import myOrdersFarmer  from './components/myOrdersFarmer';
+
+
 import adminPage  from './components/adminPage';
 
 
@@ -34,6 +41,9 @@ export const getRoutes = store => {
             <Route exact path="/" component={LandingPage}/>
             <Route exact path="/transport/signIn" component={TransportSignIn}/>
             <Route exact path="/transport/signUp" component={TransportSignUp}/>
+            <Route exact path="/farmer" component={myOrdersFarmer}/>
+
+            <Route exact path="/transport" component={TransportSignIn}/>
             <Route exact path="/transport/home" component={TransportHome}/>
             <Route exact path="/transport/add" component={TransportAddTruck}/>
             <Route exact path="/buyer" component={MainItemsPage}/>
@@ -41,6 +51,8 @@ export const getRoutes = store => {
             <Route exact path="/product/crop/buy" component={Checkout}/>
             <Route exact path="/myOrders/buyer" component={myOrders}/>
             <Route exact path="/order-info" component={OrderInfo}/>
+            <Route exact path="/myOrders/farmer" component={myOrdersFarmer}/>
+
 
 
 
