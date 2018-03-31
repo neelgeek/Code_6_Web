@@ -85,10 +85,10 @@ class trucks {
     CalcRate(type) {
         switch (type) {
             case 'Small':
-                return 20;
+                return 30;
                 break;
             case 'Medium':
-                return 30;
+                return 35;
                 break;
             case 'Large':
                 return 45;
@@ -106,3 +106,12 @@ class trucks {
     }
 }
 module.exports = trucks;
+
+
+
+
+
+//5abefbad81df8a13cc0af683
+//5abefc3f6426022ad8d1fb33
+//5abefd036426022ad8d1fb34
+//  5abefa0cda0f6d32e890fc35

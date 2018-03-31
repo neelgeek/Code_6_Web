@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const truckModel = require('../models/truckModel');
+const productModel = require('../models/productModel');
 
 module.exports.controllerFunction = function(app) {
 
@@ -39,6 +40,17 @@ module.exports.controllerFunction = function(app) {
             });
         });
     });
+
+    router.get('/getOrders/:userId', (req, res) => {
+        let product = new productModel();
+        product.getReferences(req.params.userId).then(response => {
+            res.status(200).json(response);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            })
+        })
+    })
 
 
     app.use('/test', router);

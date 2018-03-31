@@ -118,7 +118,7 @@ class SharingRequest {
                                     order.total = divided_cost + order.crop_amount;
                                 });
 
-                                model.updateTransportAmount(orders, 1000).then(upOrders => {
+                                model.updateTransportAmount(orders, divided_cost).then(upOrders => {
                                     console.log(upOrders);
                                 }).catch(err => {
                                     throw err;
@@ -180,3 +180,8 @@ class SharingRequest {
 }
 
 module.exports = SharingRequest;
+
+
+//5abf0042ef37ac29dcb1678c
+//5abf00a4ef37ac29dcb1678e
+//5abf00c6ef37ac29dcb1678f
