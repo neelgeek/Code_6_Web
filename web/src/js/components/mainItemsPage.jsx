@@ -177,7 +177,7 @@ class MainItemsPage extends Component {
 			         	 	return <ItemCard crop={item.crop} type={item.type} quantity={item.quantity} id={item._id} />
 			         	 			
 			         	 })}
-			         	 
+			         	 <ItemCard crop="wheat" type="basmati" quantity={54} id="45skdfjj"/>
 			         	
 			         	 </div>
 	         		</div>

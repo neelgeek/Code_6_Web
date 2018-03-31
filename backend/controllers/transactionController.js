@@ -52,6 +52,8 @@ exports.controllerFunction = function(app) {
         let origin = req.body.origin;
         let destination = req.body.destination;
         let tripinfo = { origin, destination };
+        let weight = req.body.weight;
+        let produce_id = req.body.produceId;
 
 
         var newTransaction = gateway.transaction.sale({
@@ -91,7 +93,13 @@ exports.controllerFunction = function(app) {
                                     order: orderId
                                 }
                                 transaction.updateTruckStatus(details).then(truck => {
-                                    res.status(200).json(result);
+                                    transaction.updateProduce(produce_id, weight).then(updatedProduce => {
+                                        res.status(200).json(updatedProduce);
+                                    }).catch(err => {
+                                        res.status(500).json({
+                                            message: err.message
+                                        });
+                                    });
                                 }).catch(err => {
                                     throw err;
                                 });
@@ -164,18 +172,31 @@ exports.controllerFunction = function(app) {
 
 
     router.post('/addMoney', (req, res) => {
-            let trans = new transactionModel();
-            trans.addMoney(500).then(account => {
-                res.status(200).json(account);
-            }).catch(err => {
-                res.status(500).json({
-                    message: err.message
-                })
+        let trans = new transactionModel();
+        trans.addMoney(500).then(account => {
+            res.status(200).json(account);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
             })
         })
-        //5abddc3c08a1e5118c8f6b12
-        //5abddcd078d5241b4c2f2570
-        //5abddd024873fd290081c160
+    })
+
+    router.post('/subtract', (req, res) => {
+        let trans = new transactionModel();
+        let id = req.body.id;
+        let weight = req.body.weight;
+        trans.updateProduce(id, weight).then(produce => {
+            res.status(200).json(produce);
+        }).catch(err => {
+            res.status(500).json({
+                message: err.message
+            })
+        })
+    });
+    //5abddc3c08a1e5118c8f6b12
+    //5abddcd078d5241b4c2f2570
+    //5abddd024873fd290081c160
 
 
 

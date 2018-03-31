@@ -5,6 +5,7 @@ const truckSchema = require('../schema/truckSchema');
 const braintree = require('braintree');
 const uniqid = require('uniqid');
 const accountSchema = require('../schema/accounts');
+const produceSchema = require('../schema/produce');
 
 
 class transaction {
@@ -14,6 +15,7 @@ class transaction {
         this.transactionModel = mongoose.model('transaction', transacSchema);
         this.truckModel = mongoose.model('truck', truckSchema);
         this.accountModel = mongoose.model('account', accountSchema);
+        this.produceModel = mongoose.model('produce', produceSchema);
     }
 
     createOrder(details) {
@@ -111,8 +113,15 @@ class transaction {
         return type;
     }
 
+    updateProduce(id, weight) {
+        return this.produceModel.findByIdAndUpdate(id, { $inc: { quantity: -weight } }).then(produce => {
+            return produce;
+        }).catch(err => {
+            throw err;
+        })
+    }
 }
 
 module.exports = transaction;
 
-//sd
+//sdw

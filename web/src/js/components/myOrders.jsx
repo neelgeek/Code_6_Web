@@ -30,7 +30,7 @@ class myOrders extends Component{
 					<li className="collection-item">
 						<div className="row">
 				      		<div className="col s4">
-				      			<div className="card">
+				      			<div className="card" style={{"background":"#E0E0E0","height":"192px"}}>
 							        <div className="card-content white-text">
 							          <span classNam="card-title">Crop</span>
 								          <table >
@@ -56,7 +56,7 @@ class myOrders extends Component{
 							      </div>
 				      		</div>
 				      		<div className="col s4">
-				      			<div className="card">
+				      			<div className="card" style={{"background":"#E0E0E0" }}>
 							        <div className="card-content white-text">
 							          <span className="card-title">Farmer</span>
 							          	 <table >
@@ -81,7 +81,7 @@ class myOrders extends Component{
 							      </div>
 				      		</div>
 				      		<div className="col s4">
-				      			<div className="card">
+				      			<div className="card" style={{"background":"#E0E0E0"}}>
 							        <div className="card-content white-text">
 							          <span className="card-title">Transport</span>
 							          	 <table >
@@ -105,7 +105,7 @@ class myOrders extends Component{
 							      
 							      </div>
 				      		</div>
-				      		{transaction.status === "Processing"?<div className="btn btn-waves waves-large">
+				      		{transaction.status === "Processing" ||"WSP"?<div className="btn btn-waves waves-large">
 				      		 Complete Share payment
 
 				      		</div>:<div></div>}

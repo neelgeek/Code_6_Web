@@ -30,6 +30,7 @@ class produceModel {
                         }
 
                         var productinfo = {
+                            id: product._id,
                             name: product.crop,
                             type: product.type,
                             quantity: details.quantity
