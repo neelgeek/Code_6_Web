@@ -42,7 +42,7 @@ export const getRoutes = store => {
 
 
 
-          
+           
 
             <Route  path="/uploadCrop" component={ProduceUpload}/>
             <Route  path="/Login/farmer" render={()=><Login isAuthenticated={store.getState().authReducer.loggedIn} role={"farmer"}/>}/>

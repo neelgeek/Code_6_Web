@@ -70,7 +70,7 @@ exports.controllerFunction = function(app) {
                     status: 'Placed',
                     torigin: origin,
                     tdest: destination,
-                    farmer
+
                 }
                 transaction.updateOrder(orderDet).then(updatedOrder => {
                     console.log(orderId);
@@ -78,27 +78,28 @@ exports.controllerFunction = function(app) {
                         transaction_id: result.id,
                         order_id: mongoose.Types.ObjectId(updatedOrder._id),
                         user_id: mongoose.Types.ObjectId(req.session.user.id),
-                        amount: value,
+                        amount: value
 
                     }
                     transaction.createTransaction(transac_details)
                         .then(newTransaction => {
-                            // transaction.addMoney(result.amount).then(account => {
-                            let details = {
-                                id: truckId,
-                                status: 'Assigned',
-                                order: orderId
-                            }
-                            transaction.updateTruckStatus(details).then(truck => {
-                                res.status(200).json(result);
+                            console.log(value);
+                            transaction.addMoney(value).then(account => {
+                                let details = {
+                                    id: truckId,
+                                    status: 'Assigned',
+                                    order: orderId
+                                }
+                                transaction.updateTruckStatus(details).then(truck => {
+                                    res.status(200).json(result);
+                                }).catch(err => {
+                                    throw err;
+                                });
                             }).catch(err => {
-                                throw err;
-                            });
-                            // }).catch(err => {
-                            //     res.status(500).json({
-                            //         message: err.message
-                            //     })
-                            // })
+                                res.status(500).json({
+                                    message: err.message
+                                })
+                            })
 
                         })
                         .catch(err => {
